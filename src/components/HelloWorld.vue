@@ -1,149 +1,151 @@
 <template>
   <v-container>
-    <v-row class="text-center">
-      <v-col cols="12">
-        <v-img
-          :src="require('../assets/logo.svg')"
-          class="my-3"
-          contain
-          height="200"
-        />
-      </v-col>
-
-      <v-col class="mb-4">
-        <h1 class="display-2 font-weight-bold mb-3">
-          Welcome to Vuetify
-        </h1>
-
-        <p class="subheading font-weight-regular">
-          For help and collaboration with other Vuetify developers,
-          <br>please join our online
-          <a
-            href="https://community.vuetifyjs.com"
-            target="_blank"
-          >Discord Community</a>
-        </p>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
+    <v-card class="mt-5 mb-5 mr-15 ml-15 pa-2" color="#76eaab" elevation="8">
+      <h1 style="text-align: center">Mi Biblioteca</h1>
+      <v-data-iterator
+        :items="items"
+        :items-per-page="itemsPerPage"
+        :page="page"
+        :search="search"
+        :sort-by="sortBy.toLowerCase()"
+        :sort-desc="sortDesc"
+        v-bind="$attrs"
+        hide-default-footer
       >
-        <h2 class="headline font-weight-bold mb-3">
-          What's next?
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(next, i) in whatsNext"
-            :key="i"
-            :href="next.href"
-            class="subheading mx-3"
-            target="_blank"
+        <template v-slot:header>
+          <v-toolbar
+            light
+            flat
+            color="transparent"
+            class="mb-1"
           >
-            {{ next.text }}
-          </a>
-        </v-row>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          Important Links
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(link, i) in importantLinks"
-            :key="i"
-            :href="link.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ link.text }}
-          </a>
-        </v-row>
-      </v-col>
-
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-3">
-          Ecosystem
-        </h2>
-
-        <v-row justify="center">
-          <a
-            v-for="(eco, i) in ecosystem"
-            :key="i"
-            :href="eco.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ eco.text }}
-          </a>
-        </v-row>
-      </v-col>
-    </v-row>
+            <v-text-field
+              v-model="search"
+              clearable
+              flat
+              outlined
+              dense
+              solo-inverted
+              hide-details
+              label="Buscar"
+              dark
+            ></v-text-field>
+            <v-btn
+              elevation="2"
+              fab
+              color="primary"
+            >
+              <v-icon>mdi-magnify</v-icon>
+            </v-btn>
+            <template v-if="$vuetify.breakpoint.mdAndUp">
+              <!-- <v-spacer></v-spacer>
+              <v-select
+                v-model="sortBy"
+                class="mx-2"
+                flat
+                solo-inverted
+                hide-details
+                :items="keys"
+                prepend-inner-icon="mdi-magnify"
+                label="Sort by"
+              ></v-select>
+              <v-spacer></v-spacer> -->
+              <v-btn
+                elevation="2"
+                fab
+                color="primary"
+              >
+                <v-icon>mdi-sort</v-icon>
+              </v-btn>
+              <!-- <v-btn-toggle
+                v-model="sortDesc"
+                mandatory
+              >
+                <v-btn
+                  large
+                  depressed
+                  color="blue"
+                  :value="false"
+                >
+                  <v-icon>mdi-arrow-up</v-icon>
+                </v-btn>
+                <v-btn
+                  large
+                  depressed
+                  color="blue"
+                  :value="true"
+                >
+                  <v-icon>mdi-arrow-down</v-icon>
+                </v-btn>
+              </v-btn-toggle> -->
+            </template>
+          </v-toolbar>
+        </template>
+        <template v-slot:default="props">
+          <v-row>
+            <v-col v-for="item in props.items" :key="item.name" cols="12" sm="3">
+              <v-card
+                color="transparent"
+                outlined                
+              >
+                <v-col justify="space-between">
+                  <v-row rows="auto">
+                    <v-img :src="item.backgroundImage"></v-img>
+                  </v-row>
+                  <v-row rows="auto">
+                    <v-list-item-content>{{ item.name }}</v-list-item-content>
+                  </v-row>
+                </v-col>
+              </v-card>
+            </v-col>
+          </v-row>
+        </template>
+      </v-data-iterator>
+    </v-card>
   </v-container>
 </template>
 
 <script>
   export default {
-    name: 'HelloWorld',
-
+    inheritAttrs: false,
     data: () => ({
-      ecosystem: [
+      search: '',
+      sortDesc: false,
+      page: 1,
+      itemsPerPage: 8,
+      sortBy: 'name',
+      items: [
         {
-          text: 'vuetify-loader',
-          href: 'https://github.com/vuetifyjs/vuetify-loader',
+          name: 'Rutina 1',
+          backgroundImage: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
         },
         {
-          text: 'github',
-          href: 'https://github.com/vuetifyjs/vuetify',
+          name: 'Rutina 2',
+          backgroundImage: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
         },
         {
-          text: 'awesome-vuetify',
-          href: 'https://github.com/vuetifyjs/awesome-vuetify',
-        },
-      ],
-      importantLinks: [
-        {
-          text: 'Documentation',
-          href: 'https://vuetifyjs.com',
+          name: 'Rutina 3',
+          backgroundImage: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
         },
         {
-          text: 'Chat',
-          href: 'https://community.vuetifyjs.com',
+          name: 'Rutina 4',
+          backgroundImage: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
         },
         {
-          text: 'Made with Vuetify',
-          href: 'https://madewithvuejs.com/vuetify',
+          name: 'Rutina 5',
+          backgroundImage: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
         },
         {
-          text: 'Twitter',
-          href: 'https://twitter.com/vuetifyjs',
+          name: 'Rutina 6',
+          backgroundImage: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
         },
         {
-          text: 'Articles',
-          href: 'https://medium.com/vuetify',
-        },
-      ],
-      whatsNext: [
-        {
-          text: 'Explore components',
-          href: 'https://vuetifyjs.com/components/api-explorer',
+          name: 'Rutina 7',
+          backgroundImage: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
         },
         {
-          text: 'Select a layout',
-          href: 'https://vuetifyjs.com/getting-started/pre-made-layouts',
-        },
-        {
-          text: 'Frequently Asked Questions',
-          href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions',
+          name: 'Rutina 8',
+          backgroundImage: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
         },
       ],
     }),

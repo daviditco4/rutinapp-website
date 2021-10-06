@@ -1,22 +1,16 @@
 <template>
 
-  <div class="home" id = "home">
-    <v-img src="@/assets/fondo1.jpeg" height="100%" >
+  <div class="home">
+    <v-img src="@/assets/fondo1.jpeg" >
     <div class="my-2">
     <v-row>
       <v-col cols="10" justify-self="center" class="text-center">
         <h1 style="color: white; font-weight:900;">Hola otra vez, Marcela!</h1>
       </v-col>
       <v-col cols="1">
-        <v-btn
-          class="mx-2"
-          fab
-          small
-        >
-        <v-icon>
-          <v-img src="@/assets/logo.jpeg" max-width="100" max-height="100" lass="justify-center"></v-img>
-        </v-icon>
-        </v-btn>
+        <v-tab to="/miPerfil" >
+        <v-img src="@/assets/logo.png" max-width="50" max-height="50" class="justify-center my-3"></v-img>
+        </v-tab>
       </v-col>
     </v-row>
     </div>

@@ -1,9 +1,10 @@
 <template>
-  <div class="home" id = "home">
 
+  <div class="home" id = "home">
     <v-img src="@/assets/fondo1.jpeg" height="100%" >
+    <div class="my-2">
     <v-row>
-      <v-col cols= "11" justify="center" class="text-center">
+      <v-col cols="10" justify-self="center" class="text-center">
         <h1 style="color: white; font-weight:900;">Hola otra vez, Marcela!</h1>
       </v-col>
       <v-col cols="1">
@@ -18,10 +19,10 @@
         </v-btn>
       </v-col>
     </v-row>
-
+    </div>
 
       <v-card width="500" height="350" class="mx-auto mt-16 text-center" color="#76EAAB">
-        
+       
         <v-card-title primary-title class="text-center" style="color:#333C8E; font-size:24px;">
           ¿Qué tienes ganas de hacer?
         </v-card-title>
@@ -57,11 +58,12 @@
 <script>
 // @ is an alias to /src
 import Footer from '@/components/Footer.vue'
+//cd cd import Creaciones from '@/components/Creaciones.vue'
 
   export default {
     name: 'Home',
     components: {
-      Footer
+      Footer,
     },
     data: () => ({
       
@@ -69,10 +71,19 @@ import Footer from '@/components/Footer.vue'
 
     methods: {
       elegir(){
-
+        //mostrarCreaciones : true
       },
       
-    }
-  }
+    },
+    
+}
 </script>
 
+<style lang="scss">
+#textcenter{
+    color:white;
+    width: 250px;
+    height: 250px;
+    line-height: 200px;
+}
+</style>

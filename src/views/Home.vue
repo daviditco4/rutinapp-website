@@ -24,21 +24,22 @@
         <v-card-actions>
           <v-col>
             <div class="text-center">
-              <v-btn color="#333C8E" x-large block @click="elegir()">Crear Rutina o Ejercicio</v-btn>
+              <v-btn style="background-color: #333C8E; color: white;"
+               x-large block @click="elegir()">Crear Rutina o Ejercicio</v-btn>
             </div>  
           </v-col>
         </v-card-actions>
         <v-card-actions>
           <v-col>    
             <div class="text-center">
-              <v-btn color="#333C8E" x-large block >Ir a Mi Biblioteca</v-btn>
+              <v-btn style="background-color: #333C8E; color: white;" x-large block >Ir a Mi Biblioteca</v-btn>
             </div>  
           </v-col> 
         </v-card-actions>
         <v-card-actions>
           <v-col> 
             <div class="text-center">
-              <v-btn color="#333C8E" x-large block to="/buscar-rutinas">Buscar Rutinas</v-btn>
+              <v-btn style="background-color: #333C8E; color: white;" x-large block to="/buscar-rutinas">Buscar Rutinas</v-btn>
             </div>
           </v-col>  
         </v-card-actions> 

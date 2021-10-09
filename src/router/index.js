@@ -1,18 +1,21 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import preHome from '../views/preHome.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/preHome',
+    path: '/',
     component: () => import('../layouts/BGLayout'),
     children: [
         {
-            path: '/preHome',
+            // path: '/preHome',
+            // name: 'PreHome',
+            // component: () => import('../views/preHome.vue')
+            path: '/',
             name: 'PreHome',
-            component: () => import('../views/preHome.vue')
+            component: preHome,
         },
         
     ]
@@ -22,9 +25,12 @@ const routes = [
     component: () => import('../layouts/BGLayout'),
     children: [
         {
-          path: '/',
+          // path: '/',
+          // name: 'Home',
+          // component: Home
+          path: '/home',
           name: 'Home',
-          component: Home
+          component: () => import('../views/Home.vue')
         }
     ] 
   },
@@ -36,6 +42,18 @@ const routes = [
             path: '/login',
             name: 'Login',
             component: () => import('../views/Login.vue')
+        },
+        
+    ]
+  },
+  {
+    path: '/singUp',
+    component: () => import('../layouts/BGLayout'),
+    children: [
+        {
+            path: '/signUp',
+            name: 'SignUp',
+            component: () => import('../views/SignUp.vue')
         },
         
     ]

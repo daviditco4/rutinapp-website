@@ -39,12 +39,13 @@ import router from "@/router";
 
 export default {
   name: "Creaciones",
-  data() {
-      return {
-        ejercicio: false,
+  data: () => ({
+      ejercicio: false,
         rutina: false,
-      }
-    },
+  }),     
+  components:{    
+  },
+  methods: {
     ejercicio() {
         this.ejercicio = true;
         this.rutina = false;
@@ -59,6 +60,7 @@ export default {
       if(this.ejercicio == true)
         return router.replace("/buscar-rutinas");
     },
+  }
 }
 </script>
 

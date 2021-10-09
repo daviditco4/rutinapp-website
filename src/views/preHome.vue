@@ -25,7 +25,7 @@
                 <v-col>
                     <div class="text-center">
                     <v-btn style="background-color: #333C8E; color: white;" large block                    
-                      to="/singUp">
+                      to="/signUp">
                       Registrarse
                     </v-btn>
                     </div>  
@@ -47,11 +47,12 @@ export default {
 </script>
 
 <style lang="scss">
-.homeBackground {
-  background: url("../assets/preHome.jpeg") ;
-  background-size: cover;
-  opacity: 1;
-}
+.preHome-background {
+    background: url("../assets/preHome.jpeg") no-repeat transparent;
+    background-size: cover;
+    height: 100%;
+    opacity: 1;
+  }
 h1 {
   color: white;
 }

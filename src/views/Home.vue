@@ -55,7 +55,7 @@
 
 import Creaciones from '@/components/Creaciones.vue'
 
-  export default {
+export default {
     name: 'Home',
     components: {
       Creaciones,

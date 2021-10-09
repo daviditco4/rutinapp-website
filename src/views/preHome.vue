@@ -14,14 +14,20 @@
          <v-card-actions>
                 <v-col>
                     <div class="text-center">
-                    <v-btn style="background-color: #333C8E; color: white;" large block >Iniciar Sesion</v-btn>
+                    <v-btn style="background-color: #333C8E; color: white;" large block 
+                      to="/login">
+                      Iniciar Sesion
+                    </v-btn>
                     </div>  
                 </v-col>
                 </v-card-actions>
                 <v-card-actions>
                 <v-col>
                     <div class="text-center">
-                    <v-btn style="background-color: #333C8E; color: white;" large block>Registrarse</v-btn>
+                    <v-btn style="background-color: #333C8E; color: white;" large block                    
+                      to="/singUp">
+                      Registrarse
+                    </v-btn>
                     </div>  
                 </v-col>
           </v-card-actions>

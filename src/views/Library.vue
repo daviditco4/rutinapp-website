@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="library">
     <v-card class="mt-5 mb-5 mr-15 ml-15 pa-2" color="#76eaab" elevation="8">
       <h1 style="text-align: center">Mi Biblioteca</h1>
       <v-data-iterator

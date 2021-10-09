@@ -1,28 +1,28 @@
 <template>
-    <div>
+    <div id="preHome">
         <v-row class="mb-6"
       no-gutters>
-        <v-col cols="5" justify-self="left" >
-          <h1 style=" font-weight:900;">Entrená a tu ritmo.</h1>
-          <h1 style=" font-weight:900;">
+        <v-col cols="5" flex-start >
+          <h1 style="color:white; font-weight:900;">Entrená a tu ritmo.</h1>
+          <h1 style="color:white; font-weight:900;">
                 Creá tu propia rutina o
                 elegí de +1.000 creadas y 
                 punteadas por otros usuarios.
           </h1>
         </v-col>
 
-        <v-col md="7">
+        <v-col offset-sm ="3" >
          <v-card-actions>
                 <v-col>
                     <div class="text-center">
-                    <v-btn color="#333C8E" x-large  >Iniciar Sesion</v-btn>
+                    <v-btn color="#333C8E" large block >Iniciar Sesion</v-btn>
                     </div>  
                 </v-col>
                 </v-card-actions>
                 <v-card-actions>
                 <v-col>
                     <div class="text-center">
-                    <v-btn color="#333C8E" x-large >Registrarse</v-btn>
+                    <v-btn color="#333C8E" large block>Registrarse</v-btn>
                     </div>  
                 </v-col>
           </v-card-actions>
@@ -47,7 +47,8 @@ export default {
   background-size: cover;
   opacity: 1;
 }
-.spaceTop{
-  padding: 100px;
+#preHome{
+  padding: 30px;
+  padding-top: 190px;
 }
 </style>

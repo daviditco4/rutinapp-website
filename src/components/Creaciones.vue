@@ -7,15 +7,15 @@
           <v-card-actions>
            <v-col >
               <v-row >
-                <div offset-sm="2" class="text-center">    
+                <div offset-sm="2">    
                     <v-tab text>
-                      <v-img src="@/assets/ejercicio.jpeg" height="200" width="200"></v-img>
+                      <v-img src="@/assets/ejercicio.jpeg" height="200" width="200" @click="ejercicio()"></v-img>
                     </v-tab>
                 </div> 
                 <v-spacer/>
                 <div class="text-center">  
                   <v-tab text>
-                    <v-img src="@/assets/rutina.jpeg" text height="200" width="200"></v-img>
+                    <v-img src="@/assets/rutina.jpeg" text height="200" width="200" @click="rutina()"></v-img>
                   </v-tab> 
                 </div> 
               </v-row>
@@ -25,7 +25,7 @@
         <v-card-actions>
           <v-col> 
             <div class="text-center">
-              <v-btn color="#333C8E" x-large block>Crear</v-btn>
+              <v-btn color="#333C8E" x-large block @click="crear()">Crear</v-btn>
             </div>
           </v-col>  
         </v-card-actions>  
@@ -36,21 +36,30 @@
 
 <script>
 import { defineComponent } from '@vue/composition-api'
+import router from "@/router";
 
 export default defineComponent({
-    setup() {
-        
-    },
     data: () => ({
+      ejercicio: false,
+      rutina: false,
     }),
+    ejercicio() {
+        this.ejercicio = true;
+        this.rutina = false;
+    },
+    rutina() {
+        this.rutina = true;
+        this.ejercicio = false;
+    },
+    crear(){
+      if(this.rutina == true)
+        return router.replace("/buscar-rutinas");
+      if(this.ejercicio == true)
+        return router.replace("/buscar-rutinas");
+    },
 })
 </script>
 
 <style lang="scss">
-#textcenter{
-    color:white;
-    width: 250px;
-    height: 250px;
-    line-height: 200px;
-}
+
 </style>

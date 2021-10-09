@@ -9,13 +9,13 @@
               <v-row >
                 <div offset-sm="2" class="text-center">    
                     <v-tab text>
-                      <v-img src="@/assets/foto1.jpeg" height="200" width="200"></v-img>
+                      <v-img src="@/assets/ejercicio.jpeg" height="200" width="200"></v-img>
                     </v-tab>
                 </div> 
                 <v-spacer/>
                 <div class="text-center">  
                   <v-tab text>
-                    <v-img src="@/assets/foto2.jpeg" text height="200" width="200"></v-img>
+                    <v-img src="@/assets/rutina.jpeg" text height="200" width="200"></v-img>
                   </v-tab> 
                 </div> 
               </v-row>

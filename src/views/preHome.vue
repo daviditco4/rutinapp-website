@@ -42,7 +42,7 @@ export default {
 
 <style lang="scss">
 .homeBackground {
-  background: url("../assets/home.jpeg") ;
+  background: url("../assets/preHome.jpeg") ;
   background-size: cover;
   opacity: 1;
 }

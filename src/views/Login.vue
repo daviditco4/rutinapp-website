@@ -3,10 +3,10 @@
 <!--    <v-img src="@/assets/login.png">-->
     <v-spacer/>
     <v-row justify="center">
-<!--      <v-col cols="12">-->
+      <v-col cols="12">
           <h1 class="text-center welcome-message">¡Qué alegría volverte a ver!<br>
             Por favor, iniciá sesión para continuar</h1>
-<!--      </v-col>-->
+      </v-col>
     </v-row>
     <v-row justify="center" align="center">
       <v-col cols="5">

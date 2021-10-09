@@ -11,6 +11,17 @@ const routes = [
     component: Home
   },
   {
+    path: '/login',
+    component: () => import('../layouts/LoginLayout'),
+    children: [
+        {
+            path: '',
+            name: 'Login',
+            component: () => import('../views/Login')
+        }
+    ]
+  },
+  {
     path: '/buscar-rutinas',
     name: 'BuscarRutinas',
     // route level code-splitting

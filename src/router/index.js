@@ -7,7 +7,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    component: () => import('../layouts/BGLayout'),
+    component: () => import('../layouts/BGLoginLayout'),
     children: [
         {
             // path: '/preHome',
@@ -21,7 +21,7 @@ const routes = [
     ]
   },
   {
-    path: '/',
+    path: '/home',
     component: () => import('../layouts/BGLayout'),
     children: [
         {

@@ -50,7 +50,7 @@ export default {
 .preHome-background {
     background: url("../assets/preHome.jpeg") no-repeat transparent;
     background-size: cover;
-    height: 100%;
+    //height: 100%;
     opacity: 1;
   }
 h1 {

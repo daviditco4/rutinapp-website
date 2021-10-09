@@ -75,7 +75,7 @@ export default {
 </script>
 
 <style lang="scss">
-.homeBackground {
+.home-Background {
   background: url("../assets/home.jpeg") ;
   background-size: cover;
   /*height: 100%;*/

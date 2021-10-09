@@ -1,6 +1,5 @@
 <template>
   <v-app>
-    <AppBar></AppBar>
     <v-main>
       <v-fade-transition appear>
         <router-view></router-view>
@@ -12,13 +11,11 @@
 
 <script>
 import Footer from '../components/Footer'
-import AppBar from '../components/AppBar'
 
 export default {
-  name: 'BGLayout',
+  name: 'LoginLayout',
   components: {
     Footer,
-    AppBar
   },
 }
 </script>
@@ -26,7 +23,7 @@ export default {
 <style>
 #app {
   height: 100%;
-  background: url("../assets/login.png") no-repeat center;
+  background: url("../assets/preHome.jpeg") no-repeat center;
   background-size: cover;
 }
 </style>

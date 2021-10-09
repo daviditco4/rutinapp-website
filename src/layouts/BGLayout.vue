@@ -26,7 +26,7 @@ export default {
 <style>
 #app {
   height: 100%;
-  background: url("../assets/login.png") no-repeat center;
+  background: url("../assets/home.jpeg") no-repeat center;
   background-size: cover;
 }
 </style>

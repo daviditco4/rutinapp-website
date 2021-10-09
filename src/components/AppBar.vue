@@ -23,23 +23,23 @@
           </v-tab>
         </template>
         <v-tabs vertical>
-          <v-tab >Rutina</v-tab>
-          <v-tab >Ejercicio</v-tab>
+          <v-tab style="background-color:#76EAAB">Rutina</v-tab>
+          <v-tab style="background-color:#76EAAB">Ejercicio</v-tab>
 
         </v-tabs>
       </v-menu>
 
-      <v-menu offset-y tile open-on-hover close-delay="3">
+      <v-menu offset-y tile open-on-hover close-delay="3" >
         <template v-slot:activator="{ on, attrs }">
           <v-tab v-bind="attrs" v-on="on" class="white--text text-center"> 
             <v-img src="@/assets/logo.png" max-width="50" max-height="50" class="justify-center my-3"></v-img>
             <v-icon color="white">mdi-chevron-down</v-icon>
           </v-tab>
         </template>
-        <v-tabs vertical>
-          <v-tab to="/miPerfil">Mi Perfil</v-tab>
-          <v-tab to="/miBiblioteca">Mi biblioteca</v-tab>
-          <v-tab >Cerrar Sesion</v-tab>
+        <v-tabs vertical style="background-color:#76EAAB">
+          <v-tab to="/miPerfil" style="background-color:#76EAAB">Mi Perfil</v-tab>
+          <v-tab to="/miBiblioteca" style="background-color:#76EAAB">Mi biblioteca</v-tab>
+          <v-tab style="background-color:#76EAAB">Cerrar Sesion</v-tab>
         </v-tabs>
       </v-menu>
 

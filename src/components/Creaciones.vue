@@ -1,5 +1,5 @@
 <template >
-    <v-card width="500" height="370" class="mx-auto mt-16 text-center" color="#76EAAB">  
+    <v-card width="500" height="370" class="mx-auto text-center" color="#76EAAB">  
         <v-card-title primary-title class="text-center" style="color:#333C8E; font-size:24px;">
           ¿Qué vamos a crear hoy?
         </v-card-title>
@@ -35,14 +35,16 @@
 </template>
 
 <script>
-import { defineComponent } from '@vue/composition-api'
 import router from "@/router";
 
-export default defineComponent({
-    data: () => ({
-      ejercicio: false,
-      rutina: false,
-    }),
+export default {
+  name: "Creaciones",
+  data() {
+      return {
+        ejercicio: false,
+        rutina: false,
+      }
+    },
     ejercicio() {
         this.ejercicio = true;
         this.rutina = false;
@@ -57,7 +59,7 @@ export default defineComponent({
       if(this.ejercicio == true)
         return router.replace("/buscar-rutinas");
     },
-})
+}
 </script>
 
 <style lang="scss">

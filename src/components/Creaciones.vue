@@ -3,7 +3,7 @@
         <v-row>
           <v-btn color="#333C8E" >
                     <v-icon @click="closeCardCreaciones" left>
-                      mdi-arrow-left-box
+                      mdi-arrow-left
                     </v-icon>
           </v-btn>
           <v-card-title primary-title class="text-center" style="color:#333C8E; font-size:24px;">
@@ -16,13 +16,13 @@
               <v-row >
                 <div offset-sm="2">    
                     <v-tab text>
-                      <v-img src="@/assets/ejercicio.jpeg" height="200" width="200" @click="ejercicio()"></v-img>
+                      <v-img src="@/assets/ejercicio.jpeg" height="200" width="200" @click="ejercicios()"></v-img>
                     </v-tab>
                 </div> 
                 <v-spacer/>
                 <div class="text-center">  
                   <v-tab text>
-                    <v-img src="@/assets/rutina.jpeg" text height="200" width="200" @click="rutina()"></v-img>
+                    <v-img src="@/assets/rutina.jpeg" text height="200" width="200" @click="rutinas()"></v-img>
                   </v-tab> 
                 </div> 
               </v-row>
@@ -57,19 +57,19 @@ export default {
         this.$emit('closeCreaciones');
     },
 
-    ejercicio() {
+    ejercicios() {
         this.ejercicio = true;
         this.rutina = false;
     },
-    rutina() {
+    rutinas() {
         this.rutina = true;
         this.ejercicio = false;
     },
-    crear(){
+    async crear(){
       if(this.rutina == true)
-        return router.replace("/buscar-rutinas");
+        await this.$router.replace("/crear-rutina");
       if(this.ejercicio == true)
-        return router.replace("/buscar-rutinas");
+        await router.replace("/crear-ejercicio");
     },
   }
 }

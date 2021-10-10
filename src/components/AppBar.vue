@@ -7,7 +7,7 @@
 
     <v-col cols="10">
       <v-col cols="1">
-      <v-tab to="/" >
+      <v-tab to="/home" >
         <v-img src="@/assets/logo.png" max-width="50" max-height="50" class="justify-center my-3"></v-img>
       </v-tab>
       </v-col>

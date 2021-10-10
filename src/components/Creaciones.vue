@@ -1,8 +1,15 @@
 <template >
     <v-card width="500" height="370" class="mx-auto text-center" color="#76EAAB">  
-        <v-card-title primary-title class="text-center" style="color:#333C8E; font-size:24px;">
-          ¿Qué vamos a crear hoy?
-        </v-card-title>
+        <v-row>
+          <v-btn color="#333C8E" >
+                    <v-icon @click="closeCardCreaciones" left>
+                      mdi-arrow-left-box
+                    </v-icon>
+          </v-btn>
+          <v-card-title primary-title class="text-center" style="color:#333C8E; font-size:24px;">
+            ¿Qué vamos a crear hoy?
+          </v-card-title>
+        </v-row>
         
           <v-card-actions>
            <v-col >
@@ -46,6 +53,10 @@ export default {
   components:{    
   },
   methods: {
+    closeCardCreaciones() {
+        this.$emit('closeCreaciones');
+    },
+
     ejercicio() {
         this.ejercicio = true;
         this.rutina = false;

@@ -15,7 +15,8 @@
 
 
      
-      <v-card v-if="!mostrarCreaciones" width="500" height="370" class="mx-auto text-center" color="#76EAAB">
+      <v-card v-if="!mostrarCreaciones" 
+        width="500" height="370" class="mx-auto text-center" color="#76EAAB">
         
          <v-card-title primary-title class="text-center" style="color:#333C8E; font-size:24px;">
           ¿Qué tienes ganas de hacer?
@@ -45,7 +46,7 @@
         </v-card-actions> 
       </v-card>
 
-      <Creaciones v-if="mostrarCreaciones"/>
+      <Creaciones v-if="mostrarCreaciones" @closeCreaciones="mostrarCreaciones=false"/>
 
   </div>
 </template>
@@ -61,7 +62,7 @@ export default {
       Creaciones,
     },
     data: () => ({
-      mostrarCreaciones: false
+      mostrarCreaciones: false,
     }),
 
     methods: {

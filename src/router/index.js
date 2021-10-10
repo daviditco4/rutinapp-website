@@ -36,7 +36,7 @@ const routes = [
   },
   {
     path: '/login',
-    component: () => import('../layouts/BGLayout'),
+    component: () => import('../layouts/BGLoginLayout'),
     children: [
         {
             path: '/login',
@@ -48,7 +48,7 @@ const routes = [
   },
   {
     path: '/singUp',
-    component: () => import('../layouts/BGLayout'),
+    component: () => import('../layouts/BGLoginLayout'),
     children: [
         {
             path: '/signUp',

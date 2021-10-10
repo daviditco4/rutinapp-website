@@ -13,7 +13,7 @@
 import Footer from '../components/Footer'
 
 export default {
-  name: 'LoginLayout',
+  name: 'BGLoginLayout',
   components: {
     Footer,
   },

@@ -78,7 +78,7 @@ export default {
 .home-Background {
   background: url("../assets/home.jpeg") ;
   background-size: cover;
-  /*height: 100%;*/
+  height: 100%;
   opacity: 1;
 }
 </style>

@@ -1,6 +1,5 @@
 <template>
   <v-container>
-    <AppBar />
     <v-card class="mt-5 mb-5 mr-15 ml-15 pa-2" color="#76eaab" elevation="8">
       <h1 style="text-align: center">Busqueda de rutinas</h1>
       <v-data-iterator
@@ -34,51 +33,18 @@
             <v-btn
               elevation="2"
               fab
-              color="primary"
+              color="#333C8E"
             >
               <v-icon>mdi-magnify</v-icon>
             </v-btn>
             <template v-if="$vuetify.breakpoint.mdAndUp">
-              <!-- <v-spacer></v-spacer>
-              <v-select
-                v-model="sortBy"
-                class="mx-2"
-                flat
-                solo-inverted
-                hide-details
-                :items="keys"
-                prepend-inner-icon="mdi-magnify"
-                label="Sort by"
-              ></v-select>
-              <v-spacer></v-spacer> -->
               <v-btn
                 elevation="2"
                 fab
-                color="primary"
+                color="#333C8E"
               >
                 <v-icon>mdi-sort</v-icon>
               </v-btn>
-              <!-- <v-btn-toggle
-                v-model="sortDesc"
-                mandatory
-              >
-                <v-btn
-                  large
-                  depressed
-                  color="blue"
-                  :value="false"
-                >
-                  <v-icon>mdi-arrow-up</v-icon>
-                </v-btn>
-                <v-btn
-                  large
-                  depressed
-                  color="blue"
-                  :value="true"
-                >
-                  <v-icon>mdi-arrow-down</v-icon>
-                </v-btn>
-              </v-btn-toggle> -->
             </template>
           </v-toolbar>
         </template>
@@ -107,12 +73,9 @@
 </template>
 
 <script>
-import AppBar from "@/components/AppBar";
-
   export default {
     inheritAttrs: false,
     components: {
-      AppBar,
     },
     data: () => ({
       search: '',

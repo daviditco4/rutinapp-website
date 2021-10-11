@@ -1,32 +1,46 @@
 <template>
   <div class="create-routine">
     <v-container>
-      <v-card class="pa-md-4 mx-lg-auto mt-16 rounded-xl" width="800px">
-        <v-row>
+      <v-card class="pa-md-4 mx-lg-auto mt-16 rounded-xl" width="800px" color="primary">
+        <v-row no-gutters>
           <v-col>
-            <span class="d-flex justify-center">Nueva rutina</span>
+            <h2 class="d-flex justify-center">Nueva rutina</h2>
           </v-col>
         </v-row>
-        <v-row>
+        <v-row no-gutters>
           <v-col>
-            <span class="justify-center">Nombre</span>
+            <h4 class="text-left">Nombre</h4>
           </v-col>
         </v-row>
-        <v-text-field value="10"></v-text-field>
+        <v-text-field label="Nombre"
+                      rounded
+                      flat
+                      outlined
+                      light
+                      hide-details
+                      background-color="white"
+        ></v-text-field>
         <v-row>
           <v-col>
-            <span class="justify-center">Descripción</span>
+            <h4 class="text-left">Descripción</h4>
           </v-col>
         </v-row>
-        <v-text-field value="10"></v-text-field>
+        <v-text-field label="Descripción"
+                      rounded
+                      flat
+                      outlined
+                      light
+                      hide-details
+                      background-color="white"
+        ></v-text-field>
       </v-card>
 
 <!--    <li v-for="(cycle, index) in cycles" :key="cycle.name">-->
-      <v-card class="pa-md-4 mx-lg-auto mt-16 rounded-xl" width="800px">
+      <v-card class="pa-md-4 mx-lg-auto mt-16 rounded-xl" width="800px" color="primary">
         <v-row align="center">
           <v-col cols="12" md="3">
-            <p class="mb-n1">Ciclo 1</p>
-            <p>Calentamiento</p>
+            <h4 class="mb-n1">Ciclo 1</h4>
+            <h4>Calentamiento</h4>
           </v-col>
           <v-col md="2" class="ml-auto">
             <v-text-field value="10">
@@ -35,14 +49,14 @@
             </v-text-field>
           </v-col>
           <v-col md="2">
-            <p>Repeticiones del ciclo</p>
+            <h4>Repeticiones del ciclo</h4>
           </v-col>
         </v-row>
 
           <!--        <ul>-->
         <v-row align="center" style="margin-bottom: -20px">
           <v-col cols="12" md="8">
-            <span>1. Ejercicio</span>
+            <h4 class="text-left">1. Ejercicio</h4>
           </v-col>
             <v-col md="2">
                 <v-text-field value="10">
@@ -63,14 +77,14 @@
             <v-row style="margin-left: 10px; margin-bottom: 20px">
               <v-menu transition="scroll-x-transition" style="height: 20px;">
                 <template v-slot:activator="{on, attrs}">
-                  <v-btn v-on="on" v-bind="attrs" style="min-width: 10px;height: 50px;">
+                  <v-btn rounded v-on="on" v-bind="attrs" style="min-width: 10px;height: 50px;">
                   <v-icon>
                     mdi-plus
                   </v-icon>
                   </v-btn>
                 </template>
-                <v-btn-toggle style="margin-left: 60px; background-color: transparent">
-                  <v-btn>
+                <v-btn-toggle rounded style="margin-left: 60px; background-color: transparent">
+                  <v-btn rounded>
                     Ejercicio
                   </v-btn>
                     <v-btn>

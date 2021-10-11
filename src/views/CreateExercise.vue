@@ -1,30 +1,59 @@
 <template>
   <div class="create-exercise">
     <v-container>
-      <v-card class="pa-md-4 mx-lg-auto mt-16 rounded-xl" width="800px">
+      <v-card class="pa-md-4 mx-lg-auto mt-16 rounded-xl" width="800px" color="primary">
         <v-row>
           <v-col>
-            <span class="d-flex justify-center">Nuevo ejercicio</span>
+            <h2 class="d-flex justify-center">Nuevo ejercicio</h2>
           </v-col>
         </v-row>
 
         <v-row>
           <v-col>
-            <span class="justify-center">Nombre</span>
+            <h4 class="justify-center">Nombre</h4>
           </v-col>
         </v-row>
-        <v-text-field value="10"></v-text-field>
+        <v-text-field
+            value="10"
+            rounded
+            flat
+            outlined
+            light
+            hide-details
+            background-color="white"
+        ></v-text-field>
 
         <v-row>
           <v-col>
-            <span class="justify-center">Descripción</span>
+            <h4 class="justify-center">Descripción</h4>
           </v-col>
         </v-row>
-        <v-text-field value="10"></v-text-field>
+        <v-text-field
+            value="10"
+            rounded
+            flat
+            outlined
+            light
+            hide-details
+            background-color="white"
+        ></v-text-field>
 
         <v-row align="center" justify="center">
           <v-col cols="12" md="10">
-            <span>Series</span>
+            <h4>Series</h4>
+          </v-col>
+          <v-col md="2">
+            <v-text-field
+                value="10">
+              <v-icon slot="prepend">mdi-minus</v-icon>
+              <v-icon slot="append">mdi-plus</v-icon>
+            </v-text-field>
+          </v-col>
+        </v-row>
+
+        <v-row align="center" justify="center">
+          <v-col cols="12" md="10">
+            <h4>Duración</h4>
           </v-col>
           <v-col md="2">
             <v-text-field value="10">
@@ -34,27 +63,22 @@
           </v-col>
         </v-row>
 
-        <v-row align="center" justify="center">
-          <v-col cols="12" md="10">
-            <span>Duración</span>
-          </v-col>
-          <v-col md="2">
-            <v-text-field value="10">
-              <v-icon slot="prepend">mdi-minus</v-icon>
-              <v-icon slot="append">mdi-plus</v-icon>
-            </v-text-field>
+        <v-row>
+          <v-col>
+            <v-select v-model="difficulty" :items="levels" label="Dificultad"
+                      rounded
+                      flat
+                      outlined
+                      light
+                      hide-details
+                      background-color="white"
+            ></v-select>
           </v-col>
         </v-row>
 
         <v-row>
           <v-col>
-            <v-select v-model="difficulty" :items="levels" label="Dificultad"></v-select>
-          </v-col>
-        </v-row>
-
-        <v-row>
-          <v-col>
-            <span class="justify-center">Archivos</span>
+            <h4 class="justify-center">Archivos</h4>
           </v-col>
         </v-row>
 
@@ -81,7 +105,14 @@
 
         <v-row>
           <v-col>
-            <v-select v-model="category" :items="categories" label="Categoría"></v-select>
+            <v-select v-model="category" :items="categories" label="Categoría"
+                      rounded
+                      flat
+                      outlined
+                      light
+                      hide-details
+                      background-color="white"
+            ></v-select>
           </v-col>
         </v-row>
 

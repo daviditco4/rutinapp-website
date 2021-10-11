@@ -1,7 +1,7 @@
 <template >
     <v-card width="500" height="370" class="mx-auto text-center" color="#76EAAB">  
         <v-row>
-          <v-btn @click="closeCardCreaciones" color="#333C8E" >
+          <v-btn @click="closeCardCreaciones" color="#333C8E" dark>
                     <v-icon left>
                       mdi-arrow-left
                     </v-icon>
@@ -32,7 +32,7 @@
         <v-card-actions>
           <v-col> 
             <div class="text-center">
-              <v-btn color="#333C8E" x-large block @click="crear()">Crear</v-btn>
+              <v-btn dark color="#333C8E" x-large block @click="crear()">Crear</v-btn>
             </div>
           </v-col>  
         </v-card-actions>  

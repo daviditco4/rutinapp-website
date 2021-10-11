@@ -3,7 +3,8 @@
       app
       color="primary"
       height="55"
-      class="lg">
+      class="lg"
+      >
 
     <v-col cols="10">
       <v-col cols="1">

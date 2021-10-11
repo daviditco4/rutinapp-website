@@ -1,7 +1,7 @@
 <template>
   <v-app-bar
       app
-      color="#76EAAB"
+      color="primary"
       height="55"
       class="lg">
 
@@ -15,7 +15,7 @@
 
     
     <v-tabs >
-      <v-tabs-slider color="#333C8E"></v-tabs-slider>
+      <v-tabs-slider color="secondary"></v-tabs-slider>
       <v-menu offset-y tile open-on-hover close-delay="3">
         <template v-slot:activator="{ on, attrs }">
           <v-tab v-bind="attrs" v-on="on" class="white--text text-center"> Crear

@@ -6,6 +6,18 @@
   </div>
 </template>
 
+<script>
+import {mapState, mapGetters, mapActions} from 'vuex'
+import {Credentials} from "../api/user";
+import {Sport} from "../api/sport";
+
+export default {
+  name: 'App',
+
+}
+
+</script>
+
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

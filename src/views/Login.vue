@@ -22,8 +22,8 @@
               hide-details
               background-color="white"
               class="my-2 font-italic"
-              label="Email"
-              v-model="email">
+              label="Username"
+              v-model="username">
             </v-text-field>
             <v-text-field
               flat
@@ -35,7 +35,7 @@
               label="Contraseña"
               v-model="password">
             </v-text-field>
-            <v-btn
+            <v-btn @click="login()"
               class="text-center my-2"
               color="secondary"
               elevation="2"
@@ -52,6 +52,9 @@
 </template>
 
 <script>
+import {mapActions, mapState, mapGetters} from 'vuex'
+import {Credentials} from "../../api/user";
+
 export default {
   name: 'Login',
   data () {
@@ -65,20 +68,49 @@ export default {
       paddingSize: '6',
       paddingSizes: defaults,
       playgroundText: 'Use the controls above to try out the different spacing helpers.',
-      email: null,
+      username: null,
       password: null,
+      result: null
     }
   },
-
-  methods: {
-
-  },
-
   computed: {
     computedPadding () {
       return `p${this.paddingDirection}-${this.paddingSize}`
     },
-
+    ...mapState('security', {
+      $user: state => state.user,
+    }),
+    ...mapGetters('security', {
+      $isLoggedIn: 'isLoggedIn'
+    }),
+    isLoggedIn() {
+      return this.$isLoggedIn
+    }
+  },
+  methods: {
+    ...mapActions('security', {
+      $getCurrentUser: 'getCurrentUser',
+      $login: 'login',
+      $logout: 'logout',
+    }),
+    async login() {
+      try {
+        const credentials = new Credentials(this.username, this.password)
+        await this.$login({credentials, rememberMe: true })
+        this.clearResult()
+      } catch (e) {
+        this.setResult(e)
+      }
+      if(this.isLoggedIn){
+        await this.$router.push('/home')
+      }
+    },
+    setResult(result){
+      this.result = JSON.stringify(result, null, 2)
+    },
+    clearResult() {
+      this.result = null
+    },
   },
 }
 </script>

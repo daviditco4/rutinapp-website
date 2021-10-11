@@ -67,9 +67,9 @@ export default {
     },
     async crear(){
       if(this.rutina == true)
-        await this.$router.replace("/crear-rutina");
+        await this.$router.replace("/create-routine");
       if(this.ejercicio == true)
-        await router.replace("/crear-ejercicio");
+        await router.replace("/create-exercise");
     },
   }
 }

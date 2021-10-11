@@ -4,7 +4,7 @@
     <v-col class="text-center" cols="3">
       <strong style="color:white">Copyright © {{ new Date().getFullYear() }} — RutinApp S.R.L.</strong>
     </v-col>
-     <v-spacer></v-spacer>  <v-spacer></v-spacer>  
+     <v-spacer/> <v-spacer></v-spacer>  
     <v-col class="text-center" > 
      <v-btn text > <strong style="color:white">Ayuda</strong> </v-btn>
     </v-col>

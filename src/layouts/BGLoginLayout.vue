@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <AppBar />
     <v-main>
       <v-fade-transition appear>
         <router-view></router-view>
@@ -11,11 +12,13 @@
 
 <script>
 import Footer from '../components/Footer'
+import AppBar from '../components/AppBarLogin'
 
 export default {
   name: 'BGLoginLayout',
   components: {
     Footer,
+    AppBar
   },
 }
 </script>

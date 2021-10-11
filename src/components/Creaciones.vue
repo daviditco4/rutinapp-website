@@ -1,8 +1,8 @@
 <template >
     <v-card width="500" height="370" class="mx-auto text-center" color="#76EAAB">  
         <v-row>
-          <v-btn color="#333C8E" >
-                    <v-icon @click="closeCardCreaciones" left>
+          <v-btn @click="closeCardCreaciones" color="#333C8E" >
+                    <v-icon left>
                       mdi-arrow-left
                     </v-icon>
           </v-btn>

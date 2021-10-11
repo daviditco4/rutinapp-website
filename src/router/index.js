@@ -102,6 +102,17 @@ const routes = [
         }
     ]
   },
+  {
+    path: '/help',
+    component: () => import('../layouts/BGLayout'),
+    children: [    
+        {
+          path: '/help',
+          name: 'Help',
+          component: () => import(/* webpackChunkName: "Help" */ '../components/Help.vue')
+        }
+    ]
+  },
 ]
 
 const router = new VueRouter({

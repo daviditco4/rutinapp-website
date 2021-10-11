@@ -80,6 +80,28 @@ const routes = [
         }
     ]
   },
+  {
+    path: '/create-exercise',
+    component: () => import('../layouts/BGLayout'),
+    children: [    
+        {
+          path: '/create-exercise',
+          name: 'CreateExercise',
+          component: () => import(/* webpackChunkName: "CreateExercise" */ '../views/CreateExercise.vue')
+        }
+    ]
+  },
+  {
+    path: '/create-routine',
+    component: () => import('../layouts/BGLayout'),
+    children: [    
+        {
+          path: '/create-routine',
+          name: 'CreateRoutine',
+          component: () => import(/* webpackChunkName: "CreateRoutine" */ '../views/CreateRoutine.vue')
+        }
+    ]
+  },
 ]
 
 const router = new VueRouter({

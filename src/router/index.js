@@ -63,10 +63,21 @@ const routes = [
     component: () => import('../layouts/BGLayout'),
     children: [        
       {
-        path: '/buscar-rutinas',
+        path: '/search-routine',
         name: 'BuscarRutinas',
         component: () => import(/* webpackChunkName: "buscarRutinas" */ '../views/BuscarRutinas.vue')
       }
+    ]
+  },
+  {
+    path: '/profile',
+    component: () => import('../layouts/BGLayout'),
+    children: [    
+        {
+          path: '/profile',
+          name: 'Profile',
+          component: () => import(/* webpackChunkName: "Profile" */ '../views/Profile.vue')
+        }
     ]
   },
 ]

@@ -23,8 +23,8 @@
           </v-tab>
         </template>
         <v-tabs vertical>
-          <v-tab style="background-color:#76EAAB">Rutina</v-tab>
-          <v-tab style="background-color:#76EAAB">Ejercicio</v-tab>
+          <v-tab to="/create-routine" style="background-color:#76EAAB">Rutina</v-tab>
+          <v-tab to="/create-exercise" style="background-color:#76EAAB">Ejercicio</v-tab>
 
         </v-tabs>
       </v-menu>
@@ -39,8 +39,8 @@
           </v-tab>
         </template>
         <v-tabs vertical style="background-color:#76EAAB">
-          <v-tab to="/miPerfil" style="background-color:#76EAAB">Mi Perfil</v-tab>
-          <v-tab to="/miBiblioteca" style="background-color:#76EAAB">Mi biblioteca</v-tab>
+          <v-tab to="/profile" style="background-color:#76EAAB">Mi Perfil</v-tab>
+          <v-tab to="/library" style="background-color:#76EAAB">Mi biblioteca</v-tab>
           <v-tab style="background-color:#76EAAB">Cerrar Sesion</v-tab>
         </v-tabs>
       </v-menu>
@@ -56,12 +56,12 @@ export default {
   data() {
     return {
       createItems: [
-        {title: 'Rutina', path: '/crearRutinas'},
-        {title: 'Ejercicio', path: '/crearEjercicio'},
+        {title: 'Rutina', path: '/create-routine'},
+        {title: 'Ejercicio', path: '/create-exercise'},
       ],
       profileItems: [
-        {title: 'Mi Perfil', path: '/miPerfil'},
-        {title: 'Mi Biblioteca', path: '/miBiblioteca',},
+        {title: 'Mi Perfil', path: '/profile'},
+        {title: 'Mi Biblioteca', path: '/library',},
       ],
     }
   },

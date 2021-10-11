@@ -1,6 +1,5 @@
 <template>
   <v-container fluid>
-<!--    <v-img src="@/assets/login.png">-->
     <v-spacer/>
     <v-row justify="center">
       <v-col cols="12">
@@ -11,42 +10,43 @@
     <v-row justify="center" align="center">
       <v-col cols="5">
         <v-sheet
-            color="#76EAAB"
-            rounded
-            elevation="10"
-            class="px-8 pt-4 pa-2 card-format text-center">
+          color="#76EAAB"
+          rounded
+          elevation="10"
+          class="px-8 pt-4 pa-2 card-format text-center">
           <v-form>
             <v-text-field
-                flat
-                outlined
-                light
-                hide-details
-                background-color="white"
-                class="my-2 font-italic"
-                label="Email">
+              flat
+              outlined
+              light
+              hide-details
+              background-color="white"
+              class="my-2 font-italic"
+              label="Email"
+              v-model="email">
             </v-text-field>
             <v-text-field
-                flat
-                outlined
-                light
-                hide-details
-                background-color="white"
-                class="my-2 font-italic"
-                label="Contraseña">
+              flat
+              outlined
+              light
+              hide-details
+              background-color="white"
+              class="my-2 font-italic"
+              label="Contraseña"
+              v-model="password">
             </v-text-field>
             <v-btn
-                class="text-center my-2"
-                color="secondary"
-                elevation="2"
-                raised
-                rounded
+              class="text-center my-2"
+              color="secondary"
+              elevation="2"
+              raised
+              rounded
             >Iniciar Sesión
             </v-btn>
           </v-form>
         </v-sheet>
       </v-col>
     </v-row>
-<!--    </v-img>-->
   </v-container>
 
 </template>
@@ -61,14 +61,17 @@ export default {
 
     return {
       directions: ['t', 'b', 'l', 'r', 's', 'e', 'x', 'y', 'a'],
-      // marginDirection: 'a',
-      // marginSize: '2',
-      // marginSizes: [...defaults, ...nspacers],
       paddingDirection: 'a',
       paddingSize: '6',
       paddingSizes: defaults,
       playgroundText: 'Use the controls above to try out the different spacing helpers.',
+      email: null,
+      password: null,
     }
+  },
+
+  methods: {
+
   },
 
   computed: {
@@ -84,12 +87,6 @@ export default {
 .web-display {
   display: flex;
   flex-direction: column;
-}
-.loginBackground {
-  background: url("../assets/login.png") ;
-  background-size: cover;
-  /*height: 100%;*/
-  opacity: 1;
 }
 .welcome-message {
   color: white;

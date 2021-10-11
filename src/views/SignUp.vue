@@ -8,27 +8,52 @@
             color="#76EAAB"
             rounded
             elevation="10"
-            class="px-8 pt-4 pa-2 card-format text-center">
+            class="px-12 pt-12 pa-12 card-format text-center">
           <v-form>
             <v-text-field
               class="my-2 font-italic"
-              label="Usuario">
+              label="Usuario"
+              flat
+              outlined
+              light
+              hide-details
+              background-color="white">
             </v-text-field>
             <v-text-field
               class="my-2 font-italic"
-              label="Email">
+              label="Email"
+              flat
+              outlined
+              light
+              hide-details
+              background-color="white">
             </v-text-field>
             <v-text-field
                 class="my-2 font-italic"
-                label="Email">
+                label="Repetir Email"
+                flat
+                outlined
+                light
+                hide-details
+                background-color="white">
             </v-text-field>
             <v-text-field
                 class="my-2 font-italic"
-                label="Contraseña">
+                label="Contraseña"
+                flat
+                outlined
+                light
+                hide-details
+                background-color="white">
             </v-text-field>
             <v-text-field
                 class="my-2 font-italic"
-                label="Contraseña">
+                label="Repetir Contraseña"
+                flat
+                outlined
+                light
+                hide-details
+                background-color="white">
             </v-text-field>
             <v-btn
                 class="text-center my-2"
@@ -75,8 +100,9 @@ export default {
     text-shadow: 2px 2px 4px #1C1C1C;
   }
 
-  /*.input-bg-color {*/
-  /*  background-color: white;*/
-  /*}*/
+  .textfield {
+    color: white;
+    background-color: white;
+  }
 
 </style>

@@ -89,9 +89,7 @@ export default {
   },
   methods: {
     ...mapActions('security', {
-      $getCurrentUser: 'getCurrentUser',
       $login: 'login',
-      $logout: 'logout',
     }),
     async login() {
       try {

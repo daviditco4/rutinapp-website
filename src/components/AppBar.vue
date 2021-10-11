@@ -42,7 +42,7 @@
         <v-tabs vertical style="background-color:#76EAAB">
           <v-tab to="/profile" style="background-color:#76EAAB">Mi Perfil</v-tab>
           <v-tab to="/library" style="background-color:#76EAAB">Mi biblioteca</v-tab>
-          <v-tab style="background-color:#76EAAB">Cerrar Sesion</v-tab>
+          <v-tab @click="logout()" style="background-color:#76EAAB">Cerrar Sesion</v-tab>
         </v-tabs>
       </v-menu>
 
@@ -51,6 +51,7 @@
 </template>
 
 <script>
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
   name: "AppBar",
@@ -64,8 +65,32 @@ export default {
         {title: 'Mi Perfil', path: '/profile'},
         {title: 'Mi Biblioteca', path: '/library',},
       ],
+      result: null
     }
   },
+  computed: {
+    ...mapGetters('security', {
+      $isLoggedIn: 'isLoggedIn'
+    }),
+    isLoggedIn() {
+      return this.$isLoggedIn
+    }
+  },
+  methods: {
+    ...mapActions('security', {
+      $logout: 'logout',
+    }),
+    async logout() {
+      await this.$logout()
+      this.clearResult()
+      if(!this.isLoggedIn){
+        await this.$router.push('/')
+      }
+    },
+    clearResult() {
+      this.result = null
+    },
+  }
 }
 </script>
 

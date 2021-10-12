@@ -1,14 +1,12 @@
 <template>
-  <v-card class="mx-auto text-center" width="1100" >
+  
+  <v-card class="mx-auto text-center" width="1100" color="primary">
     
     <v-list>
-      <v-list-group :value="true" prepend-icon="mdi-help">
-        <template v-slot:activator>
-        <v-list-item-title>¿Quiénes somos?</v-list-item-title> </template>
+      <v-list-group prepend-icon="mdi-help">
+        <template v-slot:activator >
+        <v-list-item-title >¿Quiénes somos?</v-list-item-title> </template>
         <v-list-item >
-            <!-- <v-list-item-title >
-              <h5> Somos </h5>
-            </v-list-item-title> -->
              <h5 class="text-center"> 
                Somos estudiantes del ITBA.
                Creamos esta pagina donde podran crear/editar/mirar rutinas y ejercicios,

@@ -1,5 +1,6 @@
 <template>
   <v-card class="mx-auto text-center" width="1100" >
+    
     <v-list>
       <v-list-group :value="true" prepend-icon="mdi-help">
         <template v-slot:activator>
@@ -47,7 +48,7 @@
               <h5 class="text-center"> 
                 Se puede acceder a la creacion de un ejercicio mediante la barra 
                 de tareas en el borde de arriba, o en el inicio donde se vera 
-                "Crear rutina o ejercicio", se piden los datos de:
+                "Crear rutina o ejercicio", se piden los datos:
                 <br/>
                 -Nombre
                 <br/>
@@ -66,7 +67,7 @@
               <h5 > 
                 Se puede acceder a la creacion de un ejercicio mediante la barra 
                 de tareas en el borde de arriba, o en el inicio donde se vera 
-                "Crear rutina o ejercicio", se piden los datos de:
+                "Crear rutina o ejercicio", se piden los datos:
               <br/>
                 -Nombre
                 <br/>

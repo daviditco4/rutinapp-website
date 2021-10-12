@@ -19,15 +19,15 @@
             </v-col>
             <v-col md="7">
               <span v-if="!edit">{{ username }}</span>
-              <v-text-field v-else :value="username"></v-text-field>
+              <v-text-field v-else :value="username" v-model="usernameInputValue"></v-text-field>
             </v-col>
             <v-row no-gutters>
               <v-col md="4" class="d-flex align-center" align="right">
                 <span>Email</span>
               </v-col>
               <v-col md="7">
-                <span v-if="!edit">marce@gmail.com</span>
-                <v-text-field v-else value="marce@gmail.com"></v-text-field>
+                <span v-if="!edit">{{ email }}</span>
+                <v-text-field v-else :value="email" v-model="emailInputValue"></v-text-field>
               </v-col>
             </v-row>
           </v-row>
@@ -80,16 +80,26 @@ export default {
   data () {
     return {
       edit: false,
-      changePassword: false
+      changePassword: false,
+      usernameInputValue: "",
+      emailInputValue: "",
     }
   },
   computed: {
     username() {
       return this.$store.state.user.username
+    },
+    email() {
+      return this.$store.state.user.email
     }
   },
   created() {
     this.$store.dispatch(GET_USER)
+  },
+  methods: {
+    editProfile() {
+      
+    }
   }
 };
 </script>

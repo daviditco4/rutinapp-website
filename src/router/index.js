@@ -113,6 +113,17 @@ const routes = [
         }
     ]
   },
+  {
+    path: '*',
+    component: () => import('../layouts/BGLayout'),
+      children: [
+          {
+              path: '',
+              name: 'PageNotFound',
+              component: () => import('../views/Page404')
+          }
+      ]
+  }
 ]
 
 const router = new VueRouter({

@@ -28,7 +28,7 @@
               hide-details
               background-color="white">
             </v-text-field>
-            <v-text-field
+            <v-text-field v-model="emailRepeat"
                 class="my-2 font-italic"
                 label="Repetir Email"
                 flat
@@ -37,6 +37,7 @@
                 hide-details
                 background-color="white">
             </v-text-field>
+            <p class="error-message" v-if="!emailCorrect">Los emails no coinciden</p>
             <v-text-field v-model="password"
                 class="my-2 font-italic"
                 label="Contraseña"
@@ -49,7 +50,7 @@
                 :type="show ? 'text' : 'password'"
                 @click:append="show = !show">
             </v-text-field>
-            <v-text-field
+            <v-text-field v-model="passwordRepeat"
                 class="my-2 font-italic"
                 label="Repetir Contraseña"
                 flat
@@ -58,6 +59,8 @@
                 hide-details
                 background-color="white">
             </v-text-field>
+            <p class="error-message" v-if="!passwordCorrect">Las contraseñas no coinciden</p>
+            <p class="error-message" v-if="isAnyEmpty">Llenar todos los campos de texto.</p>
             <v-btn @click="register()"
                 class="text-center my-2"
                 color="secondary"
@@ -90,9 +93,14 @@ export default {
     return {
       username: '',
       email: '',
+      emailRepeat: '',
       password: '',
+      passwordRepeat: '',
       user: null,
-      result: null
+      result: null,
+      emailCorrect: true,
+      passwordCorrect: true,
+      isAnyEmpty: false,
     }
   },
   computed: {
@@ -108,6 +116,9 @@ export default {
       this.result = JSON.stringify(result, null, 2)
     },
     async register() {
+      if(!this.checkFields()){
+        return;
+      }
       const index = Math.floor(Math.random() * (999 - 1) + 1)
       const credentials = new Credentials(this.username, this.password)
       const user = new User(credentials, index, this.email);
@@ -118,8 +129,39 @@ export default {
         this.setResult(e)
       }
       // await this.$router.push('/home')
+    },
+    checkFields() {
+      if(!this.checkIfEmpty()){
+        this.isAnyEmpty = true;
+      } else {
+        this.isAnyEmpty = false;
       }
+      if(!this.checkEmail()) {
+        this.emailCorrect = false;
+      } else {
+        this.emailCorrect = true;
+      }
+      if(!this.checkPassword()){
+        this.passwordCorrect = false;
+      } else {
+        this.passwordCorrect = true;
+      }
+      return this.passwordCorrect && !this.isAnyEmpty;
+    },
+    checkPassword() {
+      return  this.password === this.passwordRepeat;
+    },
+    checkEmail() {
+      return this.email === this.emailRepeat;
+    },
+    checkIfEmpty() {
+      if(this.username != "" && this.password != "" && this.email != "" &&
+      this.passwordRepeat != "" && this.emailRepeat != "") {
+        return true;
+      }
+      return false;
     }
+  }
 }
 </script>
 
@@ -140,9 +182,8 @@ export default {
     text-shadow: 2px 2px 4px #1C1C1C;
   }
 
-  .textfield {
-    color: white;
-    background-color: white;
+  .error-message {
+    color: var(--v-error-base);
   }
 
 </style>

@@ -87,6 +87,15 @@
         </v-row>
       </v-card>
 
+      <div>
+        <li v-for="count in 5" :key="count">
+        <NewCycle v-if="newcycle">
+              {{count}}
+        </NewCycle>    
+        </li>    
+      </div>
+      
+
       <v-row style="position: relative" justify="center">
         <v-col cols="12" md="3">
           <v-expand-transition>
@@ -102,12 +111,14 @@
             </v-card>
           </v-expand-transition>
           <div class="text-center" @mouseenter="hover=!hover" @mouseleave="hover=!hover">
-            <v-btn elevation="1" fab style="z-index: 2; margin-top: -50px;">
+            <v-btn elevation="1" fab style="z-index: 2; margin-top: -50px;" @click="newCycle()">
               <v-icon>mdi-plus</v-icon>
             </v-btn>
           </div>
         </v-col>
       </v-row>
+
+      
 
 <!--          <li v-for="(exercise, index) in exercises" :key="exercise.name">
             <span>{{ index }}. {{ exercise.name }}</span>
@@ -127,8 +138,14 @@
 </template>
 
 <script>
+
+import NewCycle from '@/components/newCycle.vue'
+
 export default {
   name: "CreateRoutine",
+  components: {
+    NewCycle,
+  },
   data() {
     return {
       hover: false,
@@ -143,12 +160,14 @@ export default {
         warmup: {},
         training: [],
         cooldown: {}
-      }]
+      }],
+      newcycle: false,
+      count : 1,
     }
   },
   methods: {
     newCycle(){
-
+      this.newcycle = true;
     },
     newExercise(){
 

@@ -14,7 +14,8 @@
           </v-col>
         </v-row>
         <v-text-field
-            value="10"
+            label="Nombre"
+            solo
             rounded
             flat
             outlined
@@ -29,7 +30,8 @@
           </v-col>
         </v-row>
         <v-text-field
-            value="10"
+            label="Descripcion"
+            solo
             rounded
             flat
             outlined
@@ -39,10 +41,10 @@
         ></v-text-field>
 
         <v-row align="center" justify="center" >
-          <v-col cols="12" md="6">
-            <h4 >Series</h4>
+          <v-col cols="12" md="7">
+            <h4 style="padding-top:30px" >Series</h4>
           </v-col>
-          <ModifyCounter style="padding-top:25px" :start-time="15" :addValue="1"></ModifyCounter>
+          <ModifyCounter style="padding-top:35px" :start-time="15" :addValue="1"></ModifyCounter>
           <!-- <v-btn class="black--text" style="font-size:27px" icon @click="subTimes(series)">-</v-btn>
           <v-col cols="2">            
               <v-text-field rounded background-color="white" value="10"> {{ series }}</v-text-field>
@@ -52,27 +54,17 @@
         </v-row>
 
         <v-row align="center" justify="center">
-          <v-col cols="12" md="8">
+          <v-col cols="12" md="7">
             <h4>Duración</h4>
           </v-col>
-          
-            <v-btn class="black--text" style="font-size:27px" icon @click="subTimes(duration)">-</v-btn>
-            <v-col md="2">
-              <v-text-field rounded background-color="white" value="10">{{duration}} </v-text-field>
-            </v-col>
-          <v-btn class=" black--text" style="font-size:25px" icon @click="addTimes(duration)">+</v-btn>
+          <ModifyCounter style="padding-top:35px" :start-time="15" :addValue="5" ></ModifyCounter>
           
         </v-row>
 
         <v-row>
           <v-col>
             <v-select v-model="difficulty" :items="levels" label="Dificultad"
-                      rounded
-                      flat
-                      outlined
-                      light
-                      hide-details
-                      background-color="white"
+                      rounded flat outlined light hide-details background-color="white"
             ></v-select>
           </v-col>
         </v-row>
@@ -171,14 +163,7 @@ export default {
     addFile(file){
       this.files.push(file);
     },
-    // addTimes(counter) {
-    //   counter += this.addValue;
-    // },
-    subTimes(counter) {
-      if (counter >= this.addValue) {
-        counter -= this.addValue;
-      }
-    },
+
   }
 };
 </script>

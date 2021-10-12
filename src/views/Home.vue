@@ -33,7 +33,7 @@
         <v-card-actions>
           <v-col>    
             <div class="text-center">
-              <v-btn style="background-color: #333C8E; color: white;" x-large block >Ir a Mi Biblioteca</v-btn>
+              <v-btn style="background-color: #333C8E; color: white;" x-large block to="/library">Ir a Mi Biblioteca</v-btn>
             </div>  
           </v-col> 
         </v-card-actions>

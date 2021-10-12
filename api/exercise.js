@@ -22,4 +22,8 @@ class ExerciseApi {
     static async deleteExercise(id, controller) {
         return await Api.delete(`${ExerciseApi.url}/${id}`, true, controller);
     }
+
+    static async getExercises(controller) {
+        return await Api.get(`${ExerciseApi.url}?page=0&size=1000&orderBy=id&direction=asc`, true, controller).content;
+    }
 }

@@ -39,28 +39,28 @@
         ></v-text-field>
 
         <v-row align="center" justify="center">
-          <v-col cols="12" md="10">
+          <v-col cols="12" md="8">
             <h4>Series</h4>
           </v-col>
-          <v-col md="2">
-            <v-text-field
-                value="10">
-              <v-icon slot="prepend">mdi-minus</v-icon>
-              <v-icon slot="append">mdi-plus</v-icon>
-            </v-text-field>
+          <v-btn class="black--text" style="font-size:27px" icon @click="subTimes(series)">-</v-btn>
+          <v-col cols="2">            
+              <v-text-field rounded background-color="white" value="10"> {{ series }}</v-text-field>
           </v-col>
+          <v-btn class=" black--text" style="font-size:25px" icon @click="addTimes(series)">+</v-btn>
+             
         </v-row>
 
         <v-row align="center" justify="center">
-          <v-col cols="12" md="10">
+          <v-col cols="12" md="8">
             <h4>Duración</h4>
           </v-col>
-          <v-col md="2">
-            <v-text-field value="10">
-              <v-icon slot="prepend">mdi-minus</v-icon>
-              <v-icon slot="append">mdi-plus</v-icon>
-            </v-text-field>
-          </v-col>
+          
+            <v-btn class="black--text" style="font-size:27px" icon @click="subTimes(duration)">-</v-btn>
+            <v-col md="2">
+              <v-text-field rounded background-color="white" value="10">{{duration}} </v-text-field>
+            </v-col>
+          <v-btn class=" black--text" style="font-size:25px" icon @click="addTimes(duration)">+</v-btn>
+          
         </v-row>
 
         <v-row>
@@ -142,6 +142,7 @@ export default {
       difficulty: '',
       files: [],
       category: '',
+      addValue: 1,
       // preloaded data
       categories: ['Aeróbico', 'Resistencia', 'Fuerza', 'Otro...'],
       levels: ['Baja', 'Media', 'Alta']
@@ -165,7 +166,15 @@ export default {
     },
     addFile(file){
       this.files.push(file);
-    }
+    },
+    // addTimes(counter) {
+    //   counter += this.addValue;
+    // },
+    subTimes(counter) {
+      if (counter >= this.addValue) {
+        counter -= this.addValue;
+      }
+    },
   }
 };
 </script>

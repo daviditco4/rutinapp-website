@@ -15,15 +15,17 @@
            <v-col >
               <v-row >
                 <div offset-sm="2">  <v-hover close-delay="1000">  
-                    <v-tab text>
+                    <v-tab @click="overlay = !overlay" text>
                       <v-img src="@/assets/ejercicio.jpeg" height="200" width="200" @click="ejercicios()"></v-img>
+                      <v-overlay :absolute="absolute" :value="overlay"></v-overlay>
                    </v-tab>
                    </v-hover>
                 </div> 
                 <v-spacer/>
                 <div class="text-center">  
-                  <v-tab text>
+                  <v-tab @click="overlayR = !overlayR" text>
                     <v-img src="@/assets/rutina.jpeg" text height="200" width="200" @click="rutinas()"></v-img>
+                    <v-overlay :absolute="absolute" :value="overlayR"></v-overlay>
                   </v-tab> 
                 </div> 
               </v-row>
@@ -32,7 +34,7 @@
         
         <v-card-actions>
           <v-col> 
-            <div class="text-center">
+            <div @click="overlay = false" class="text-center">
               <v-btn dark color="#333C8E" x-large block @click="crear()">Crear</v-btn>
             </div>
           </v-col>  
@@ -49,7 +51,10 @@ export default {
   name: "Creaciones",
   data: () => ({
       ejercicio: false,
-        rutina: false,
+      rutina: false,
+      absolute: true,
+      overlay: false,
+      overlayR: false,
   }),     
   components:{    
   },
@@ -72,7 +77,8 @@ export default {
       if(this.ejercicio == true)
         await router.replace("/create-exercise");
     },
-  }
+  },
+  
 }
 </script>
 

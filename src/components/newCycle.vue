@@ -3,7 +3,9 @@
       <v-card class="pa-md-4 mx-lg-auto mt-16 rounded-xl" width="800px" color="primary">
         <v-row align="center">
           <v-col justify="left" cols="12" md="5">
-            <h3>Ciclo 1: Calentamiento</h3>
+            <v-text-field class="text-left"
+                label="Ciclo 2" solo dense background-color="primary"
+            ></v-text-field>          
           </v-col>
           <ModifyCounter  :start-time="10" :addValue="1" ></ModifyCounter> 
           <v-col>
@@ -14,7 +16,9 @@
           <!--        <ul>-->
         <v-row align="center" style="margin-bottom: -20px">
           <v-col cols="12" md="5">
-            <h4 class="text-left">1. Ejercicio</h4>
+            <v-text-field class="text-left"
+                label="1.Ejercicio" solo dense background-color="primary"
+            ></v-text-field>   
           </v-col>
             <v-col md="5">
                 <ModifyCounter  :start-time="10" :addValue="1" ></ModifyCounter> 
@@ -38,7 +42,7 @@
                   </v-btn>
                 </template>
                 <v-btn-toggle rounded style="margin-left: 60px; background-color: transparent">
-                  <v-btn rounded>
+                  <v-btn rounded >
                     Ejercicio
                   </v-btn>
                     <v-btn>

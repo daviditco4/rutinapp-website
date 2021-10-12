@@ -29,7 +29,7 @@
       <v-card class="pa-md-4 mx-lg-auto mt-16 rounded-xl" width="800px" color="primary">
         <v-row align="center">
           <v-col justify="left" cols="12" md="5">
-            <h3>Ciclo 1: Calentamiento</h3>
+            <h3 class="text-left">Ciclo 1: Calentamiento</h3>
           </v-col>
           <ModifyCounter  :start-time="10" :addValue="1" ></ModifyCounter> 
           <v-col>

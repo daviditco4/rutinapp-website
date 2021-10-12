@@ -2,156 +2,207 @@
   <v-container class="library">
     <v-row>
       <v-col cols="12">
-        <v-card width="1200" height="600" class="mx-auto text-center" color="#76eaab" elevation="8" justify-content="center">
-          <h1 style="text-align: center">Mi Biblioteca</h1>
-          <v-data-iterator
-            :items="items"
-            :items-per-page="itemsPerPage"
-            :page="page"
-            :search="search"
-            :sort-by="sortBy.toLowerCase()"
-            :sort-desc="sortDesc"
-            v-bind="$attrs"
-            hide-default-footer
-          >
-            <template v-slot:header>
-              <v-toolbar
-                light
-                flat
-                color="transparent"
-                class="mb-1"
-              >
+        <v-row>
+          <v-col md="1"><!-- Aca va el boton para volver hacia atras --></v-col>
+          <v-col md="10">
+            <h1 style="text-align: center"><b>My Library</b></h1>
+          </v-col>
+          <v-col md="1">
+            <v-btn
+              v-if="!edit"
+              fab
+              color="secondary"
+              elevation="2"
+              @click="startEditing()"
+              ><v-icon>mdi-pencil</v-icon></v-btn
+            >
+          </v-col>
+        </v-row>
+        <v-data-iterator
+          :items="items"
+          :items-per-page="itemsPerPage"
+          :page="page"
+          :search="search"
+          :custom-filter="filter"
+          v-bind="$attrs"
+          hide-default-footer
+        >
+          <template v-slot:header>
+            <v-toolbar flat elevation="1" style="margin: 30px 0px">
+              <span style="width: 600px">
                 <v-text-field
                   v-model="search"
-                  clearable
-                  flat
                   outlined
                   dense
-                  solo-inverted
+                  solo
                   hide-details
                   label="Buscar"
-                  dark
                 ></v-text-field>
-                <v-btn
-                  elevation="2"
-                  fab
-                  color="primary"
+              </span>
+              <v-btn
+                fab
+                elevation="2"
+                color="secondary"
+                style="margin: 0 0 0 -15px"
+              >
+                <v-icon>mdi-magnify</v-icon>
+              </v-btn>
+              <template v-if="$vuetify.breakpoint.mdAndUp">
+                <!-- <v-select
+                  v-model="filterBy"
+                  class="mx-2"
+                  flat
+                  solo-inverted
+                  hide-details
+                  :items="keys"
+                  prepend-inner-icon="mdi-magnify"
+                  label="Sort by"
+                ></v-select> -->
+                <v-btn-toggle
+                  v-model="showRoutines"
+                  mandatory
+                  rounded
+                  style="margin: 0 0 0 15px"
                 >
-                  <v-icon>mdi-magnify</v-icon>
-                </v-btn>
-                <template v-if="$vuetify.breakpoint.mdAndUp">
-                  <!-- <v-spacer></v-spacer>
-                  <v-select
-                    v-model="sortBy"
-                    class="mx-2"
-                    flat
-                    solo-inverted
-                    hide-details
-                    :items="keys"
-                    prepend-inner-icon="mdi-magnify"
-                    label="Sort by"
-                  ></v-select>
-                  <v-spacer></v-spacer> -->
-                  <v-btn
-                    elevation="2"
-                    fab
-                    color="primary"
-                  >
-                    <v-icon>mdi-sort</v-icon>
+                  <v-btn large depressed color="secondary" :value="true">
+                    Routines
                   </v-btn>
-                  <!-- <v-btn-toggle
-                    v-model="sortDesc"
-                    mandatory
-                  >
-                    <v-btn
-                      large
-                      depressed
-                      color="blue"
-                      :value="false"
+                  <v-btn large depressed color="secondary" :value="false">
+                    Exercises
+                  </v-btn>
+                </v-btn-toggle>
+                <v-btn elevation="2" fab style="margin: 0 0 0 15px">
+                  <v-icon>mdi-sort</v-icon>
+                </v-btn>
+              </template>
+            </v-toolbar>
+          </template>
+          <template v-slot:default="props">
+            <v-row>
+              <v-col
+                v-for="item in props.items"
+                :key="item.name"
+                cols="12"
+                sm="3"
+              >
+                <v-hover>
+                  <template v-slot:default="{ hover }">
+                    <v-card
+                      color="transparent"
+                      outlined
+                      style="border: 2px solid #333c8e"
                     >
-                      <v-icon>mdi-arrow-up</v-icon>
-                    </v-btn>
-                    <v-btn
-                      large
-                      depressed
-                      color="blue"
-                      :value="true"
-                    >
-                      <v-icon>mdi-arrow-down</v-icon>
-                    </v-btn>
-                  </v-btn-toggle> -->
-                </template>
-              </v-toolbar>
-            </template>
-            <template v-slot:default="props">
-              <v-row>
-                <v-col v-for="item in props.items" :key="item.name" cols="12" sm="3">
-                  <v-card
-                    color="transparent"
-                    outlined                
-                  >
-                    <v-col justify="space-between">
-                      <v-row rows="auto">
-                        <v-img :src="item.backgroundImage"></v-img>
-                      </v-row>
-                      <v-row rows="auto">
-                        <v-list-item-content>{{ item.name }}</v-list-item-content>
-                      </v-row>
-                    </v-col>
-                  </v-card>
-                </v-col>
-              </v-row>
-            </template>
-          </v-data-iterator>
-        </v-card>
+                      <v-img
+                        :src="item.backgroundImage"
+                        class="interactive-item"
+                      ></v-img>
+                      <v-fade-transition>
+                        <v-overlay v-if="hover" absolute color="#202020">
+                          <v-btn v-if="!edit"
+                            ><v-icon>mdi-logout-variant</v-icon></v-btn
+                          >
+                          <span v-else>
+                            <v-btn><v-icon>mdi-delete</v-icon></v-btn>
+                            <v-btn style="margin: 0 0 0 10px"
+                              ><v-icon>mdi-pencil</v-icon></v-btn
+                            >
+                          </span>
+                        </v-overlay>
+                      </v-fade-transition>
+                    </v-card>
+                  </template>
+                </v-hover>
+                <v-list-item-content style="justify-content: center">{{
+                  item.name
+                }}</v-list-item-content>
+              </v-col>
+            </v-row>
+          </template>
+        </v-data-iterator>
+        <v-row style="margin: 15px">
+          <v-col md="1"></v-col>
+          <v-col md="11">
+            <v-row align="center" justify="center">
+              <v-btn :disabled="page===1" @click="goToPreviousPage()">
+                <v-icon>mdi-left-arrow</v-icon>
+              </v-btn>
+              <v-btn :disabled="isTheLastPage" style="margin: 0 0 0 20px" @click="goToNextPage()">
+                <v-icon>mdi-right-arrow</v-icon>
+              </v-btn>
+            </v-row>
+          </v-col>
+          <v-col md="1">
+            <v-btn fab large elevation="2" color="secondary">
+              <v-icon>mdi-plus-thick</v-icon>
+            </v-btn>
+          </v-col>
+        </v-row>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-  export default {
-    inheritAttrs: false,
-    data: () => ({
-      search: '',
-      sortDesc: false,
-      page: 1,
-      itemsPerPage: 8,
-      sortBy: 'name',
-      items: [
-        {
-          name: 'Rutina 1',
-          backgroundImage: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
-        },
-        {
-          name: 'Rutina 2',
-          backgroundImage: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
-        },
-        {
-          name: 'Rutina 3',
-          backgroundImage: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
-        },
-        {
-          name: 'Rutina 4',
-          backgroundImage: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
-        },
-        {
-          name: 'Rutina 5',
-          backgroundImage: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
-        },
-        {
-          name: 'Rutina 6',
-          backgroundImage: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
-        },
-        {
-          name: 'Rutina 7',
-          backgroundImage: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
-        },
-        {
-          name: 'Rutina 8',
-          backgroundImage: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
-        },
-      ],
-    }),
-  }
+import { GET_EXERCISES, GET_ROUTINES } from '../store/actions'
+
+export default {
+  inheritAttrs: false,
+  data: () => ({
+    search: "",
+    showRoutines: true,
+    page: 1,
+    itemsPerPage: 8,
+    filterBy: "routine",
+    edit: false,
+  }),
+  computed: {
+    items() {
+      return this.$store.state.routinesOrExercises
+    },
+    isTheLastPage() {
+      return this.$store.state.routinesOrExercises.isLastPage
+    }
+  },
+  created() {
+    this.$store.dispatch(GET_ROUTINES, this.page, this.itemsPerPage)
+  },
+  methods: {
+    startEditing() {
+      this.edit = true
+    },
+    retrieve() {
+      if (this.showRoutines) {
+        this.$store.dispatch(GET_ROUTINES, this.page, this.itemsPerPage)
+      } else {
+        this.$store.dispatch(GET_EXERCISES, this.page, this.itemsPerPage)
+      }
+    },
+    goToNextPage() {
+      this.page++
+      this.retrieve()
+    },
+    goToPreviousPage() {
+      this.page--
+      this.retrieve()
+    },
+    selectRoutineFilter() {
+      if (!this.showRoutines) {
+        this.showRoutines = true
+        this.page = 1
+        this.retrieve()
+      }
+    },
+    selectExerciseFilter() {
+      if (this.showRoutines) {
+        this.showRoutines = false
+        this.page = 1
+        this.retrieve()
+      }
+    }
+  },
+};
 </script>
+
+<style scoped>
+
+</style>

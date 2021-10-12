@@ -14,14 +14,7 @@
           </v-col>
         </v-row>
         <v-text-field
-            label="Nombre"
-            solo
-            rounded
-            flat
-            outlined
-            light
-            hide-details
-            background-color="white"
+            label="Nombre" solo rounded flat outlined  light  hide-details background-color="white"
         ></v-text-field>
 
         <v-row>
@@ -42,9 +35,9 @@
 
         <v-row align="center" justify="center" >
           <v-col cols="12" md="7">
-            <h4 style="padding-top:30px" >Series</h4>
+            <h4 style="padding-top:25px" >Series</h4>
           </v-col>
-          <ModifyCounter style="padding-top:35px" :start-time="15" :addValue="1"></ModifyCounter>
+          <ModifyCounter style="padding-top:30px" :start-time="15" :addValue="1"></ModifyCounter>
           <!-- <v-btn class="black--text" style="font-size:27px" icon @click="subTimes(series)">-</v-btn>
           <v-col cols="2">            
               <v-text-field rounded background-color="white" value="10"> {{ series }}</v-text-field>
@@ -57,17 +50,17 @@
           <v-col cols="12" md="7">
             <h4>Duración</h4>
           </v-col>
-          <ModifyCounter style="padding-top:35px" :start-time="15" :addValue="5" ></ModifyCounter>
-          
+          <ModifyCounter  :start-time="15" :addValue="5" ></ModifyCounter>          
         </v-row>
 
         <v-row>
           <v-col>
-            <v-select v-model="difficulty" :items="levels" label="Dificultad"
-                      rounded flat outlined light hide-details background-color="white"
-            ></v-select>
+            <h4 class="justify-center">Dificultad</h4>
           </v-col>
         </v-row>
+        <v-select v-model="difficulty" :items="levels" label="Dificultad" solo
+                      rounded flat outlined light hide-details background-color="white"
+        ></v-select>
 
         <v-row>
           <v-col>
@@ -98,19 +91,15 @@
 
         <v-row>
           <v-col>
-            <v-select v-model="category" :items="categories" label="Categoría"
-                      rounded
-                      flat
-                      outlined
-                      light
-                      hide-details
-                      background-color="white"
-            ></v-select>
+            <h4 class="justify-center">Categoría</h4>
           </v-col>
         </v-row>
+            <v-select v-model="category" :items="categories" label="Categoría" solo
+                      rounded flat  outlined light hide-details background-color="white"
+            ></v-select>
 
-        <v-row align="center" justify="center" class="mb-4">
-          <v-btn color="secondary" elevation="2" rounded @click="createExercise">Crear</v-btn>
+        <v-row style="padding-top:20px" align="center" justify="center" class="mb-4" >
+          <v-btn  color="secondary" elevation="2" rounded @click="createExercise()">Crear</v-btn>
         </v-row>
 
       </v-card>
@@ -140,7 +129,7 @@ export default {
       files: [],
       category: '',
       // preloaded data
-      categories: ['Aeróbico', 'Resistencia', 'Fuerza', 'Otro...'],
+      categories: ['Aeróbico', 'Resistencia', 'Fuerza'],
       levels: ['Baja', 'Media', 'Alta']
     }
   },

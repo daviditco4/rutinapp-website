@@ -7,12 +7,13 @@ export default {
     namespaced: true,
     state: {
         token: null,
-        user: null
+        user: null,
+        tempUser: null
     },
     getters: {
         isLoggedIn(state) {
             return state.token != null
-        }
+        },
     },
     mutations: {
         setUser(state, user) {
@@ -20,6 +21,9 @@ export default {
         },
         setToken(state, token) {
             state.token = token
+        },
+        setTempUser(state, user){
+            state.tempUser = user
         }
     },
     actions: {
@@ -41,6 +45,10 @@ export default {
             commit('setToken', null)
             Api.token = null
         },
+        async create({commit}, user) {
+            const result = await UserApi.add(user)
+            commit('setTempUser', result)
+        },
         async login({dispatch}, {credentials, rememberMe}) {
             const result = await UserApi.login(credentials)
             dispatch('updateToken', { token: result.token, rememberMe })
@@ -50,9 +58,9 @@ export default {
             dispatch('removeToken')
         },
         async getCurrentUser({state, commit}) {
+            // Si ya está cacheado, no lo busca en la base
             if (state.user)
                 return state.user
-
             const result = await UserApi.get()
             commit('setUser', result)
         }

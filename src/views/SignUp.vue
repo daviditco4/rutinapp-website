@@ -10,7 +10,7 @@
             elevation="10"
             class="px-12 pt-12 pa-12 card-format text-center">
           <v-form>
-            <v-text-field
+            <v-text-field v-model="username"
               class="my-2 font-italic"
               label="Usuario"
               flat
@@ -19,7 +19,7 @@
               hide-details
               background-color="white">
             </v-text-field>
-            <v-text-field
+            <v-text-field v-model="email"
               class="my-2 font-italic"
               label="Email"
               flat
@@ -37,7 +37,7 @@
                 hide-details
                 background-color="white">
             </v-text-field>
-            <v-text-field
+            <v-text-field v-model="password"
                 class="my-2 font-italic"
                 label="Contraseña"
                 flat
@@ -55,7 +55,7 @@
                 hide-details
                 background-color="white">
             </v-text-field>
-            <v-btn
+            <v-btn @click="register()"
                 class="text-center my-2"
                 color="secondary"
                 elevation="2"
@@ -78,8 +78,45 @@
 </template>
 
 <script>
+import {mapActions, mapGetters} from "vuex";
+import {Credentials, User} from "../../api/user";
+
 export default {
   name: "SignUp",
+  data() {
+    return {
+      username: '',
+      email: '',
+      password: '',
+      user: null,
+      result: null
+    }
+  },
+  computed: {
+    ...mapGetters('security', {
+      $isLoggedIn: 'isLoggedIn'
+    }),
+  },
+  methods: {
+    ...mapActions('security', {
+      $createUser: 'create',
+    }),
+    setResult(result){
+      this.result = JSON.stringify(result, null, 2)
+    },
+    async register() {
+      const index = Math.floor(Math.random() * (999 - 1) + 1)
+      const credentials = new Credentials(this.username, this.password)
+      const user = new User(credentials, index, this.email);
+      try {
+        this.user = await this.$createUser(user);
+        this.setResult(this.user)
+      } catch (e) {
+        this.setResult(e)
+      }
+      // await this.$router.push('/home')
+      }
+    }
 }
 </script>
 

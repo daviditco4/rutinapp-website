@@ -1,7 +1,7 @@
 <template >
     <v-card width="500" height="370" class="mx-auto text-center" color="primary">  
         <v-row>
-          <v-btn @click="closeCardCreaciones" color="#333C8E" dark>
+          <v-btn rounded @click="closeCardCreaciones" color="#333C8E" dark >
                     <v-icon left>
                       mdi-arrow-left
                     </v-icon>
@@ -14,10 +14,11 @@
           <v-card-actions>
            <v-col >
               <v-row >
-                <div offset-sm="2">    
+                <div offset-sm="2">  <v-hover close-delay="1000">  
                     <v-tab text>
                       <v-img src="@/assets/ejercicio.jpeg" height="200" width="200" @click="ejercicios()"></v-img>
-                    </v-tab>
+                   </v-tab>
+                   </v-hover>
                 </div> 
                 <v-spacer/>
                 <div class="text-center">  

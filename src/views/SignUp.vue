@@ -44,7 +44,10 @@
                 outlined
                 light
                 hide-details
-                background-color="white">
+                background-color="white"
+                :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+                :type="show ? 'text' : 'password'"
+                @click:append="show = !show">
             </v-text-field>
             <v-text-field
                 class="my-2 font-italic"

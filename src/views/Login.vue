@@ -33,8 +33,13 @@
               background-color="white"
               class="my-2 font-italic"
               label="Contraseña"
-              v-model="password">
+              v-model="password"
+              :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+              :type="show ? 'text' : 'password'"
+              @click:append="show = !show"
+            >
             </v-text-field>
+            <p class="error-message" v-if="!userAuthorized">Usuario y/o contraseña inválida</p>
             <v-btn @click="login()"
               class="text-center my-2"
               color="secondary"
@@ -70,13 +75,12 @@ export default {
       playgroundText: 'Use the controls above to try out the different spacing helpers.',
       username: null,
       password: null,
-      result: null
+      result: null,
+      show: false,
+      userAuthorized: true,
     }
   },
   computed: {
-    computedPadding () {
-      return `p${this.paddingDirection}-${this.paddingSize}`
-    },
     ...mapState('security', {
       $user: state => state.user,
     }),
@@ -92,14 +96,20 @@ export default {
       $login: 'login',
     }),
     async login() {
+      this.correctInfo = true;
+      this.userAuthorized = true;
       try {
         const credentials = new Credentials(this.username, this.password)
         await this.$login({credentials, rememberMe: true })
         this.clearResult()
       } catch (e) {
         this.setResult(e)
+        //Invalid username or password
+        if(e.code === 4 || e.code === 8) {
+          this.userAuthorized = false;
+        }
       }
-      if(this.isLoggedIn){
+      if(this.isLoggedIn && this.userAuthorized){
         await this.$router.push('/home')
       }
     },
@@ -123,13 +133,7 @@ export default {
   align-content: center;
   text-shadow: 2px 2px 4px #1C1C1C;
 }
-.user-login-info {
-  border: 2px #333C8E;
-  background-color: #76EAAB;
-  color: #333C8E;
-}
-.user-text {
-  font-size: smaller;
-
+.error-message {
+  color: var(--v-error-base);
 }
 </style>

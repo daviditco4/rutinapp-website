@@ -18,14 +18,16 @@
               <span>Username</span>
             </v-col>
             <v-col md="7">
-              <v-text-field value="marce15"></v-text-field>
+              <span v-if="!edit">{{ username }}</span>
+              <v-text-field v-else :value="username"></v-text-field>
             </v-col>
             <v-row no-gutters>
               <v-col md="4" class="d-flex align-center" align="right">
                 <span>Email</span>
               </v-col>
               <v-col md="7">
-                <v-text-field value="marce@gmail.com"></v-text-field>
+                <span v-if="!edit">marce@gmail.com</span>
+                <v-text-field v-else value="marce@gmail.com"></v-text-field>
               </v-col>
             </v-row>
           </v-row>
@@ -71,6 +73,8 @@
 </template>
 
 <script>
+import { GET_USER } from '../store/actions'
+
 export default {
   name: "Profile",
   data () {
@@ -78,6 +82,14 @@ export default {
       edit: false,
       changePassword: false
     }
+  },
+  computed: {
+    username() {
+      return this.$store.state.user.username
+    }
+  },
+  created() {
+    this.$store.dispatch(GET_USER)
   }
 };
 </script>

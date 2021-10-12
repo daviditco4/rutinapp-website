@@ -87,9 +87,9 @@
         </v-row>
       </v-card>
 
-      <div>
+      <div v-if="newcycle">
         <li v-for="count in 5" :key="count">
-        <NewCycle v-if="newcycle">
+        <NewCycle>
               {{count}}
         </NewCycle>    
         </li>    

@@ -38,15 +38,16 @@
             background-color="white"
         ></v-text-field>
 
-        <v-row align="center" justify="center">
-          <v-col cols="12" md="8">
-            <h4>Series</h4>
+        <v-row align="center" justify="center" >
+          <v-col cols="12" md="6">
+            <h4 >Series</h4>
           </v-col>
-          <v-btn class="black--text" style="font-size:27px" icon @click="subTimes(series)">-</v-btn>
+          <ModifyCounter style="padding-top:25px" :start-time="15" :addValue="1"></ModifyCounter>
+          <!-- <v-btn class="black--text" style="font-size:27px" icon @click="subTimes(series)">-</v-btn>
           <v-col cols="2">            
               <v-text-field rounded background-color="white" value="10"> {{ series }}</v-text-field>
           </v-col>
-          <v-btn class=" black--text" style="font-size:25px" icon @click="addTimes(series)">+</v-btn>
+          <v-btn class=" black--text" style="font-size:25px" icon @click="addTimes(series)">+</v-btn> -->
              
         </v-row>
 
@@ -130,8 +131,12 @@
 </template>
 
 <script>
+import ModifyCounter from '@/components/modifyCounter.vue'
 export default {
   name: "CreateExercise",
+  components:{
+    ModifyCounter
+  },
   data() {
     return {
       // exercise fields
@@ -142,7 +147,6 @@ export default {
       difficulty: '',
       files: [],
       category: '',
-      addValue: 1,
       // preloaded data
       categories: ['Aeróbico', 'Resistencia', 'Fuerza', 'Otro...'],
       levels: ['Baja', 'Media', 'Alta']

@@ -23,14 +23,7 @@
           </v-col>
         </v-row>
         <v-text-field
-            label="Descripcion"
-            solo
-            rounded
-            flat
-            outlined
-            light
-            hide-details
-            background-color="white"
+            label="Descripción" solo rounded flat outlined  light  hide-details background-color="white"
         ></v-text-field>
 
         <v-row align="center" justify="center" >

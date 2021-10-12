@@ -12,26 +12,16 @@
             <h4 class="text-left">Nombre</h4>
           </v-col>
         </v-row>
-        <v-text-field label="Nombre"
-                      rounded
-                      flat
-                      outlined
-                      light
-                      hide-details
-                      background-color="white"
+        <v-text-field
+            label="Nombre" solo rounded flat outlined  light  hide-details background-color="white"
         ></v-text-field>
         <v-row>
           <v-col>
             <h4 class="text-left">Descripción</h4>
           </v-col>
         </v-row>
-        <v-text-field label="Descripción"
-                      rounded
-                      flat
-                      outlined
-                      light
-                      hide-details
-                      background-color="white"
+        <v-text-field
+            label="Descripción" solo rounded flat outlined  light  hide-details background-color="white"
         ></v-text-field>
       </v-card>
 

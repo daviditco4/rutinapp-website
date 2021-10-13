@@ -28,37 +28,27 @@
 <!--    <li v-for="(cycle, index) in cycles" :key="cycle.name">-->
       <v-card class="pa-md-4 mx-lg-auto mt-16 rounded-xl" width="800px" color="primary">
         <v-row align="center">
-          <v-col cols="12" md="3">
-            <h4 class="mb-n1">Ciclo 1</h4>
-            <h4>Calentamiento</h4>
+          <v-col justify="left" cols="12" md="5">
+            <h3 class="text-left">Ciclo 1: Calentamiento</h3>
           </v-col>
-          <v-col md="2" class="ml-auto">
-            <v-text-field value="10">
-              <v-icon slot="prepend">mdi-minus</v-icon>
-              <v-icon slot="append">mdi-plus</v-icon>
-            </v-text-field>
-          </v-col>
-          <v-col md="2">
-            <h4>Repeticiones del ciclo</h4>
-          </v-col>
+          <ModifyCounter  :start-time="10" :addValue="1" ></ModifyCounter> 
+          <v-col>
+            <p justify="center">Repeticiones del ciclo</p>
+          </v-col> 
         </v-row>
 
           <!--        <ul>-->
         <v-row align="center" style="margin-bottom: -20px">
-          <v-col cols="12" md="8">
+          <v-col cols="12" md="5">
             <h4 class="text-left">1. Ejercicio</h4>
           </v-col>
-            <v-col md="2">
-                <v-text-field value="10">
-                  <v-icon slot="prepend">mdi-minus</v-icon>
-                  <v-icon slot="append">mdi-plus</v-icon>
-                </v-text-field>
+            <v-col md="5">
+                <ModifyCounter  :start-time="10" :addValue="1" ></ModifyCounter> 
+                <ModifyCounter  :start-time="10" :addValue="1" ></ModifyCounter> 
             </v-col>
-            <v-col md="2">
-              <v-text-field value="10">
-                <v-icon slot="prepend">mdi-minus</v-icon>
-                <v-icon slot="append">mdi-plus</v-icon>
-              </v-text-field>
+            <v-col>
+                <p justify="center">series</p>
+                <p justify="center">segundos</p>
             </v-col>
         </v-row>
 
@@ -87,6 +77,15 @@
         </v-row>
       </v-card>
 
+      <div v-if="newcycle">
+        <li v-for="count in 3" :key="count">
+        <NewCycle>
+              {{count}}
+        </NewCycle>    
+        </li>    
+      </div>
+      
+
       <v-row style="position: relative" justify="center">
         <v-col cols="12" md="3">
           <v-expand-transition>
@@ -102,12 +101,14 @@
             </v-card>
           </v-expand-transition>
           <div class="text-center" @mouseenter="hover=!hover" @mouseleave="hover=!hover">
-            <v-btn elevation="1" fab style="z-index: 2; margin-top: -50px;">
+            <v-btn elevation="1" fab style="z-index: 2; margin-top: -50px;" @click="newCycle()">
               <v-icon>mdi-plus</v-icon>
             </v-btn>
           </div>
         </v-col>
       </v-row>
+
+      
 
 <!--          <li v-for="(exercise, index) in exercises" :key="exercise.name">
             <span>{{ index }}. {{ exercise.name }}</span>
@@ -127,8 +128,16 @@
 </template>
 
 <script>
+
+import NewCycle from '@/components/newCycle.vue'
+import ModifyCounter from '@/components/modifyCounter.vue'
+
 export default {
   name: "CreateRoutine",
+  components: {
+    NewCycle,
+    ModifyCounter,
+  },
   data() {
     return {
       hover: false,
@@ -143,12 +152,14 @@ export default {
         warmup: {},
         training: [],
         cooldown: {}
-      }]
+      }],
+      newcycle: false,
+      count : 1,
     }
   },
   methods: {
     newCycle(){
-
+      this.newcycle = true;
     },
     newExercise(){
 

@@ -29,6 +29,7 @@
         <v-row align="center">
           <v-col cols="12" md="9">
             <h4 class="d-flex justify-start pt-4">Series</h4>
+
           </v-col>
           <ModifyCounter v-model="series" style="padding-top:30px" :start-time="15" :addValue="1"></ModifyCounter>
           <!-- <v-btn class="black--text" style="font-size:27px" icon @click="subTimes(series)">-</v-btn>
@@ -36,7 +37,10 @@
               <v-text-field rounded background-color="white" value="10"> {{ series }}</v-text-field>
           </v-col>
           <v-btn class=" black--text" style="font-size:25px" icon @click="addTimes(series)">+</v-btn> -->
-             
+          <v-col>
+            <p style="padding-top:35px">series</p>
+          </v-col>
+
         </v-row>
 
         <v-row align="center">
@@ -44,6 +48,9 @@
             <h4 class="d-flex justify-start">Duración</h4>
           </v-col>
           <ModifyCounter v-model="duration" :start-time="15" :addValue="5"></ModifyCounter>
+          <v-col>
+            <p >segundos</p>
+          </v-col>      
         </v-row>
 
         <v-row>

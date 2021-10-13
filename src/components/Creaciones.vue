@@ -66,10 +66,12 @@ export default {
     ejercicios() {
         this.ejercicio = true;
         this.rutina = false;
+        this.overlayR = false;
     },
     rutinas() {
         this.rutina = true;
         this.ejercicio = false;
+        this.overlay = false;
     },
     async crear(){
       if(this.rutina == true)

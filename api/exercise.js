@@ -1,29 +1,41 @@
-import {Api} from "./api";
+import {Api} from "./api.js";
 
-export {ExerciseApi}
+export {ExerciseApi, Exercise}
 
 class ExerciseApi {
-    static url() {
-        return `${Api.baseUrl}/exercises`;
+    static getUrl(slug) {
+        return `${Api.baseUrl}/exercises${ slug ? `/${slug}` : ''}`
     }
 
-    static async getExercise(id) {
-        return await Api.get(`${ExerciseApi.url}/${id}`, true, null);
+    static async get(id) {
+        return await Api.get(ExerciseApi.getUrl(id), true, null);
     }
 
-    static async createExercise(exercise, controller) {
-        return await Api.post(`${ExerciseApi.url}`, true, exercise, controller);
+    static async add(exercise, controller) {
+        console.log(exercise)
+        return await Api.post(ExerciseApi.getUrl(), false, exercise, controller);
     }
 
-    static async editExercise(id, exercise, controller) {
-        return await Api.put(`${ExerciseApi.url}/${id}`, true, controller);
+    static async edit(id, exercise, controller) {
+        return await Api.put(ExerciseApi.getUrl(id), true, controller);
     }
 
-    static async deleteExercise(id, controller) {
-        return await Api.delete(`${ExerciseApi.url}/${id}`, true, controller);
+    static async delete(id, controller) {
+        return await Api.delete(ExerciseApi.getUrl(id), true, controller);
     }
 
-    static async getExercises(controller) {
-        return await Api.get(`${ExerciseApi.url}?page=0&size=1000&orderBy=id&direction=asc`, true, controller).content;
+    static async getAll(controller) {
+        return await Api.get(ExerciseApi.getUrl(), true, controller).content;
+    }
+}
+
+class Exercise {
+    constructor(id, name, description, metadata) {
+        if (id) {
+            this.id = id;
+        }
+        this.name = name;
+        this.description = description;
+        this.metadata = metadata;
     }
 }

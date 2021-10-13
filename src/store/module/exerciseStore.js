@@ -1,39 +1,57 @@
 import {ExerciseApi} from "../../../api/exercise";
 
-const ExerciseStore = {
-    repeatedName: false,
-
-    async addExercise(name, detail, type, difficulty, series, duration, id) {
-        this.repeatedName = false;
-        let exer = {
-            name: name,
-            detail: detail,
-            type: type, //Esto es la categoria
-            metadata: {
-                difficulty: difficulty,
-                series: series,
-                duration: duration,
+export default {
+    namespaced: true,
+    state: {
+        repeatedName: false,
+        items: []
+    },
+    getters: {
+        findIndex(state) {
+            return (sport) => {
+                return state.items.findIndex(item => item.id === sport.id)
             }
-        }
-        try {
-            await ExerciseApi.createExercise(exer, id);
-        } catch(err) {
-            //Data constrain: name already exists
-            if(err.code === 2) {
-                this.repeatedName = true;
+        },
+    },
+    mutations: {
+        addItem(state, exercise) {
+            state.items.push(exercise)
+        },
+/*        replace(state, index, sport) {
+            state.items[index] = sport
+        },
+        splice(state, index) {
+            state.items.splice(index, 1)
+        },
+        replaceAll(state, sports) {
+            state.items = sports
+        }*/
+    },
+    actions: {
+        async create({commit}, exercise) {
+            console.log(exercise)
+            let response
+            try {
+                response = await ExerciseApi.add(exercise);
+            } catch(err) {
+                // Data constraint: name already exists
+                if(err.code === 2) {
+                    this.repeatedName = true;
+                }
             }
+            commit('addItem', response)
+        },
+
+        async get(id) {
+            return await ExerciseApi.getExercise(id);
+        },
+
+        async delete(id) {
+            await ExerciseApi.deleteExercise(id);
+        },
+
+        async getAll() {
+            return await ExerciseApi.getExercises(null);
         }
     },
-
-    async getExercise(id) {
-        return await ExerciseApi.getExercise(id);
-    },
-
-    async deleteExercise(id) {
-        await ExerciseApi.deleteExercise(id);
-    },
-
-    async getAllExercises() {
-        return await ExerciseApi.getExercises(null);
-    }
 }

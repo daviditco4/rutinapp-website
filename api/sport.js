@@ -29,11 +29,11 @@ class SportApi {
 }
 
 class Sport {
-  constructor(id, name, detail) {
+  constructor(id, name, details) {
     if (id) {
       this.id = id;
     }
     this.name = name;
-    this.detail = detail;
+    this.details = details;
   }
 }

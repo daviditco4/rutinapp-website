@@ -27,7 +27,7 @@ export default {
         }
     },
     actions: {
-        async create({getters, commit}, sport) {
+        async create({getters, commit}, sport){
             const result = await SportApi.add(sport)
             if (!getters.findIndex(result))
                 commit('push', result)

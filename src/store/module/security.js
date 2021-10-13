@@ -1,68 +1,45 @@
-import {UserApi} from "../../../api/user";
-import {Api} from "../../../api/api";
+import {UserApi, Credentials} from "../../../api/user";
 
-const SECURITY_TOKEN_KEY = 'security-token'
+const UserStore= {
+    async login(username,password){
+        const creds = await new Credentials(username,password);
+        try {
+            await UserApi.login(creds);
+        }catch (error){
+            alert(error.description);
+            return false;
+        }
+        await localStorage.setItem("loggedIn","true");
+        const data =  await UserApi.getCurrentUser();
+        this.saveName(data.firstName,data.lastName);
+        await localStorage.setItem("img", data.avatarUrl);
+        await localStorage.setItem("id", data.id);
+        return true;
+    },
+    async logout(){
+        await localStorage.setItem("loggedIn", "false");
+        await localStorage.setItem("id", "-666");
+        await UserApi.logout();
+    },
+    isLoggedIn() {
+        return localStorage.getItem("loggedIn") === 'true';
+    },
+    getName(){
+        return localStorage.getItem("fullName");
+    },
+    getImg(){
+        return localStorage.getItem("img");
+    },
 
-export default {
-    namespaced: true,
-    state: {
-        token: null,
-        user: null,
-        tempUser: null
+    async saveName(firstName,lastName){
+        await localStorage.setItem("fullName", firstName + " " + lastName);
     },
-    getters: {
-        isLoggedIn(state) {
-            return state.token != null
-        },
+
+    async saveImg(img){
+        await localStorage.setItem("img", img);
     },
-    mutations: {
-        setUser(state, user) {
-            state.user = user
-        },
-        setToken(state, token) {
-            state.token = token
-        },
-        setTempUser(state, user){
-            state.tempUser = user
-        }
-    },
-    actions: {
-        initialize({commit}) {
-            const token = localStorage.getItem(SECURITY_TOKEN_KEY)
-            if (token) {
-                commit('setToken', token)
-                Api.token = token
-            }
-        },
-        updateToken({commit}, {token, rememberMe}) {
-            if (rememberMe)
-                localStorage.setItem(SECURITY_TOKEN_KEY, token)
-            commit('setToken', token)
-            Api.token = token
-        },
-        removeToken({commit}) {
-            localStorage.removeItem(SECURITY_TOKEN_KEY)
-            commit('setToken', null)
-            Api.token = null
-        },
-        async create({commit}, user) {
-            const result = await UserApi.add(user)
-            commit('setTempUser', result)
-        },
-        async login({dispatch}, {credentials, rememberMe}) {
-            const result = await UserApi.login(credentials)
-            dispatch('updateToken', { token: result.token, rememberMe })
-        },
-        async logout({dispatch}) {
-            await UserApi.logout()
-            dispatch('removeToken')
-        },
-        async getCurrentUser({state, commit}) {
-            // Si ya está cacheado, no lo busca en la base
-            if (state.user)
-                return state.user
-            const result = await UserApi.get()
-            commit('setUser', result)
-        }
-    },
+    getUserId(){
+        return localStorage.getItem("id");
+    }
 }
+export default UserStore

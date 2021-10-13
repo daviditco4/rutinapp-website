@@ -57,8 +57,8 @@
 </template>
 
 <script>
-import {mapActions, mapState, mapGetters} from 'vuex'
-import {Credentials} from "../../api/user";
+import UserStore from '../store/module/security';
+import router from '../router/index'
 
 export default {
   name: 'Login',
@@ -78,48 +78,62 @@ export default {
       result: null,
       show: false,
       userAuthorized: true,
+      store: UserStore,
     }
   },
   computed: {
-    ...mapState('security', {
-      $user: state => state.user,
-    }),
-    ...mapGetters('security', {
-      $isLoggedIn: 'isLoggedIn'
-    }),
-    isLoggedIn() {
-      return this.$isLoggedIn
-    }
+    // ...mapState('security', {
+    //   $user: state => state.user,
+    // }),
+    // ...mapGetters('security', {
+    //   $isLoggedIn: 'isLoggedIn'
+    // }),
+    // isLoggedIn() {
+    //   return this.$isLoggedIn
+    // }
   },
   methods: {
-    ...mapActions('security', {
-      $login: 'login',
-    }),
+    // ...mapActions('security', {
+    //   $login: 'login',
+    // }),
     async login() {
-      this.correctInfo = true;
-      this.userAuthorized = true;
+      // this.correctInfo = true;
+      // this.userAuthorized = true;
+      // try {
+      //   const credentials = new Credentials(this.username, this.password)
+      //   await this.$login({credentials, rememberMe: true })
+      //   this.clearResult()
+      // } catch (e) {
+      //   this.setResult(e)
+      //   //Invalid username or password
+      //   if(e.code === 4 || e.code === 8) {
+      //     this.userAuthorized = false;
+      //   }
+      // }
+      // if(this.isLoggedIn && this.userAuthorized){
+      //   await this.$router.push('/home')
+      // }
       try {
-        const credentials = new Credentials(this.username, this.password)
-        await this.$login({credentials, rememberMe: true })
-        this.clearResult()
-      } catch (e) {
+        await this.store.login(this.username, this.password);
+      }catch (e) {
         this.setResult(e)
         //Invalid username or password
         if(e.code === 4 || e.code === 8) {
           this.userAuthorized = false;
-        }
+          return;
       }
-      if(this.isLoggedIn && this.userAuthorized){
-        await this.$router.push('/home')
+      if(this.store.isLoggedIn()){
+        await router.push("/home");
       }
-    },
-    setResult(result){
-      this.result = JSON.stringify(result, null, 2)
-    },
-    clearResult() {
-      this.result = null
-    },
+    }
+    }
   },
+
+  // created() {
+  //   if (this.store.isLoggedIn()){
+  //     router.push("home");
+  //   }
+  // }
 }
 </script>
 

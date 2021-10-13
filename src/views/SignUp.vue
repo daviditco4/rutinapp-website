@@ -57,7 +57,10 @@
                 outlined
                 light
                 hide-details
-                background-color="white">
+                background-color="white"
+                :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+                :type="show ? 'text' : 'password'"
+                @click:append="show = !show">
             </v-text-field>
             <p class="error-message" v-if="!passwordCorrect">Las contraseñas no coinciden</p>
             <p class="error-message" v-if="isAnyEmpty">Llenar todos los campos de texto.</p>
@@ -101,6 +104,7 @@ export default {
       emailCorrect: true,
       passwordCorrect: true,
       isAnyEmpty: false,
+      show: false,
     }
   },
   computed: {

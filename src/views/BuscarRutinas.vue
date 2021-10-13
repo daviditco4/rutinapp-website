@@ -25,13 +25,11 @@
             <v-text-field
               v-model="search"
               clearable
-              flat
               outlined
+              solo
               dense
-              solo-inverted
               hide-details
-              label="Buscar"
-              dark
+              label="Buscar"              
             ></v-text-field>
             <v-btn
               elevation="2"
@@ -97,7 +95,7 @@
 <script>
 import ViewRoutine from '@/components/viewRoutine.vue'
 import {mapState, mapActions} from 'vuex'
-// import { GET_EXERCISES, GET_ROUTINES } from '../store/actions'
+
 export default {
   inheritAttrs: false,
   components: {
@@ -112,9 +110,7 @@ export default {
     showRoutines: true,
     page: 1,
     itemsPerPage: 8,
-    // filterBy: "routine",
-    // edit: false
-    
+    // filterBy: "routine",    
   }),
   computed: {
     ...mapState('routines', {
@@ -145,29 +141,23 @@ export default {
   },
   created() {
     this.retrieve()
-    console.log("hola")
   },
-  methods:{
-      
+  methods:{    
       openViewRoutine(){
         this.viewroutine = true;
       },
     ...mapActions('routines', {
-      $getAllRoutinesCreatedByCurrentUser: 'getAllCreatedByCurrentUser',
-      $deleteRoutine: 'delete',
+      $getAllRoutines: 'getAll',
     }),
     ...mapActions('exercises', {
-      $getAllExercisesCreatedByCurrentUser: 'getAllCreatedByCurrentUser',
-      $deleteExercise: 'delete',
+      $getAllExercises: 'getAll',
     }),
-    // startEditing() {
-    //   this.edit = true
-    // },
+
     retrieve() {
       if (this.showRoutines) {
-        this.$getAllRoutinesCreatedByCurrentUser({page: this.page - 1, size: this.itemsPerPage})
+        this.$getAllRoutines({page: this.page - 1, size: this.itemsPerPage})
       } else {
-        this.$getAllExercisesCreatedByCurrentUser({page: this.page - 1, size: this.itemsPerPage})
+        this.$getAllExercises({page: this.page - 1, size: this.itemsPerPage})
       }
     },
     goToNextPage() {

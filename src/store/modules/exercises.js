@@ -1,4 +1,5 @@
 import { ExerciseApi } from "../../api/exercise";
+import { UserApi } from "../../api/user";
 
 export default {
   namespaced: true,
@@ -63,11 +64,28 @@ export default {
       return response
     },
 
-    async delete({ getters, commit }, id) {
-      await ExerciseApi.delete(id);
-      const index = getters.findIndex(id);
-      if (index >= 0)
-        commit('splice', index)
+    async delete({ actions, state }, id) {
+      // Este codigo es solamente para evitar el error de compilacion por no usar las actions & state
+      if (actions === state) {
+        id * 4
+      }
+
+      const user = UserApi.get()
+      const exerciseUserIndex = user.metadata.exercises_ids.indexOf(id)
+
+      if (exerciseUserIndex !== -1) {
+        user.metadata.exercises_ids.splice(exerciseUserIndex, 1)
+      } else {
+        return
+      }
+
+      await UserApi.modify(user)
+
+      return await ExerciseApi.delete(id);
+      // actions.getAllCreatedByCurrentUser({page: state.items.page, size: state.items.size})
+      // const index = getters.findIndex(id);
+      // if (index >= 0)
+      //   commit('splice', index)
     },
 
     async getAll({commit}, {page, size}) {
@@ -75,6 +93,21 @@ export default {
       commit('replaceAll', response)
       console.log(response)
       return response
-    }
+    },
+
+    async getAllCreatedByCurrentUser({commit}, {page, size}) {
+      const userExercisesIds = (await UserApi.get()).metadata.exercises_ids
+      const res = {content: [], page: page, size: size, isLastPage: ((page + 1) * size) >= userExercisesIds.length}
+      
+      for (var i = page * size; i < (page + 1) * size; i++) {
+        if (i === userExercisesIds.length)
+          break
+        
+        res.content.push(await ExerciseApi.get(userExercisesIds[i]))
+      }
+
+      commit('replaceAll', res)
+      return res
+    },
   },
 }

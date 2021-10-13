@@ -11,6 +11,10 @@ class UserApi {
     return await Api.post(UserApi.getUrl('login'), false, credentials, controller)
   }
 
+  static async modify(userChanges, controller) {
+    return await Api.put(UserApi.getUrl('current'), true, userChanges, controller)
+  }
+
   static async logout(controller) {
     await Api.post(UserApi.getUrl('logout'), true, controller)
   }

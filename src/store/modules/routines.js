@@ -64,11 +64,17 @@ export default {
       return response
     },
 
-    async delete({ getters, commit }, id) {
-      await RoutineApi.delete(id);
-      const index = getters.findIndex(id);
-      if (index >= 0)
-        commit('splice', index)
+    async delete({ actions, state }, id) {
+      // Este codigo es solamente para evitar el error de compilacion por no usar las actions & state
+      if (actions === state) {
+        id * 4
+      }
+
+      return await RoutineApi.delete(id)
+      // actions.getAllCreatedByCurrentUser({page: state.items.page, size: state.items.size})
+      // const index = getters.findIndex(id);
+      // if (index >= 0)
+      //   commit('splice', index)
     },
 
     async getAll({commit}, {page, size}) {

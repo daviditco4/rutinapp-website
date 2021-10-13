@@ -188,6 +188,7 @@ export default {
       $deleteRoutine: 'delete',
     }),
     ...mapActions('exercises', {
+      $getAllExercisesCreatedByCurrentUser: 'getAllCreatedByCurrentUser',
       $deleteExercise: 'delete',
     }),
     // startEditing() {
@@ -228,12 +229,14 @@ export default {
         this.retrieve()
       }
     },
-    deleteItem(id) {
+    async deleteItem(id) {
       if (this.showRoutines) {
-        this.$deleteRoutine(id)
+        await this.$deleteRoutine(id)
       } else {
-        this.$deleteExercise(id)
+        await this.$deleteExercise(id)
       }
+
+      this.retrieve()
     }
   },
 };

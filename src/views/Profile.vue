@@ -9,8 +9,8 @@
         </v-row>
         <v-row no-gutters class="pa-3 mt-5">
           <v-col align="center" justify="center" md="3">
-            <v-avatar size="150">
-              <v-img src="@/assets/logo.svg"></v-img>
+            <v-avatar color="red" size="150">
+              <span class="white--text text-h5">{{ username.charAt(0).toUpperCase() }}</span>
             </v-avatar>
           </v-col>
           <v-row no-gutters class="ml-6">
@@ -97,9 +97,9 @@ export default {
     this.$store.dispatch(GET_USER)
   },
   methods: {
-    editProfile() {
+    // editProfile() {
       
-    }
+    // }
   }
 };
 </script>

@@ -4,9 +4,7 @@
       <v-col cols="12">
         <v-row>
           <v-col md="1"><!-- Aca va el boton para volver hacia atras --></v-col>
-          <v-col md="10">
-            <h1 style="text-align: center"><b>My Library</b></h1>
-          </v-col>
+          <v-col md="10"><h1><b>My Library</b></h1></v-col>
           <v-col md="1">
             <v-btn
               v-if="!edit"
@@ -14,8 +12,7 @@
               color="secondary"
               elevation="2"
               @click="startEditing()"
-              ><v-icon>mdi-pencil</v-icon></v-btn
-            >
+            ><v-icon>mdi-pencil</v-icon></v-btn>
           </v-col>
         </v-row>
         <v-data-iterator
@@ -23,7 +20,6 @@
           :items-per-page="itemsPerPage"
           :page="page"
           :search="search"
-          :custom-filter="filter"
           v-bind="$attrs"
           hide-default-footer
         >
@@ -92,20 +88,19 @@
                       outlined
                       style="border: 2px solid #333c8e"
                     >
-                      <v-img
-                        :src="item.backgroundImage"
-                        class="interactive-item"
-                      ></v-img>
+                      <v-img :src="item.metadata.image_url"></v-img>
                       <v-fade-transition>
                         <v-overlay v-if="hover" absolute color="#202020">
-                          <v-btn v-if="!edit"
-                            ><v-icon>mdi-logout-variant</v-icon></v-btn
-                          >
+                          <v-btn v-if="!edit">
+                            <v-icon>mdi-logout-variant</v-icon>
+                          </v-btn>
                           <span v-else>
-                            <v-btn><v-icon>mdi-delete</v-icon></v-btn>
-                            <v-btn style="margin: 0 0 0 10px"
-                              ><v-icon>mdi-pencil</v-icon></v-btn
-                            >
+                            <v-btn>
+                              <v-icon>mdi-pencil</v-icon>
+                            </v-btn>
+                            <v-btn @click="deleteItem(item.id)" style="margin: 0 0 0 10px">
+                              <v-icon>mdi-delete</v-icon>
+                            </v-btn>
                           </span>
                         </v-overlay>
                       </v-fade-transition>
@@ -121,13 +116,13 @@
         </v-data-iterator>
         <v-row style="margin: 15px">
           <v-col md="1"></v-col>
-          <v-col md="11">
-            <v-row align="center" justify="center">
+          <v-col md="10">
+            <v-row style="justify-content: center">
               <v-btn :disabled="page===1" @click="goToPreviousPage()">
-                <v-icon>mdi-left-arrow</v-icon>
+                <v-icon>mdi-arrow-left</v-icon>
               </v-btn>
               <v-btn :disabled="isTheLastPage" style="margin: 0 0 0 20px" @click="goToNextPage()">
-                <v-icon>mdi-right-arrow</v-icon>
+                <v-icon>mdi-arrow-right</v-icon>
               </v-btn>
             </v-row>
           </v-col>
@@ -152,19 +147,21 @@ export default {
     showRoutines: true,
     page: 1,
     itemsPerPage: 8,
-    filterBy: "routine",
-    edit: false,
+    // filterBy: "routine",
+    edit: false
   }),
   computed: {
     items() {
-      return this.$store.state.routinesOrExercises
+      return this.$store.state.routinesOrExercises.content
     },
     isTheLastPage() {
-      return this.$store.state.routinesOrExercises.isLastPage
+      // return this.$store.state.routinesOrExercises.isLastPage
+      return this.page === 2
     }
   },
   created() {
-    this.$store.dispatch(GET_ROUTINES, this.page, this.itemsPerPage)
+    // this.retrieve()
+    this.$store.dispatch(GET_ROUTINES, 1, 8)
   },
   methods: {
     startEditing() {
@@ -179,11 +176,11 @@ export default {
     },
     goToNextPage() {
       this.page++
-      this.retrieve()
+      // this.retrieve()
     },
     goToPreviousPage() {
       this.page--
-      this.retrieve()
+      // this.retrieve()
     },
     selectRoutineFilter() {
       if (!this.showRoutines) {
@@ -198,7 +195,10 @@ export default {
         this.page = 1
         this.retrieve()
       }
-    }
+    },
+    // deleteItem(id) {
+    //   this.$store.dispatch()
+    // }
   },
 };
 </script>

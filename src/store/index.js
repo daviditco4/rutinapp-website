@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 import { UserApi } from '../api/user'
 import { RoutineApi } from '../api/routine'
 import { ExerciseApi } from '../api/exercise'
-import { GET_USER, UPDATE_USER, GET_ROUTINES, GET_EXERCISES } from './actions'
+import { GET_USER, GET_ROUTINES, GET_EXERCISES } from './actions'
 import { SET_USER, SET_CURRENT_ROUTINES_OR_EXERCISES } from './mutations'
 
 Vue.use(Vuex)
@@ -28,16 +28,17 @@ export default new Vuex.Store({
       const result = await UserApi.get()
       commit(SET_USER, result)
     },
-    async [UPDATE_USER] ({commit}) {
-      const result = await UserApi.get()
-      commit(SET_USER, result)
-    },
+    // async [UPDATE_USER] ({commit}) {
+    //   const result = await UserApi.get()
+    //   commit(SET_USER, result)
+    // },
     async [GET_ROUTINES] ({commit}, page, size) {
-      const result = await RoutineApi.getAll(page, size)
+      size / 3
+      const result = await RoutineApi.getAll(page - 1, 8)
       commit(SET_CURRENT_ROUTINES_OR_EXERCISES, result)
     },
-    async [GET_EXERCISES] ({commit}, page, size) {
-      const result = await ExerciseApi.getAll(page, size)
+    async [GET_EXERCISES] ({commit}, {page, size}) {
+      const result = await ExerciseApi.getAll(page - 1, size)
       commit(SET_CURRENT_ROUTINES_OR_EXERCISES, result)
     },
   },

@@ -20,7 +20,7 @@ class RoutineApi {
   }
 
   static async get(id, controller) {
-    return await Api.get(RoutineApi.getUrl(id), true,  controller)
+    return await Api.get(RoutineApi.getUrl(id), true, controller)
   }
 
   static async getAll(page, size, controller) {

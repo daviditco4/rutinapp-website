@@ -55,15 +55,14 @@
                   label="Sort by"
                 ></v-select> -->
                 <v-btn-toggle
-                  v-model="showRoutines"
                   mandatory
                   rounded
                   style="margin: 0 0 0 15px"
                 >
-                  <v-btn large depressed color="secondary" :value="true">
+                  <v-btn @click="selectRoutineFilter()" large depressed color="secondary">
                     Routines
                   </v-btn>
-                  <v-btn large depressed color="secondary" :value="false">
+                  <v-btn @click="selectExerciseFilter()" large depressed color="secondary">
                     Exercises
                   </v-btn>
                 </v-btn-toggle>
@@ -138,7 +137,9 @@
 </template>
 
 <script>
-import { GET_EXERCISES, GET_ROUTINES } from '../store/actions'
+import {mapState, mapActions} from 'vuex'
+
+// import { GET_EXERCISES, GET_ROUTINES } from '../store/actions'
 
 export default {
   inheritAttrs: false,
@@ -151,41 +152,69 @@ export default {
     edit: false
   }),
   computed: {
+    ...mapState('routines', {
+      $routinesPage: state => state.items.page + 1,
+      $currentRoutines: state => state.items.content,
+      $isLastRoutinesPage: state => state.items.isLastPage,
+    }),
+    ...mapState('exercises', {
+      $exercisesPage: state => state.items.page + 1,
+      $currentExercises: state => state.items.content,
+      $isLastExercisesPage: state => state.items.isLastPage,
+    }),
     items() {
-      return this.$store.state.routinesOrExercises.content
+      if (this.showRoutines) {
+        return this.$currentRoutines
+      } else {
+        return this.$currentExercises
+      }
     },
     isTheLastPage() {
-      // return this.$store.state.routinesOrExercises.isLastPage
-      return this.page === 2
+      if (this.showRoutines) {
+        return this.$isLastRoutinesPage
+      } else {
+        return this.$isLastExercisesPage
+      }
     }
   },
   created() {
-    // this.retrieve()
-    this.$store.dispatch(GET_ROUTINES, 1, 8)
+    this.retrieve()
+    console.log("hola")
   },
   methods: {
+    ...mapActions('routines', {
+      $getAllRoutines: 'getAll',
+      $deleteRoutine: 'delete',
+    }),
+    ...mapActions('exercises', {
+      $getAllExercises: 'getAll',
+      $deleteExercise: 'delete',
+    }),
     startEditing() {
       this.edit = true
     },
     retrieve() {
       if (this.showRoutines) {
-        this.$store.dispatch(GET_ROUTINES, this.page, this.itemsPerPage)
+        this.$getAllRoutines({page: this.page - 1, size: this.itemsPerPage})
       } else {
-        this.$store.dispatch(GET_EXERCISES, this.page, this.itemsPerPage)
+        this.$getAllExercises({page: this.page - 1, size: this.itemsPerPage})
       }
     },
     goToNextPage() {
       this.page++
-      // this.retrieve()
+      this.retrieve()
     },
     goToPreviousPage() {
       this.page--
-      // this.retrieve()
+      this.retrieve()
     },
     selectRoutineFilter() {
       if (!this.showRoutines) {
         this.showRoutines = true
         this.page = 1
+        if (this.$routinesPage)
+          this.page = this.$routinesPage
+
         this.retrieve()
       }
     },
@@ -193,12 +222,19 @@ export default {
       if (this.showRoutines) {
         this.showRoutines = false
         this.page = 1
+        if (this.$exercisesPage)
+          this.page = this.$exercisesPage
+        
         this.retrieve()
       }
     },
-    // deleteItem(id) {
-    //   this.$store.dispatch()
-    // }
+    deleteItem(id) {
+      if (this.showRoutines) {
+        this.$deleteRoutine(id)
+      } else {
+        this.$deleteExercise(id)
+      }
+    }
   },
 };
 </script>

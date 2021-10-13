@@ -73,7 +73,7 @@
 </template>
 
 <script>
-import { GET_USER } from '../store/actions'
+// import { GET_USER } from '../store/actions'
 
 export default {
   name: "Profile",
@@ -94,7 +94,7 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch(GET_USER)
+    this.$store.dispatch("getCurrentUser")
   },
   methods: {
     // editProfile() {

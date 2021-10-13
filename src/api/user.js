@@ -19,7 +19,7 @@ class UserApi {
     return Api.get(UserApi.getUrl('current'), true, controller)
   }
 
-  static async getRoutinesCreatedByCurrentUser(page, size, controller) {
+  static async getAllRoutinesCreatedByCurrentUser(page, size, controller) {
     return await Api.get(UserApi.getUrl("current/routines") + `?page=${page}&size=${size}`, true, controller)
   }
 }

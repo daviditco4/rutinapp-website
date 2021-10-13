@@ -6,6 +6,7 @@
                       mdi-close
                     </v-icon>
           </v-btn>
+
           <v-card-title primary-title class="d-flex justify-center" style="color:#333C8E; font-size:24px;">
             RUTINA 1
           </v-card-title>
@@ -32,7 +33,6 @@
 
                 </v-col>
                 
-                <v-spacer/>
                 <v-card class="mx-auto" max-width="700" rounded color="secondary">
 
                 <v-list color="secondary" dark>

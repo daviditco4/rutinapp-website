@@ -70,16 +70,17 @@ export default {
         id * 4
       }
 
-      const user = UserApi.get()
-      const exerciseUserIndex = user.metadata.exercises_ids.indexOf(id)
+      const userMetadata = (await UserApi.get()).metadata
+      const exerciseUserIndex = userMetadata.exercises_ids.indexOf(id)
+      console.log(exerciseUserIndex)
 
       if (exerciseUserIndex !== -1) {
-        user.metadata.exercises_ids.splice(exerciseUserIndex, 1)
+        userMetadata.exercises_ids.splice(exerciseUserIndex, 1)
       } else {
         return
       }
 
-      await UserApi.modify(user)
+      await UserApi.modify({metadata: userMetadata})
 
       return await ExerciseApi.delete(id);
       // actions.getAllCreatedByCurrentUser({page: state.items.page, size: state.items.size})

@@ -103,6 +103,17 @@ const routes = [
     ]
   },
   {
+    path: '/library',
+    component: () => import('../layouts/BGLayout'),
+    children: [    
+        {
+          path: '/library',
+          name: 'Library',
+          component: () => import(/* webpackChunkName: "Library" */ '../views/Library.vue')
+        }
+    ]
+  },
+  {
 
     path: '/help',
     component: () => import('../layouts/BGLayout'),

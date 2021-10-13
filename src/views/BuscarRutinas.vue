@@ -2,8 +2,7 @@
   <v-container>
     <v-card class="mt-5 mb-5 mr-15 ml-15 pa-2" color="#76eaab" elevation="8">
       <v-row>
-          <v-col md="1"><!-- Aca va el boton para volver hacia atras --></v-col>
-          <v-col md="10"><h1><b>Buscar Rutinas</b></h1></v-col>
+          <v-col md="12"><h1><b>Buscar Rutinas</b></h1></v-col>
           
         </v-row>
 
@@ -78,7 +77,7 @@
             </v-row>
           </v-col>
           <v-col md="1">
-            <v-btn fab large elevation="2" color="secondary">
+            <v-btn fab large elevation="2" color="secondary" to="/create-routine">
               <v-icon>mdi-plus-thick</v-icon>
             </v-btn>
           </v-col>
@@ -115,16 +114,7 @@ export default {
     itemsPerPage: 8,
     // filterBy: "routine",
     // edit: false
-    items: [
-        {
-          name: 'Rutina 1',
-          backgroundImage: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
-        },
-        {
-          name: 'Rutina 2',
-          backgroundImage: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
-        },
-      ],
+    
   }),
   computed: {
     ...mapState('routines', {
@@ -158,6 +148,7 @@ export default {
     console.log("hola")
   },
   methods:{
+      
       openViewRoutine(){
         this.viewroutine = true;
       },

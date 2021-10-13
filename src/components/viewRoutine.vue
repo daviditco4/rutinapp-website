@@ -21,13 +21,18 @@
                     <h4>Creado por: </h4>
                 </v-row>
                 <v-row>
-                <div offset-sm="2">
+                    <h4>Autor </h4>
+                </v-row>
+                <v-row>
+                <div offset-sm="3">
                       <v-img src="@/assets/ejercicio.jpeg" height="150" width="150"></v-img>
                 </div> 
                 </v-row>
 
                 <v-row>
                     <h4> Categoria: </h4>
+                </v-row>
+                <v-row>
                     <h4> Dificultad:  </h4>
                 </v-row>
 
@@ -80,6 +85,7 @@
         {
           items: 
           [{ title: 'Ejercicio 1' }],
+          active: true,
           title: 'Calentamiento',
         },
         {
@@ -88,10 +94,12 @@
             { title: 'Ejercicio 2' },
             { title: 'Ejercicio 3' },
           ],
+          active: true,
           title: 'Ciclo 2',
         },
         {
           items: [{ title: 'Ejercicio 1' }],
+          active: true,
           title: 'Ciclo 3',
         },
         

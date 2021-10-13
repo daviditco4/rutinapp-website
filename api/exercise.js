@@ -12,8 +12,7 @@ class ExerciseApi {
     }
 
     static async add(exercise, controller) {
-        console.log(exercise)
-        return await Api.post(ExerciseApi.getUrl(), false, exercise, controller);
+        return await Api.post(ExerciseApi.getUrl(), true, exercise, controller);
     }
 
     static async edit(id, controller) {
@@ -30,12 +29,12 @@ class ExerciseApi {
 }
 
 class Exercise {
-    constructor(id, name, description, type, metadata) {
+    constructor(id, name, detail, type, metadata) {
         if (id) {
             this.id = id;
         }
         this.name = name;
-        this.description = description;
+        this.detail = detail;
         this.type = type;
         this.metadata = metadata;
     }

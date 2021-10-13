@@ -11,7 +11,9 @@ class UserApi {
         user['username'] = user.credentials['username']
         user['password'] = user.credentials['password']
         user['credentials'] = null
-        return await Api.post(UserApi.getUrl(), false, user, controller)
+        const response = await Api.post(UserApi.getUrl(), false, user, controller)
+        await localStorage.setItem("security-token", response.token);
+        Api.token = response.token;
     }
 
     static async login(credentials, controller) {

@@ -13,10 +13,7 @@ export default {
     },
     mutations: {
         addItem(state, exercise) {
-            console.log(state)
-            console.log(exercise)
             state.items.push(exercise)
-            console.log(state.items)
         },
         replace(state, index, exercise) {
             state.items[index] = exercise
@@ -24,26 +21,22 @@ export default {
         splice(state, index) {
             state.items.splice(index, 1)
         },
-        push(state, exercise) {
-            state.items.push(exercise)
-        },
         replaceAll(state, exercises) {
             state.items = exercises
         }
     },
     actions: {
         async create({commit}, exercise) {
-            console.log(exercise)
             let response
             try {
                 response = await ExerciseApi.add(exercise);
+                commit('addItem', response)
             } catch(err) {
                 // Data constraint: name already exists
                 if(err.code === 2) {
                     this.repeatedName = true;
                 }
             }
-            commit('addItem', response)
         },
 
         async edit({getters, commit}, id) {

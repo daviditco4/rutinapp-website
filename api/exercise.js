@@ -16,7 +16,7 @@ class ExerciseApi {
         return await Api.post(ExerciseApi.getUrl(), false, exercise, controller);
     }
 
-    static async edit(id, exercise, controller) {
+    static async edit(id, controller) {
         return await Api.put(ExerciseApi.getUrl(id), true, controller);
     }
 
@@ -30,12 +30,13 @@ class ExerciseApi {
 }
 
 class Exercise {
-    constructor(id, name, description, metadata) {
+    constructor(id, name, description, type, metadata) {
         if (id) {
             this.id = id;
         }
         this.name = name;
         this.description = description;
+        this.type = type;
         this.metadata = metadata;
     }
 }

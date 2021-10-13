@@ -145,7 +145,7 @@ export default {
         category: this.category
       }
       const index = Math.floor(Math.random() * (999 - 1) + 1)
-      const exercise = new Exercise(index, this.name, this.description, this.type, exerciseMetadata)
+      const exercise = new Exercise(index, this.name, this.description, 'exercise', exerciseMetadata)
       console.log(exercise)
       try {
         this.exercise = await this.$createExercise(exercise);

@@ -3,9 +3,9 @@
     <v-row>
       <v-col cols="12">
         <v-row>
-          <v-col md="1"><!-- Aca va el boton para volver hacia atras --></v-col>
-          <v-col md="10"><h1><b>My Library</b></h1></v-col>
-          <v-col md="1">
+          <!-- <v-col md="1">Aca va el boton para volver hacia atras</v-col> -->
+          <v-col md="12"><h1><b>My Library</b></h1></v-col>
+          <!-- <v-col md="1">
             <v-btn
               v-if="!edit"
               fab
@@ -13,7 +13,7 @@
               elevation="2"
               @click="startEditing()"
             ><v-icon>mdi-pencil</v-icon></v-btn>
-          </v-col>
+          </v-col> -->
         </v-row>
         <v-data-iterator
           :items="items"
@@ -90,10 +90,11 @@
                       <v-img :src="item.metadata.image_url"></v-img>
                       <v-fade-transition>
                         <v-overlay v-if="hover" absolute color="#202020">
-                          <v-btn v-if="!edit">
+                          <!-- <v-btn v-if="!edit">
                             <v-icon>mdi-logout-variant</v-icon>
                           </v-btn>
-                          <span v-else>
+                          <span v-else> -->
+                          <span>
                             <v-btn>
                               <v-icon>mdi-pencil</v-icon>
                             </v-btn>
@@ -149,7 +150,7 @@ export default {
     page: 1,
     itemsPerPage: 8,
     // filterBy: "routine",
-    edit: false
+    // edit: false
   }),
   computed: {
     ...mapState('routines', {
@@ -189,9 +190,9 @@ export default {
     ...mapActions('exercises', {
       $deleteExercise: 'delete',
     }),
-    startEditing() {
-      this.edit = true
-    },
+    // startEditing() {
+    //   this.edit = true
+    // },
     retrieve() {
       if (this.showRoutines) {
         this.$getAllRoutinesCreatedByCurrentUser({page: this.page - 1, size: this.itemsPerPage})

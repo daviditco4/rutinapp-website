@@ -65,7 +65,8 @@ export default {
       commit('setUser', result)
     },
     async modifyCurrentUser({commit}, userChanges) {
-      const result = await UserApi.modify(userChanges)
+      const userMetadata = (await UserApi.get()).metadata
+      const result = await UserApi.modify({...userChanges, metadata: userMetadata})
       commit('setUser', result)
     },
   },

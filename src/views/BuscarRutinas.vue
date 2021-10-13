@@ -49,32 +49,23 @@
         <template v-slot:default="props">
           <v-row>
             <v-col v-for="item in props.items" :key="item.name" cols="12" sm="3">
-              <v-row>
-              <v-col v-for="item in props.items" :key="item.name"  cols="12"  sm="3" >
-                <v-hover>
-                  <template v-slot:default="{ hover }">
+
                     <v-card color="transparent" outlined   >
                       <v-tab @click="overlay = !overlay">
                         <v-img :src="item.metadata.image_url" @click="openViewRoutine()"></v-img>                  
                       </v-tab>
-                          
-                        <v-row rows="auto">
-                          <v-list-item-content>{{ item.name }}</v-list-item-content>
-                        </v-row>
-                      </v-col>
-                              
                     </v-card>
-                   </template>
-                </v-hover>  
+            </v-col>
+          </v-row>
+
                 <v-list-item-content style="justify-content: center">{{
                   item.name
                 }}</v-list-item-content>
-                </v-col>
-            </v-row>
         </template>
       </v-data-iterator>
+    </v-card>
 
-      <v-row style="margin: 15px">
+        <v-row style="margin: 15px">
           <v-col md="1"></v-col>
           <v-col md="10">
             <v-row style="justify-content: center">
@@ -93,7 +84,6 @@
           </v-col>
         </v-row>
 
-    </v-card>
     <v-overlay :absolute="absolute" :value="overlay" >
            <v-btn   color="success" @click="overlay = false" >
           <ViewRoutine  v-if="viewroutine" @closeViewRoutine="viewroutins=false">
@@ -111,13 +101,30 @@ import {mapState, mapActions} from 'vuex'
 // import { GET_EXERCISES, GET_ROUTINES } from '../store/actions'
 export default {
   inheritAttrs: false,
+  components: {
+      ViewRoutine,
+  },
   data: () => ({
+    viewroutine : false,
+    absolute: true,
+    overlay: false,
+
     search: "",
     showRoutines: true,
     page: 1,
     itemsPerPage: 8,
     // filterBy: "routine",
     // edit: false
+    items: [
+        {
+          name: 'Rutina 1',
+          backgroundImage: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
+        },
+        {
+          name: 'Rutina 2',
+          backgroundImage: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
+        },
+      ],
   }),
   computed: {
     ...mapState('routines', {
@@ -131,6 +138,7 @@ export default {
       $isLastExercisesPage: state => state.items.isLastPage,
     }),
     items() {
+      
       if (this.showRoutines) {
         return this.$currentRoutines
       } else {
@@ -179,88 +187,32 @@ export default {
       this.page--
       this.retrieve()
     },
-    selectRoutineFilter() {
-      if (!this.showRoutines) {
-        this.showRoutines = true
-        this.page = 1
-        if (this.$routinesPage)
-          this.page = this.$routinesPage
-        this.retrieve()
-      }
-    },
-    selectExerciseFilter() {
-      if (this.showRoutines) {
-        this.showRoutines = false
-        this.page = 1
-        if (this.$exercisesPage)
-          this.page = this.$exercisesPage
-        
-        this.retrieve()
-      }
-    },
-    async deleteItem(id) {
-      if (this.showRoutines) {
-        await this.$deleteRoutine(id)
-      } else {
-        await this.$deleteExercise(id)
-      }
-      this.retrieve()
-    }
   },
 };
+
+//    data: () => ({
+      
+
+//      search: '',
+//      sortDesc: false,
+//      page: 1,
+//      itemsPerPage: 8,
+//      sortBy: 'name',
+//      items: [
+//        {
+//          name: 'Rutina 1',
+//          backgroundImage: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
+//        },
+//        {
+//          name: 'Rutina 2',
+//          backgroundImage: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
+//        },
+//      ],
+//    }),
+//  }
+
 </script>
 
 <style scoped>
+
 </style>
-
-  export default {
-    inheritAttrs: false,
-    
-    
-    data: () => ({
-      viewroutine : false,
-      absolute: true,
-      overlay: false,
-
-      search: '',
-      sortDesc: false,
-      page: 1,
-      itemsPerPage: 8,
-      sortBy: 'name',
-      items: [
-        {
-          name: 'Rutina 1',
-          backgroundImage: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
-        },
-        {
-          name: 'Rutina 2',
-          backgroundImage: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
-        },
-        {
-          name: 'Rutina 3',
-          backgroundImage: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
-        },
-        {
-          name: 'Rutina 4',
-          backgroundImage: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
-        },
-        {
-          name: 'Rutina 5',
-          backgroundImage: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
-        },
-        {
-          name: 'Rutina 6',
-          backgroundImage: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
-        },
-        {
-          name: 'Rutina 7',
-          backgroundImage: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
-        },
-        {
-          name: 'Rutina 8',
-          backgroundImage: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
-        },
-      ],
-    }),
-  }
-</script>

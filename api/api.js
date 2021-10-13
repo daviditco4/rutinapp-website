@@ -1,7 +1,7 @@
 export { Api }
 
 class Api {
-  static token
+  static token;
 
   static get baseUrl() {
     return 'http://127.0.0.1:8080/api'
@@ -12,7 +12,9 @@ class Api {
   }
 
   static async fetch(url, secure, init = {}, controller) {
-    console.log(Api.token)
+    if (!Api.token){
+      Api.token = localStorage.getItem("security-token");
+    }
     if (secure && Api.token) {
       if (!init.headers)
         init.headers = {}

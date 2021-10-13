@@ -1,4 +1,5 @@
 import { RoutineApi } from "../../api/routine";
+import { UserApi } from "../../api/user";
 
 export default {
   namespaced: true,
@@ -82,6 +83,12 @@ export default {
 
     async getCycles(routineId, controller) {
       return await RoutineApi.getCycles(`${RoutineApi.getUrl(routineId)}/cycles`, true, controller);
-    }
+    },
+
+    async getAllCreatedByCurrentUser({commit}, {page, size}) {
+      const response = await UserApi.getAllRoutinesCreatedByCurrentUser(page, size)
+      commit('replaceAll', response)
+      return response
+    },
   },
 }

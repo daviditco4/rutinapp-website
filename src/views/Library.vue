@@ -183,11 +183,10 @@ export default {
   },
   methods: {
     ...mapActions('routines', {
-      $getAllRoutines: 'getAll',
+      $getAllRoutinesCreatedByCurrentUser: 'getAllCreatedByCurrentUser',
       $deleteRoutine: 'delete',
     }),
     ...mapActions('exercises', {
-      $getAllExercises: 'getAll',
       $deleteExercise: 'delete',
     }),
     startEditing() {
@@ -195,9 +194,9 @@ export default {
     },
     retrieve() {
       if (this.showRoutines) {
-        this.$getAllRoutines({page: this.page - 1, size: this.itemsPerPage})
+        this.$getAllRoutinesCreatedByCurrentUser({page: this.page - 1, size: this.itemsPerPage})
       } else {
-        this.$getAllExercises({page: this.page - 1, size: this.itemsPerPage})
+        this.$getAllExercisesCreatedByCurrentUser({page: this.page - 1, size: this.itemsPerPage})
       }
     },
     goToNextPage() {

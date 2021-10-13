@@ -64,9 +64,9 @@ export default {
       const result = await UserApi.get()
       commit('setUser', result)
     },
-    // async [UPDATE_USER] ({commit}) {
-    //   const result = await UserApi.get()
-    //   commit(SET_USER, result)
-    // },
+    async modifyCurrentUser({commit}, userChanges) {
+      const result = await UserApi.modify(userChanges)
+      commit('setUser', result)
+    },
   },
 }

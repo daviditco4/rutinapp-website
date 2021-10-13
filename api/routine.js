@@ -1,6 +1,6 @@
 import { Api } from "./api.js";
 
-export { RoutineApi, Routine }
+export { RoutineApi, Routine, Cycle }
 
 class RoutineApi {
     static getUrl(slug) {
@@ -12,7 +12,7 @@ class RoutineApi {
     }
 
     static async add(routine, controller) {
-        return await Api.post(RoutineApi.getUrl(), false, exercise, controller);
+        return await Api.post(RoutineApi.getUrl(), false, routine, controller);
     }
 
     static async edit(id, routine, controller) {
@@ -37,12 +37,12 @@ class RoutineApi {
 }
 
 class Routine {
-    constructor(id, name, description, difficulty, isPublic, metadata) {
+    constructor(id, name, detail, difficulty, isPublic, metadata) {
         if (id) {
             this.id = id;
         }
         this.name = name;
-        this.description = description;
+        this.detail = detail;
         this.difficulty = difficulty;
         this.isPublic = isPublic;
         this.metadata = metadata;
@@ -50,14 +50,15 @@ class Routine {
 }
 
 class Cycle {
-    constructor(id, name, description, type, order, repetitions) {
+    constructor(id, name, detail, type, order, repetitions, metadata) {
         if (id) {
             this.id = id;
         }
         this.name = name;
-        this.description = description;
-        this.difficulty = difficulty;
-        this.isPublic = isPublic;
+        this.detail = detail;
+        this.type = type;
+        this.order = order;
+        this.repetitions = repetitions;
         this.metadata = metadata;
     }
 }

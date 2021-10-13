@@ -12,6 +12,7 @@ class Api {
   }
 
   static async fetch(url, secure, init = {}, controller) {
+    console.log(Api.token)
     if (secure && Api.token) {
       if (!init.headers)
         init.headers = {}

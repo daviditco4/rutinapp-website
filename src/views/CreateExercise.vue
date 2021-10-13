@@ -133,7 +133,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('exerciseStore', {
+    ...mapActions('exercise', {
       $createExercise: 'create',
     }),
     async createExercise() {

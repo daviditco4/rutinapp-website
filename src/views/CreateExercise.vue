@@ -22,7 +22,7 @@
             <h4 class="d-flex justify-start pt-4">Descripción</h4>
           </v-col>
         </v-row>
-        <v-text-field v-model="description"
+        <v-text-field v-model="detail"
             label="Detalle si es necesario el uso de equipos u otros comentarios..." solo rounded flat outlined  light  hide-details background-color="white"
         ></v-text-field>
 
@@ -115,7 +115,7 @@ export default {
     return {
       // exercise fields
       name: '',
-      description: '',
+      detail: '',
       type: '',
       series: null,
       duration: null,
@@ -145,8 +145,7 @@ export default {
         category: this.category
       }
       const index = Math.floor(Math.random() * (999 - 1) + 1)
-      const exercise = new Exercise(index, this.name, this.description, 'exercise', exerciseMetadata)
-      console.log(exercise)
+      const exercise = new Exercise(index, this.name, this.detail, 'exercise', exerciseMetadata)
       try {
         this.exercise = await this.$createExercise(exercise);
         this.setResult(this.exercise)

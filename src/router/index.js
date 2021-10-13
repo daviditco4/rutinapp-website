@@ -103,6 +103,7 @@ const routes = [
     ]
   },
   {
+
     path: '/help',
     component: () => import('../layouts/BGLayout'),
     children: [    

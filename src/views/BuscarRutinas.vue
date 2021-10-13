@@ -1,7 +1,13 @@
 <template>
   <v-container>
     <v-card class="mt-5 mb-5 mr-15 ml-15 pa-2" color="#76eaab" elevation="8">
-      <h1 style="text-align: center">Busqueda de rutinas</h1>
+      <v-row>
+          <v-col md="1"><!-- Aca va el boton para volver hacia atras --></v-col>
+          <v-col md="10"><h1><b>Buscar Rutinas</b></h1></v-col>
+          
+        </v-row>
+
+
       <v-data-iterator
         :items="items"
         :items-per-page="itemsPerPage"
@@ -34,6 +40,7 @@
               elevation="2"
               fab
               color="#333C8E"
+              dark
             >
               <v-icon>mdi-magnify</v-icon>
             </v-btn>
@@ -42,6 +49,7 @@
                 elevation="2"
                 fab
                 color="#333C8E"
+                dark
               >
                 <v-icon>mdi-sort</v-icon>
               </v-btn>
@@ -57,27 +65,53 @@
               >
                 <v-col justify="space-between">
                   <v-row rows="auto">
-                    <v-img :src="item.backgroundImage"></v-img>
+                    <v-tab @click="overlay = !overlay" text>
+                    <v-img  :src="item.backgroundImage" @click="openViewRoutine()">
+
+                    </v-img></v-tab>
+                    
                   </v-row>
                   <v-row rows="auto">
                     <v-list-item-content>{{ item.name }}</v-list-item-content>
                   </v-row>
                 </v-col>
+                        
               </v-card>
             </v-col>
           </v-row>
         </template>
       </v-data-iterator>
+
+      <v-overlay :absolute="absolute" :value="overlay" >
+
+          <ViewRoutine  v-if="viewroutine" @closeViewRoutine="viewroutins=false" @click="overlay = false">
+           <v-btn color="success" @click="overlay = false" > </v-btn>
+          </ViewRoutine>
+
+      </v-overlay>
+
     </v-card>
   </v-container>
 </template>
 
 <script>
+import ViewRoutine from '@/components/viewRoutine.vue'
+
   export default {
     inheritAttrs: false,
     components: {
+      ViewRoutine,
+    },
+    methods:{
+      openViewRoutine(){
+        this.viewroutine = true;
+      },
     },
     data: () => ({
+      viewroutine : false,
+      absolute: true,
+      overlay: false,
+
       search: '',
       sortDesc: false,
       page: 1,

@@ -17,6 +17,9 @@
               <v-row >
                 <v-col>
                 <v-row>
+                    <h4>Creado por: </h4>
+                </v-row>
+                <v-row>
                 <div offset-sm="2">
                       <v-img src="@/assets/ejercicio.jpeg" height="150" width="150"></v-img>
                 </div> 

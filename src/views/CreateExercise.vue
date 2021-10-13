@@ -27,7 +27,7 @@
         ></v-text-field>
 
         <v-row align="center">
-          <v-col cols="12" md="9">
+          <v-col cols="12" md="7">
             <h4 class="d-flex justify-start pt-4">Series</h4>
 
           </v-col>
@@ -44,7 +44,7 @@
         </v-row>
 
         <v-row align="center">
-          <v-col cols="12" md="9">
+          <v-col cols="12" md="7">
             <h4 class="d-flex justify-start">Duración</h4>
           </v-col>
           <ModifyCounter v-model="duration" :start-time="15" :addValue="5"></ModifyCounter>

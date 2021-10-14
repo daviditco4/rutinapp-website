@@ -91,7 +91,7 @@
            <v-btn   color="success" @click="overlay = false" >
           <ViewRoutine  v-if="viewroutine" @closeViewRoutine="viewroutins=false"
             :extern_name="routine.name" :extern_difficulty="routine.difficulty" :extern_routine_id="routine.id"
-             :extern_creator="routine.creator.username" :extern_cycle_id="current_cycle" >
+             :extern_creator="routine.creator.username" :extern_cycle_id="current_cycle">
           </ViewRoutine>
     </v-btn>
 

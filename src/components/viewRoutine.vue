@@ -25,7 +25,7 @@
                 </v-row>
                 <v-row>
                 <div offset-sm="3">
-                      <v-img src="@/assets/ejercicio.jpeg" height="150" width="150"></v-img>
+                      <v-img :src="extern_routine_id.metadata.image_url" height="170" width="170"></v-img>                     
                 </div> 
                 </v-row>
 

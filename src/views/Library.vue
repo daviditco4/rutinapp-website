@@ -1,10 +1,11 @@
 <template>
   <v-container class="library">
+    <v-card class="mt-5 mb-5 mr-15 ml-15 pa-2" color="#76eaab" elevation="8">
     <v-row>
-      <v-col cols="12">
         <v-row>
           <!-- <v-col md="1">Aca va el boton para volver hacia atras</v-col> -->
           <v-col md="12"><h1>Mi Biblioteca</h1></v-col>
+        </v-row>
           <!-- <v-col md="1">
             <v-btn
               v-if="!edit"
@@ -22,10 +23,10 @@
             :search="search"
             v-bind="$attrs"
             hide-default-footer
+            no-data-text="Tu biblioteca esta vacia. ¡Creá tu primer rutina o ejercicio!"
           >
             <template v-slot:header>
-              <v-toolbar flat elevation="1" style="margin: 30px 0px">
-                <span style="width: 600px">
+              <v-toolbar flat light  color="transparent">
                   <v-text-field
                     v-model="search"
                     outlined
@@ -34,7 +35,6 @@
                     hide-details
                     label="Buscar"
                   ></v-text-field>
-                </span>
                 <v-btn
                   fab
                   elevation="2"
@@ -61,9 +61,6 @@
                     Ejercicios
                   </v-btn>
                 </v-btn-toggle>
-                <v-btn elevation="2" fab style="margin: 0 0 0 15px">
-                  <v-icon>mdi-sort</v-icon>
-                </v-btn>
               </v-toolbar>
             </template>
             <template v-slot:default="props">
@@ -111,6 +108,8 @@
               </v-row>
             </template>
           </v-data-iterator>
+        </v-card>
+
           <v-row style="margin: 15px">
             <v-col md="1"></v-col>
             <v-col md="10">
@@ -133,8 +132,7 @@
               </v-btn>
             </v-col>
           </v-row>
-        </v-col>
-      </v-row>
+
     </v-container>
 </template>
 

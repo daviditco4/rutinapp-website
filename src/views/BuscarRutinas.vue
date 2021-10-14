@@ -53,18 +53,16 @@
         <template v-slot:default="props">
           <v-row>
             <v-col v-for="item in props.items" :key="item.name" cols="12" sm="3">
-
-                    <v-card color="transparent" outlined   >
-                      <v-tab @click="overlay = !overlay">
-                        <v-img :src="item.metadata.image_url" @click="openViewRoutine()"></v-img>                  
-                      </v-tab>
-                    </v-card>
-            </v-col>
-          </v-row>
-
-                <v-list-item-content style="justify-content: center">{{
+              <v-card color="transparent" outlined   >
+                <v-tab @click="overlay = !overlay">
+                  <v-img :src="item.metadata.image" @click="openViewRoutine()"></v-img>
+                </v-tab>
+              </v-card>
+              <v-list-item-content style="justify-content: center">{{
                   item.name
                 }}</v-list-item-content>
+            </v-col>
+          </v-row>
         </template>
       </v-data-iterator>
     </v-card>

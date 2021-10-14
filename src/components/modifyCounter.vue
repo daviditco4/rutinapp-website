@@ -22,6 +22,7 @@ export default {
   props: {
     startTime: {type: Number},
     addValue: {type: Number},
+    field: {type: String}
   },
 
   data() {
@@ -30,21 +31,17 @@ export default {
 
     }
   },
-  computed:{
-
-  },
-
   methods: {
-    
     addTimes() {
       this.counter += this.addValue;
-      this.$emit('set')
+      this.$emit('setCounter', this.counter, this.field)
     },
 
     subTimes() {
       if (this.counter >= this.addValue) {
         this.counter -= this.addValue;
       }
+      this.$emit('setCounter', this.counter, this.field)
     }
   }
 }

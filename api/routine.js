@@ -50,14 +50,11 @@ class Routine {
 }
 
 class Cycle {
-  constructor(id, name, detail, type, order, repetitions, metadata) {
+  constructor(id, type, repetitions, metadata) {
     if (id) {
       this.id = id;
     }
-    this.name = name;
-    this.detail = detail;
     this.type = type;
-    this.order = order;
     this.repetitions = repetitions;
     this.metadata = metadata;
   }

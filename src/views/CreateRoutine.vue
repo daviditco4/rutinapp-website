@@ -61,11 +61,9 @@
 </template>
 
 <script>
-
 import NewCycle from '@/components/NewCycle.vue'
 import {mapActions} from 'vuex'
 import {Routine} from '../../api/routine'
-
 export default {
   name: "CreateRoutine",
   components: {
@@ -79,7 +77,6 @@ export default {
       difficulty: '',
       detail: '',
       isPublic: false,
-
       //cycle data
       cycle: null,
       cycles: [{
@@ -102,12 +99,10 @@ export default {
         }
       ],
       repetitions: null,
-
       //exercise data
       exercise: {},
       exercises: [],
       newExercise: false,
-
       // preloaded data
       levels: [
         {code:'rookie', name: 'Novato'},

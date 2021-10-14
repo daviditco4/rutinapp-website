@@ -72,7 +72,6 @@ import ModifyCounter from '@/components/modifyCounter.vue'
 import Exercise from "@/components/Exercise";
 import {Cycle} from "../../api/routine";
 //import AddExerciseInRoutine from "@/components/AddExerciseInRoutine";
-
 export default {
   name: "NewCycle",
   components: {
@@ -110,4 +109,3 @@ export default {
   }
 };
 </script>
-

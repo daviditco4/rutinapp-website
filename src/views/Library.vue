@@ -131,7 +131,7 @@
             </v-row>
           </v-col>
           <v-col md="1">
-            <v-btn fab large elevation="2" color="secondary">
+            <v-btn fab large elevation="2" color="secondary" @click="create()">
               <v-icon>mdi-plus-thick</v-icon>
             </v-btn>
           </v-col>
@@ -236,7 +236,13 @@ export default {
         await this.$deleteExercise(id)
       }
       this.retrieve()
-    }
+    },
+    async create(){
+      if(this.showRoutines == true)
+        await this.$router.replace("/create-routine");
+      else
+        await this.$router.replace("/create-exercise");
+    },
   },
 };
 </script>

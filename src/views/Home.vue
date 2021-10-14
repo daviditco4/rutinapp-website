@@ -55,7 +55,7 @@
 // @ is an alias to /src
 
 import Creaciones from '@/components/Creaciones.vue'
-import { mapState, mapActions } from "vuex";
+import { mapState} from "vuex";
 
 export default {
     name: 'Home',

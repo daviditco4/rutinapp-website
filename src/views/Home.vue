@@ -69,14 +69,15 @@ export default {
     ...mapState("security", {
       $user: (state) => state.user,
       }),
+      username() {
+      return this.$user ? this.$user.username : "loading...";
+      },
     },
     methods: {
       elegir(){
         this.mostrarCreaciones = true
       },
-      username() {
-      return this.$user ? this.$user.username : "loading...";
-    },
+      
     },
     
 }

@@ -88,9 +88,14 @@
                       rounded flat  outlined light hide-details background-color="white"
             ></v-select>
 
-        <v-row style="padding-top:20px" align="center" justify="center" class="mb-4" >
-          <v-btn v-if="this.$editValue" color="secondary" elevation="2" rounded @click="modifyExercise()">Modificar</v-btn>
-          <v-btn v-if="!this.$editValue" color="secondary" elevation="2" rounded @click="createExercise()">Crear</v-btn>
+        <v-row style="padding-top:20px" align="center" justify="center" class="mb-4" >          
+         <v-col md="6">
+            <v-btn v-if="this.$editValue" color="secondary" elevation="2" rounded @click="modifyExercise()">Modificar</v-btn>
+          <v-btn v-if="!this.$editValue" color="secondary" elevation="2" rounded @click="createExercise()">Crear</v-btn>     
+         </v-col>
+         <v-col md="6">
+          <v-btn  color="secondary" elevation="2" rounded @click="cancelExercise()">Cancelar</v-btn>
+         </v-col>
         </v-row>
         <v-row justify="center">
           <p class="error-message" v-if="emptyFields">Llenar todos los campos</p>

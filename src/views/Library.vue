@@ -86,7 +86,7 @@
                           </v-btn>
                           <span v-else> -->
                             <span>
-                              <v-btn @click="editItem()">
+                              <v-btn @click="editItem(item)">
                                 <v-icon>mdi-pencil</v-icon>
                               </v-btn>
                               <v-btn
@@ -195,7 +195,8 @@ export default {
     ...mapActions('exercise', {
       $getAllExercisesCreatedByCurrentUser: 'getAllCreatedByCurrentUser',
       $deleteExercise: 'delete',
-      $modifyEditValue: 'changeEditValue'
+      $modifyEditValue: 'changeEditValue',
+      $addExerciseToEdit: 'exerciseToEdit'
     }),
     retrieve() {
       if (this.showRoutines) {
@@ -231,10 +232,11 @@ export default {
         this.retrieve()
       }
     },
-    editItem() {
+    editItem(toEdit) {
       if(this.showRoutines) {
         return;
       } else {
+        this.$addExerciseToEdit(toEdit)
         this.$modifyEditValue(true)
         this.$router.push('/create-exercise')
       }

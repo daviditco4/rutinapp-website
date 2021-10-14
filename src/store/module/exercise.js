@@ -7,6 +7,7 @@ export default {
         repeatedName: false,
         items: [],
         edit: false,
+        exercise: null
     },
     getters: {
         findIndex(id) {
@@ -28,6 +29,9 @@ export default {
         },
         changeEdit(state, value) {
             state.edit = value
+        },
+        addExerciseToEdit(state, editExercise) {
+            state.exercise = editExercise
         }
     },
     actions: {
@@ -127,5 +131,9 @@ export default {
         changeEditValue( {commit}, value) {
             commit('changeEdit', value)
         },
+
+        exerciseToEdit({commit}, editExercise) {
+            commit('addExerciseToEdit', editExercise)
+        }
       },
 }

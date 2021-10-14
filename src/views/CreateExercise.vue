@@ -148,11 +148,24 @@ export default {
   },
   computed: {
     ...mapState('exercise', {
-      $editValue: state => state.edit
+      $editValue: state => state.edit,
+      $oldExercise: state => state.exercise
     }),
     ...mapGetters('exercise', {
       $getExerciseIndex: 'findIndex'
     })
+  },
+  created() {
+      if(this.$editValue){
+        this.name = this.$oldExercise.name;
+        this.detail = this.$oldExercise.detail;
+        this.type = this.$oldExercise.type;
+        this.series = this.$oldExercise.metadata.series;
+        this.difficulty = this.$oldExercise.metadata.difficulty;
+        this.category = this.$oldExercise.metadata.category;
+        this.duration = this.$oldExercise.metadata.duration;
+        this.image = this.$oldExercise.metadata.image;
+      }
   },
   methods: {
     ...mapActions('exercise', {

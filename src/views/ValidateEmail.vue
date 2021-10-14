@@ -1,7 +1,7 @@
 <template>
   <v-container fluid fill-height>
     <v-row class="fill-height" justify="center" align="center">
-      <v-card style="width: 600px" align="center" color="primary">
+      <v-card style="width: 600px" align="center" color="primary" rounded>
         <h2>Por favor confirme su cuenta</h2>
         <form align = "center">
           <v-row wrap>

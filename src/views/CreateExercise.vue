@@ -16,7 +16,7 @@
         <v-text-field v-model="name"
             label="Escriba un nombre..." solo rounded flat outlined  light  hide-details background-color="white"
         ></v-text-field>
-
+        <p class="error-message" v-if="nameRepeated">Nombre de ejercicio ya existente.</p>
         <v-row>
           <v-col>
             <h4 class="d-flex justify-start pt-4">Descripción</h4>
@@ -91,6 +91,9 @@
         <v-row style="padding-top:20px" align="center" justify="center" class="mb-4" >
           <v-btn  color="secondary" elevation="2" rounded @click="createExercise()">Crear</v-btn>
         </v-row>
+        <v-row justify="center">
+          <p class="error-message" v-if="emptyFields">Llenar todos los campos</p>
+        </v-row>
 
       </v-card>
 
@@ -129,7 +132,12 @@ export default {
       types: ['exercise', 'rest'],
 
       // payload data
-      exercise: null
+      exercise: null,
+
+      //validations
+      missingDifficulty: false,
+      emptyFields: false,
+      nameRepeated: false,
     }
   },
   methods: {
@@ -137,6 +145,14 @@ export default {
       $createExercise: 'create',
     }),
     async createExercise() {
+
+      this.nameRepeated = false;
+      this.emptyFields = false;
+      if(this.checkIfEmpty()){
+        this.emptyFields = true;
+        return;
+      }
+
       const exerciseMetadata = {
         series: this.series,
         duration: this.duration,
@@ -151,6 +167,9 @@ export default {
         this.setResult(this.exercise)
       } catch (e) {
         this.setResult(e)
+        if(e.code == 2) {
+          this.nameRepeated = true;
+        }
       }
     },
     setResult(result){
@@ -165,9 +184,19 @@ export default {
     addFile(file){
       this.files.push(file);
     },
-
+    checkIfEmpty() {
+      if(this.name != "" && this.detail != "" && this.difficulty != ""
+      && this.series != "" && this.duration != "" && this.category != ""){
+        return false;
+      }
+      return true;
+    }
   }
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+  .error-message {
+    color: var(--v-error-base);
+  }
+</style>

@@ -5,7 +5,7 @@
     <v-row class="fill-height" justify="center" align="center">
       <v-col cols="5">
         <v-sheet
-            color="#76EAAB"
+            color="primary"
             rounded
             elevation="10"
             class="px-12 pt-12 pa-12 card-format text-center">
@@ -183,7 +183,7 @@ export default {
     opacity: 1;
   }
   .card-format {
-    border: 4px #333C8E;
+    border: 4px var(--v-secondary-base);
   }
 
   .signup-message {

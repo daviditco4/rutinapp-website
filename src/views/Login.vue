@@ -10,7 +10,7 @@
     <v-row justify="center" align="center">
       <v-col cols="5">
         <v-sheet
-          color="#76EAAB"
+          color="primary"
           rounded
           elevation="10"
           class="px-8 pt-4 pa-2 card-format text-center">

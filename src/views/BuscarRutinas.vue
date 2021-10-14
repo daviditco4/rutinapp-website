@@ -61,6 +61,12 @@
               <v-list-item-content style="justify-content: center">{{
                   item.name
                 }}</v-list-item-content>
+              <v-overlay :absolute="absolute" :value="overlay">
+
+                <ViewRoutine v-if="viewroutine" v-bind:routine="item"  @closeViewRoutine="viewroutine=false">
+<!--                  <v-btn   color="success" @click="overlay = false" ></v-btn>-->
+                </ViewRoutine>
+              </v-overlay>
             </v-col>
           </v-row>
         </template>
@@ -86,15 +92,7 @@
           </v-col>
         </v-row>
 
-    <v-overlay :absolute="absolute" :value="overlay" >
-           <v-btn   color="success" @click="overlay = false" >
-          <ViewRoutine  v-if="viewroutine" @closeViewRoutine="viewroutins=false"
-            :extern_name="routine.name" :extern_difficulty="routine.difficulty" :extern_routine_id="routine.id"
-             :extern_creator="routine.creator.username" :extern_cycle_id="current_cycle">
-          </ViewRoutine>
-    </v-btn>
 
-    </v-overlay>
   </v-container>
 </template>
 
@@ -116,7 +114,8 @@ export default {
     showRoutines: true,
     page: 1,
     itemsPerPage: 8,
-    // filterBy: "routine",    
+    // filterBy: "routine",
+    routine: {},
   }),
   computed: {
     ...mapState('routine', {
@@ -125,28 +124,28 @@ export default {
       $isLastRoutinesPage: state => state.items.isLastPage,
       $routinesCount: state => state.items.length,
     }),
-    ...mapState('exercise', {
-      $exercisesPage: state => state.items.page + 1,
-      $currentExercises: state => state.items.content,
-      $isLastExercisesPage: state => state.items.isLastPage,
-    }),
+    // ...mapState('exercise', {
+    //   $exercisesPage: state => state.items.page + 1,
+    //   $currentExercises: state => state.items.content,
+    //   $isLastExercisesPage: state => state.items.isLastPage,
+    // }),
     isEmpty(){
       return this.$routinesCount === 0;
     },
     items() {
       
-      if (this.showRoutines) {
+      // if (this.showRoutines) {
         return this.$currentRoutines
-      } else {
-        return this.$currentExercises
-      }
+      // } else {
+      //   return this.$currentExercises
+      // }
     },
     isTheLastPage() {
-      if (this.showRoutines) {
+      // if (this.showRoutines) {
         return this.$isLastRoutinesPage
-      } else {
-        return this.$isLastExercisesPage
-      }
+      // } else {
+      //   return this.$isLastExercisesPage
+      // }
     }
   },
   created() {
@@ -164,11 +163,11 @@ export default {
     }),
 
     retrieve() {
-      if (this.showRoutines) {
+      // if (this.showRoutines) {
         this.$getAllRoutines({page: this.page - 1, size: this.itemsPerPage})
-      } else {
-        this.$getAllExercises({page: this.page - 1, size: this.itemsPerPage})
-      }
+      // } else {
+      //   this.$getAllExercises({page: this.page - 1, size: this.itemsPerPage})
+      // }
     },
     goToNextPage() {
       this.page++

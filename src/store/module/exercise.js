@@ -1,5 +1,5 @@
 import {ExerciseApi} from "../../../api/exercise";
-import {User, UserApi} from "../../../api/user";
+import {UserApi} from "../../../api/user";
 
 export default {
     namespaced: true,
@@ -76,6 +76,21 @@ export default {
             const response = await ExerciseApi.getAll(null);
             commit('replaceAll', response)
             return response
-        }
+        },
+
+        async getAllCreatedByCurrentUser({commit}, {page, size}) {
+            const userExercisesIds = (await UserApi.get()).metadata.exercises_ids
+            const res = {content: [], page: page, size: size, isLastPage: ((page + 1) * size) >= userExercisesIds.length}
+
+            for (var i = page * size; i < (page + 1) * size; i++) {
+                if (i === userExercisesIds.length)
+                    break
+
+                res.content.push(await ExerciseApi.get(userExercisesIds[i]))
+            }
+
+            commit('replaceAll', res)
+            return res
+        },
     },
 }

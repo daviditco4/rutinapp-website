@@ -107,7 +107,7 @@
 <script>
 import ModifyCounter from '@/components/modifyCounter.vue'
 import {Exercise} from '../../api/exercise'
-import {mapActions, mapState} from "vuex";
+import {mapActions} from "vuex";
 
 export default {
   name: "CreateExercise",

@@ -6,7 +6,7 @@
       <v-col cols="12">
         <v-row>
           <!-- <v-col md="1">Aca va el boton para volver hacia atras</v-col> -->
-          <v-col md="12"><h1><b>My Library</b></h1></v-col>
+          <v-col md="12"><h1>Mi Biblioteca</h1></v-col>
           <!-- <v-col md="1">
             <v-btn
               v-if="!edit"
@@ -63,10 +63,10 @@
                   style="margin: 0 0 0 15px"
                 >
                   <v-btn @click="selectRoutineFilter()" large depressed color="secondary">
-                    Routines
+                    Rutinas
                   </v-btn>
                   <v-btn @click="selectExerciseFilter()" large depressed color="secondary">
-                    Exercises
+                    Ejercicios
                   </v-btn>
                 </v-btn-toggle>
                 
@@ -131,7 +131,7 @@
             </v-row>
           </v-col>
           <v-col md="1">
-            <v-btn fab large elevation="2" color="secondary">
+            <v-btn fab large elevation="2" color="secondary" @click="create()">
               <v-icon>mdi-plus-thick</v-icon>
             </v-btn>
           </v-col>
@@ -154,12 +154,12 @@ export default {
     // edit: false
   }),
   computed: {
-    ...mapState('routines', {
+    ...mapState('routine', {
       $routinesPage: state => state.items.page + 1,
       $currentRoutines: state => state.items.content,
       $isLastRoutinesPage: state => state.items.isLastPage,
     }),
-    ...mapState('exercises', {
+    ...mapState('exercise', {
       $exercisesPage: state => state.items.page + 1,
       $currentExercises: state => state.items.content,
       $isLastExercisesPage: state => state.items.isLastPage,
@@ -184,11 +184,11 @@ export default {
     console.log("hola")
   },
   methods: {
-    ...mapActions('routines', {
+    ...mapActions('routine', {
       $getAllRoutinesCreatedByCurrentUser: 'getAllCreatedByCurrentUser',
       $deleteRoutine: 'delete',
     }),
-    ...mapActions('exercises', {
+    ...mapActions('exercise', {
       $getAllExercisesCreatedByCurrentUser: 'getAllCreatedByCurrentUser',
       $deleteExercise: 'delete',
     }),
@@ -236,7 +236,13 @@ export default {
         await this.$deleteExercise(id)
       }
       this.retrieve()
-    }
+    },
+    async create(){
+      if(this.showRoutines == true)
+        await this.$router.replace("/create-routine");
+      else
+        await this.$router.replace("/create-exercise");
+    },
   },
 };
 </script>

@@ -35,13 +35,13 @@ class UserApi {
   static async getAllRoutinesCreatedByCurrentUser(page, size, controller) {
     return await Api.get(UserApi.getUrl("current/routines") + `?page=${page}&size=${size}`, true, controller)
   }
-    static async verifyEmail(emailVerifier,controller) {
-        await  Api.post(UserApi.getUrl('verify_email'),false, emailVerifier, controller)
-    }
+  static async verifyEmail(emailVerifier,controller) {
+      await  Api.post(UserApi.getUrl('verify_email'),false, emailVerifier, controller)
+  }
 
-    static async resendEmail(email, controller) {
-        await Api.post(UserApi.getUrl('resend_verification'), false, (JSON).parse(email), controller)
-    }
+  static async resendEmail(email, controller) {
+      await Api.post(UserApi.getUrl('resend_verification'), false, (JSON).parse(email), controller)
+  }
 }
 
 class Credentials {

@@ -46,9 +46,9 @@
                 light
                 hide-details
                 background-color="white"
-                :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-                :type="show ? 'text' : 'password'"
-                @click:append="show = !show">
+                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                :type="show1 ? 'text' : 'password'"
+                @click:append="show1 = !show1">
             </v-text-field>
             <v-text-field v-model="passwordRepeat"
                 class="my-2 font-italic"
@@ -58,9 +58,9 @@
                 light
                 hide-details
                 background-color="white"
-                :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-                :type="show ? 'text' : 'password'"
-                @click:append="show = !show">
+                :append-icon="show2 ? 'mdi-eye' : 'mdi-eye-off'"
+                :type="show2 ? 'text' : 'password'"
+                @click:append="show2 = !show2">
                 >
             </v-text-field>
             <p class="error-message" v-if="!passwordCorrect">Las contraseñas no coinciden</p>
@@ -106,7 +106,8 @@ export default {
       passwordCorrect: true,
       isAnyEmpty: false,
       registerSuccess: true,
-      show: false,
+      show1: false,
+      show2: false,
     }
   },
   computed: {

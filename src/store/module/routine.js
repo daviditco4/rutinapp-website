@@ -13,11 +13,8 @@ export default {
         },
     },
     mutations: {
-        addItem(state, exercise) {
-            console.log(state)
-            console.log(exercise)
-            state.items.push(exercise)
-            console.log(state.items)
+        push(state, exercise) {
+          state.items.push(exercise)
         },
         replace(state, index, exercise) {
             state.items[index] = exercise
@@ -25,16 +22,12 @@ export default {
         splice(state, index) {
             state.items.splice(index, 1)
         },
-        push(state, exercise) {
-            state.items.push(exercise)
-        },
         replaceAll(state, exercises) {
             state.items = exercises
         }
     },
     actions: {
         async create({ commit }, routine) {
-            console.log(routine)
             let response
             try {
                 response = await RoutineApi.add(routine);
@@ -44,7 +37,7 @@ export default {
                     this.repeatedName = true;
                 }
             }
-            commit('addItem', response)
+            commit('push', response)
         },
 
         async edit({ getters, commit }, id) {
@@ -71,10 +64,6 @@ export default {
             }
 
             return await RoutineApi.delete(id)
-            // actions.getAllCreatedByCurrentUser({page: state.items.page, size: state.items.size})
-            // const index = getters.findIndex(id);
-            // if (index >= 0)
-            //   commit('splice', index)
         },
 
         async getAll({commit}, {page, size}) {

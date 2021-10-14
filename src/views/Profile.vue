@@ -63,7 +63,9 @@
                   light
                   outlined
                   background-color="white"
-                  :items="['male', 'female', 'other']"
+                  :items="genders"
+                  item-text="name"
+                  item-value="code"
                   label="Select"
                 ></v-select>
               </v-col>
@@ -88,7 +90,7 @@
               elevation="2"
               rounded
               @click="saveProfile()"
-              >Save</v-btn
+              >Guardar</v-btn
             >
           </v-col>
         </v-row>
@@ -128,7 +130,7 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
-// import { GET_USER } from '../store/actions'
+
 export default {
   name: "Profile",
   data() {
@@ -144,6 +146,11 @@ export default {
               v => v.length != 10 || "El télefono debe debe contener 10 numeros"
           ],
       },
+      genders: [
+        {name: 'Masculino', code: 'male'},
+        {name: 'Femenino', code: 'female'},
+        {name: 'Otro', code: 'other'}
+      ]
     }
   },
   computed: {
@@ -190,5 +197,6 @@ export default {
   },
 };
 </script>
+
 <style scoped>
 </style>

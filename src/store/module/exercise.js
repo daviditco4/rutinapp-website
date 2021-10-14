@@ -13,7 +13,7 @@ export default {
         },
     },
     mutations: {
-        addItem(state, exercise) {
+        push(state, exercise) {
             state.items.push(exercise)
         },
         replace(state, index, exercise) {
@@ -31,7 +31,7 @@ export default {
             let response
             try {
                 response = await ExerciseApi.add(exercise);
-                commit('addItem', response)
+                commit('push', response)
             } catch(err) {
                 // Data constraint: name already exists
                 if(err.code === 2) {
@@ -65,32 +65,52 @@ export default {
             return response
         },
 
-        async delete({getters, commit}, id) {
-            await ExerciseApi.delete(id);
-            const index = getters.findIndex(id);
-            if(index>=0)
-                commit('splice', index)
+        async delete({ actions, state }, id) {
+          // Este codigo es solamente para evitar el error de compilacion por no usar las actions & state
+          if (actions === state) {
+            id * 4
+          }
+    
+          const userMetadata = (await UserApi.get()).metadata
+          const exerciseUserIndex = userMetadata.exercises.indexOf(id)
+          console.log(exerciseUserIndex)
+    
+          if (exerciseUserIndex !== -1) {
+            userMetadata.exercises.splice(exerciseUserIndex, 1)
+          } else {
+            return
+          }
+    
+          await UserApi.modify({metadata: userMetadata})
+    
+          return await ExerciseApi.delete(id);
         },
-
-        async getAll({commit}) {
-            const response = await ExerciseApi.getAll(null);
-            commit('replaceAll', response)
-            return response
+    
+        async getAll({commit}, {page, size}) {
+          const response = await ExerciseApi.getAll(page, size);
+          commit('replaceAll', response)
+          console.log(response)
+          return response
         },
-
+    
         async getAllCreatedByCurrentUser({commit}, {page, size}) {
-            const userExercisesIds = (await UserApi.get()).metadata.exercises_ids
-            const res = {content: [], page: page, size: size, isLastPage: ((page + 1) * size) >= userExercisesIds.length}
+          const metadata = (await UserApi.get()).metadata
+          const res = {content: [], page: page, size: size, isLastPage: true}
 
+          if (metadata) {
+            const userExercisesIds = metadata.exercises
+            res.isLastPage = ((page + 1) * size) >= userExercisesIds.length
+            
             for (var i = page * size; i < (page + 1) * size; i++) {
-                if (i === userExercisesIds.length)
-                    break
-
-                res.content.push(await ExerciseApi.get(userExercisesIds[i]))
+              if (i === userExercisesIds.length)
+                break
+              
+              res.content.push(await ExerciseApi.get(userExercisesIds[i]))
             }
+          }
 
-            commit('replaceAll', res)
-            return res
+          commit('replaceAll', res)
+          return res
         },
-    },
+      },
 }

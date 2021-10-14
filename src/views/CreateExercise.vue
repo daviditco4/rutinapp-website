@@ -123,7 +123,7 @@ export default {
       series: null,
       duration: null,
       difficulty: '',
-      files: [],
+      image: '',
       category: '',
 
       // preloaded data
@@ -155,7 +155,7 @@ export default {
         series: this.series,
         duration: this.duration,
         difficulty: this.difficulty,
-        files: this.files,
+        image: this.image,
         category: this.category
       }
       const index = Math.floor(Math.random() * (999 - 1) + 1)
@@ -180,7 +180,7 @@ export default {
       this.categories.push(category);
     },
     addFile(file){
-      this.files.push(file);
+      this.image = file
     },
     checkIfEmpty() {
       if(this.name != "" && this.detail != "" && this.difficulty != ""

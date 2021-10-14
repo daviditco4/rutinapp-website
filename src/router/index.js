@@ -59,7 +59,7 @@ const routes = [
     ]
   },
   {
-     path: 'validateEmail',
+     path: '/validateEmail',
      component: () => import('../layouts/BGLoginLayout'),
      children: [
          {

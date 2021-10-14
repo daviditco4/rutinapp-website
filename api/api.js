@@ -20,6 +20,7 @@ class Api {
         init.headers = {}
 
       init.headers['Authorization'] = `bearer ${Api.token}`
+      console.log(`bearer ${Api.token}`)
     }
 
     controller = controller || new AbortController()
@@ -50,8 +51,6 @@ class Api {
   }
 
   static async post(url, secure, data, controller) {
-    console.log(url)
-    console.log(data)
     return await Api.fetch(url, secure, {
       method: 'POST',
       headers: {

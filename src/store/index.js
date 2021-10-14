@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import security from '@/store/module/security';
-import exercise from '@/store/module/exercise';
-import routine from "@/store/module/routine";
+import security from './module/security';
+import exercise from './module/exercise';
+import routine from "./module/routine";
 
 Vue.use(Vuex)
 

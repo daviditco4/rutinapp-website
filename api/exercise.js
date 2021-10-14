@@ -7,8 +7,8 @@ class ExerciseApi {
     return `${Api.baseUrl}/exercises${slug ? `/${slug}` : ''}`
   }
 
-  static async get(id) {
-    return await Api.get(ExerciseApi.getUrl(id), true, null);
+  static async get(id, controller) {
+    return await Api.get(ExerciseApi.getUrl(id), true, controller);
   }
 
   static async add(exercise, controller) {

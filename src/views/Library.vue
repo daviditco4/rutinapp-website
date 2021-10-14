@@ -6,7 +6,7 @@
       <v-col cols="12">
         <v-row>
           <!-- <v-col md="1">Aca va el boton para volver hacia atras</v-col> -->
-          <v-col md="12"><h1><b>My Library</b></h1></v-col>
+          <v-col md="12"><h1><b>Mi Biblioteca</b></h1></v-col>
           <!-- <v-col md="1">
             <v-btn
               v-if="!edit"
@@ -63,10 +63,10 @@
                   style="margin: 0 0 0 15px"
                 >
                   <v-btn @click="selectRoutineFilter()" large depressed color="secondary">
-                    Routines
+                    Rutinas
                   </v-btn>
                   <v-btn @click="selectExerciseFilter()" large depressed color="secondary">
-                    Exercises
+                    Ejercicios
                   </v-btn>
                 </v-btn-toggle>
                 

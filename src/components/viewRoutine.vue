@@ -33,15 +33,15 @@
 
                   <v-list color="secondary" dark>
                     <v-list-group
-                        v-for="item in items"
-                        :key="item.title"
+                        v-for="item in routine.cycle"
+                        :key="item.id"
                         v-model="item.active"
                         :prepend-icon="item.action"
                         no-action
                     >
                       <template v-slot:activator>
-                        <v-list-item-content>
-                          <v-list-item-title v-text="item.title"></v-list-item-title>
+                        <v-list-item-content v-for="exer in item.exercises" :key="exer.id">
+                          <v-list-item-title v-text="exer.name"></v-list-item-title>
                         </v-list-item-content>
                       </template>
 

@@ -46,6 +46,7 @@
 
 <script>
 import router from "@/router";
+import {mapActions} from "vuex"
 
 export default {
   name: "Creaciones",
@@ -59,6 +60,9 @@ export default {
   components:{    
   },
   methods: {
+    ...mapActions('exercise', {
+      $modifyEdit: 'changeEditValue'
+    }),
     closeCardCreaciones() {
         this.$emit('closeCreaciones');
     },
@@ -77,6 +81,7 @@ export default {
       if(this.rutina == true)
         await this.$router.replace("/create-routine");
       if(this.ejercicio == true)
+        await this.$modifyEdit(false)
         await router.replace("/create-exercise");
     },
   },

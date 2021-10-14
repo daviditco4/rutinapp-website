@@ -25,6 +25,7 @@ class UserApi {
   }
 
   static async modify(userChanges, controller) {
+      console.log(userChanges)
     return await Api.put(UserApi.getUrl('current'), true, userChanges, controller)
   }
 

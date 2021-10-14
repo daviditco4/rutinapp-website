@@ -8,7 +8,7 @@
           </v-btn>
 
           <v-card-title primary-title class="d-flex justify-center" style="color:#333C8E; font-size:24px;">
-            RUTINA 1
+           {{extern_name}}
           </v-card-title>
         </v-row>
         
@@ -18,10 +18,10 @@
               <v-row >
                 <v-col>
                 <v-row>
-                    <h4>Creado por: </h4>
+                    <h4>Creado por:  </h4>
                 </v-row>
                 <v-row>
-                    <h4>Autor </h4>
+                    <h4> {{extern_creator}} </h4>
                 </v-row>
                 <v-row>
                 <div offset-sm="3">
@@ -30,10 +30,7 @@
                 </v-row>
 
                 <v-row>
-                    <h4> Categoria: </h4>
-                </v-row>
-                <v-row>
-                    <h4> Dificultad:  </h4>
+                    <h4> Categoria: {{extern_difficulty}}</h4>
                 </v-row>
 
                 </v-col>
@@ -80,6 +77,25 @@
 <script>
   export default {
   name: "ViewRoutine",
+  props: {
+    extern_name: {
+      type: String,
+      default: ''
+    },
+    extern_difficulty: {
+      type: String,
+    },
+    extern_routine_id: {
+      type: Number,
+    },
+    extern_cycle_id: {
+      type: Number,
+    },
+    extern_creator: {
+      type: String
+    },
+  },
+
     data: () => ({
       items: [
         {
@@ -109,6 +125,18 @@
       closeCardViewRoutine() {
         this.$emit('closeViewRoutine');
     },
+    getDifficulty() {
+      if (this.extern_difficulty === "rookie")
+        return "Novato";
+      if (this.extern_difficulty === "beginner")
+        return "Principiante";
+      if (this.extern_difficulty === "intermediate")
+        return "Intermedio";
+      if (this.extern_difficulty === "advanced")
+        return "Avanzado";
+      if (this.extern_difficulty === "expert")
+        return "Experto";
+    }
     },
   }
 </script>

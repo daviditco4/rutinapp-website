@@ -43,6 +43,12 @@
             
           </v-toolbar>
         </template>
+
+      <div v-if="isEmpty">
+        <h2 class="grey--text text-center">No hay rutinas disponibles.<br>Puedes hacerlo clickeando en
+          el botón:</h2>
+      </div>
+
         <template v-slot:default="props">
           <v-row>
             <v-col v-for="item in props.items" :key="item.name" cols="12" sm="3">
@@ -83,10 +89,11 @@
 
     <v-overlay :absolute="absolute" :value="overlay" >
            <v-btn   color="success" @click="overlay = false" >
-          <ViewRoutine  v-if="viewroutine" @closeViewRoutine="viewroutins=false">
-          
+          <ViewRoutine  v-if="viewroutine" @closeViewRoutine="viewroutins=false"
+            :extern_name="routine.name" :extern_difficulty="routine.difficulty" :extern_routine_id="routine.id"
+             :extern_creator="routine.creator.username" :extern_cycle_id="current_cycle" >
           </ViewRoutine>
-           </v-btn>
+    </v-btn>
 
     </v-overlay>
   </v-container>
@@ -113,6 +120,9 @@ export default {
     // filterBy: "routine",    
   }),
   computed: {
+//    isEmpty(){
+//      
+//    },
     ...mapState('routines', {
       $routinesPage: state => state.items.page + 1,
       $currentRoutines: state => state.items.content,

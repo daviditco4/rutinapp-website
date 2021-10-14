@@ -22,10 +22,14 @@
                 > </v-select>
               </v-col>
       </v-row>
-      <v-row><v-col md="12">
-
-          <v-btn color="secondary" dark @click="closeDialog">Salir</v-btn>
-      </v-col></v-row>
+      <v-row>
+        <v-col md="6">
+            <v-btn color="secondary" dark @click="addExercise()">Agregar</v-btn>       
+        </v-col>
+         <v-col md="6">
+          <v-btn  color="secondary" dark @click="closeDialog">Cancelar</v-btn>
+         </v-col>
+      </v-row>
 <!--
       <v-expansion-panels v-for="exercise in this.exercises" :key="exercise.id">
         <v-expansion-panel rounded color="primary" height="50px">

@@ -1,5 +1,5 @@
-import { RoutineApi } from "../../api/routine";
-import { UserApi } from "../../api/user";
+import {RoutineApi} from "../../../api/routine";
+import {UserApi} from "../../../api/user";
 
 export default {
     namespaced: true,

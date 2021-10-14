@@ -14,6 +14,7 @@
           :search="search"
           v-bind="$attrs"
           hide-default-footer
+          no-data-text="No hay rutinas disponibles. ¡Creá una rutina!"
       >
         <template v-slot:header>
           <v-toolbar
@@ -44,10 +45,10 @@
           </v-toolbar>
         </template>
 
-      <div v-if="isEmpty">
-        <h2 class="grey--text text-center">No hay rutinas disponibles.<br>Puedes hacerlo clickeando en
-          el botón:</h2>
-      </div>
+<!--      <div v-if="isEmpty">-->
+<!--        <h2 class="grey&#45;&#45;text text-center">No hay rutinas disponibles.<br>Puedes hacerlo clickeando en-->
+<!--          el botón:</h2>-->
+<!--      </div>-->
 
         <template v-slot:default="props">
           <v-row>
@@ -120,19 +121,20 @@ export default {
     // filterBy: "routine",    
   }),
   computed: {
-//    isEmpty(){
-//      
-//    },
     ...mapState('routine', {
       $routinesPage: state => state.items.page + 1,
       $currentRoutines: state => state.items.content,
       $isLastRoutinesPage: state => state.items.isLastPage,
+      $routinesCount: state => state.items.length,
     }),
     ...mapState('exercise', {
       $exercisesPage: state => state.items.page + 1,
       $currentExercises: state => state.items.content,
       $isLastExercisesPage: state => state.items.isLastPage,
     }),
+    isEmpty(){
+      return this.$routinesCount === 0;
+    },
     items() {
       
       if (this.showRoutines) {

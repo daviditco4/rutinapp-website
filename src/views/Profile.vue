@@ -6,29 +6,29 @@
             <h2 class="d-flex justify-center">Mi Perfil</h2>
         </v-col>
       </v-row>
-      <v-row no-gutters class="pa-3 mt-5">
-        <v-col align="center" justify="center" md="3">
-          <v-avatar color="red" size="150">
-            <span class="white--text text-h1">{{
-              username.charAt(0).toUpperCase()
-            }}</span>
-          </v-avatar>
-        </v-col>
-        <v-row no-gutters class="ml-6">
-          <v-col md="4" class="d-flex align-center">
-            <span>Usuario</span>
+
+    <v-row no-gutters class="pa-3 mt-5" align="center">
+          <v-col align="center" justify="center" md="3">
+            <v-avatar color="red" size="150">
+              <span class="white--text text-h1">{{
+                username.charAt(0).toUpperCase()
+              }}</span>
+            </v-avatar>
           </v-col>
-          <v-col md="7"
-            ><span>{{ username }}</span></v-col
-          >
-          <v-row no-gutters>
-            <v-col md="4" class="d-flex align-center" align="right">
-              <span>Email</span>
+        
+            <v-col md="4" >
+              <p>Usuario</p>
+              <p>Email</p>
             </v-col>
-            <v-col md="7"><span>{{ email }}</span></v-col>
-          </v-row>
-        </v-row>
-      </v-row>
+            
+
+                
+          <v-col md="5">
+              <p>{{ email }}</p>
+              <p>{{ username }}</p>
+          </v-col >
+      </v-row> 
+
 
           <template v-if="edit">
             <v-row>
@@ -57,6 +57,7 @@
                 <v-select
                   v-model="genderInputValue"
                   class="mx-2"
+                  solo
                   flat
                   hide-details
                   light
@@ -96,9 +97,10 @@
     <div class="text-right" v-if="!edit">
       <v-btn
         @click="edit = !edit"
-        elevation="1"
+        elevation="2"
         fab
-        style="z-index: 2; margin-right: 100px; margin-top: -30px"
+        style="margin-right: 160px; margin-top: -40px"
+        color= "secondary"
       >
         <v-icon>mdi-pencil</v-icon>
       </v-btn>

@@ -65,7 +65,7 @@ export default {
         {title: 'Mi Perfil', path: '/profile'},
         {title: 'Mi Biblioteca', path: '/library',},
       ],
-      result: null
+      result: null,
     }
   },
   computed: {
@@ -83,7 +83,7 @@ export default {
     async logout() {
       await this.$logout()
       this.clearResult()
-      if(!this.isLoggedIn){
+      if(!this.$isLoggedIn){
         await this.$router.push('/')
       }
     },

@@ -101,6 +101,7 @@ export default {
       emailCorrect: true,
       passwordCorrect: true,
       isAnyEmpty: false,
+      registerSuccess: true
     }
   },
   computed: {
@@ -127,7 +128,11 @@ export default {
         this.setResult(this.user)
       } catch (e) {
         this.setResult(e)
+        this.registerSuccess = false;
       }
+      // if(this.registerSuccess) {
+        await this.$router.push('/validateEmail')
+      // }
       // await this.$router.push('/home')
     },
     checkFields() {

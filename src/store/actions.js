@@ -1,5 +1,0 @@
-export const GET_USER = "getUser"
-export const UPDATE_USER = "updateUser"
-export const GET_ROUTINES = "getRoutines"
-export const GET_EXERCISES = "getExercises"
-export const DELETE_ROUTINE = "deleteRoutine"

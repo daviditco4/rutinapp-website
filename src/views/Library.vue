@@ -184,11 +184,11 @@ export default {
     console.log("hola")
   },
   methods: {
-    ...mapActions('routines', {
+    ...mapActions('routine', {
       $getAllRoutinesCreatedByCurrentUser: 'getAllCreatedByCurrentUser',
       $deleteRoutine: 'delete',
     }),
-    ...mapActions('exercises', {
+    ...mapActions('exercise', {
       $getAllExercisesCreatedByCurrentUser: 'getAllCreatedByCurrentUser',
       $deleteExercise: 'delete',
     }),

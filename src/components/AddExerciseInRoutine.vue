@@ -1,10 +1,32 @@
 <template>
 <!--  <v-dialog persistent max-width="600px" v-model="dialog">-->
-    <v-card flat style="padding-top:30px" width="500" class="pa-md-4 mx-lg-auto mt-16 rounded-xl">
+    <v-card flat width="500" class="pa-md-4 mx-lg-auto mt-16 rounded-xl" color="primary">
       <v-row>
-        <h3>Agregar ejercicio</h3>
-        <v-btn color="secondary" dark @click="dialog = false">Salir</v-btn>
+        <v-col md="12"><h3>Agregar Ejercicio</h3></v-col>
       </v-row>
+      <v-row>
+      <v-col md="12">
+                <v-select  v-model="exerciseValue"
+                  class="mx-2"
+                  solo
+                  flat
+                  hide-details
+                  light
+                  outlined
+                  background-color="white"
+                  :items="exercises"
+                  item-text="name"
+                  item-value="code"
+                  label="Seleccionar ejercicio"
+                  
+                > </v-select>
+              </v-col>
+      </v-row>
+      <v-row><v-col md="12">
+
+          <v-btn color="secondary" dark @click="dialog = false">Salir</v-btn>
+      </v-col></v-row>
+<!--
       <v-expansion-panels v-for="exercise in this.exercises" :key="exercise.id">
         <v-expansion-panel rounded color="primary" height="50px">
           <v-expansion-panel-header>
@@ -17,6 +39,7 @@
           </v-expansion-panel-header>
         </v-expansion-panel>
       </v-expansion-panels>
+-->
     </v-card>
 <!--  </v-dialog>-->
 </template>
@@ -32,7 +55,11 @@ export default {
   data: () =>({
     dialog: false,
 
-    exercises: [],
+    exercises: [
+      {name: 'ejercicio1', code: 'e1'},
+        {name: 'ejercicio2', code: 'e2'},
+        {name: 'ejercicio3', code: 'e3'}
+    ],
   }),
 
   methods: {

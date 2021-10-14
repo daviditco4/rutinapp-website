@@ -16,7 +16,7 @@
         </v-col>
         <v-row no-gutters class="ml-6">
           <v-col md="4" class="d-flex align-center">
-            <span>Username</span>
+            <span>Usuario</span>
           </v-col>
           <v-col md="7"
             ><span>{{ username }}</span></v-col
@@ -36,7 +36,8 @@
                 <span>Nombre</span>
               </v-col>
               <v-col md="7">
-                <v-text-field v-model="firstNameInputValue"></v-text-field>
+                <v-text-field flat outlined light hide-details background-color="white"
+                              v-model="firstNameInputValue"></v-text-field>
               </v-col>
             </v-row>
             <v-row>
@@ -44,12 +45,13 @@
                 <span>Apellido</span>
               </v-col>
               <v-col md="7">
-                <v-text-field v-model="lastNameInputValue"></v-text-field>
+                <v-text-field flat outlined light hide-details background-color="white"
+                              v-model="lastNameInputValue"></v-text-field>
               </v-col>
             </v-row>
             <v-row>
               <v-col md="4" class="d-flex align-center" align="right">
-                <span>Genero</span>
+                <span>Género</span>
               </v-col>
               <v-col md="7">
                 <v-select
@@ -57,6 +59,9 @@
                   class="mx-2"
                   flat
                   hide-details
+                  light
+                  outlined
+                  background-color="white"
                   :items="['male', 'female', 'other']"
                   label="Select"
                 ></v-select>
@@ -67,7 +72,8 @@
                 <span>Celular</span>
               </v-col>
               <v-col md="7">
-                <v-text-field v-model="phoneInputValue"></v-text-field>
+                <v-text-field flat outlined light hide-details background-color="white"
+                              v-model="phoneInputValue"></v-text-field>
               </v-col>
             </v-row>
           </template>

@@ -40,7 +40,7 @@ class UserApi {
     }
 
     static async resendEmail(email, controller) {
-        await Api.post(UserApi.getUrl('resend_verification'), false, email, controller)
+        await Api.post(UserApi.getUrl('resend_verification'), false, (JSON).parse(email), controller)
     }
 }
 

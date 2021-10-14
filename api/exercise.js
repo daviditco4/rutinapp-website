@@ -1,6 +1,6 @@
 import { Api } from "./api.js";
 
-export { ExerciseApi, Exercise }
+export { ExerciseApi, Exercise, Image }
 
 class ExerciseApi {
   static getUrl(slug) {
@@ -26,6 +26,18 @@ class ExerciseApi {
   static async getAll(page, size, controller) {
     return await Api.get(ExerciseApi.getUrl() + `?page=${page}&size=${size}`, true, controller)
   }
+
+  static async addExerciseImage(id, image, controller) {
+      return await Api.post(`${ExerciseApi.getUrl(id)}/images`, true, image, controller);
+  }
+
+  static async getExerciseImage(exerciseId, imageId, controller) {
+      return await Api.get(`${ExerciseApi.url}/${exerciseId}/images/${imageId}`, true, controller)
+  }
+
+  static async deleteExerciseImage(exerciseId, imageId, controller) {
+      return await Api.put(`${ExerciseApi.url}/${exerciseId}/images/${imageId}`,true, controller)
+  }
 }
 
 class Exercise {
@@ -38,4 +50,11 @@ class Exercise {
     this.type = type;
     this.metadata = metadata;
   }
+}
+
+class Image {
+    constructor(number, url) {
+        this.number = number;
+        this.url = url;
+    }
 }

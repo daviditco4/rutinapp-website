@@ -1,43 +1,45 @@
 <template>
-  <v-container fluid>
-    <v-card style="width: 600px" align="center">
-      <h2>Por favor confirme su cuenta</h2>
-      <form align = "center">
-        <v-row wrap>
-          <v-text-field
-              class="field-style"
-              v-model="email"
-              outlined
-              background-color="white"
-              label ="Email"
-              placeholder="usuario@ejemplo.com"
-          ></v-text-field>
-        </v-row>
-        <v-row>
-          <v-text-field
-              class="field-style"
-              v-model="code"
-              outlined
-              background-color="white"
-              label ="Código"
-          ></v-text-field>
-        </v-row>
-        <h4 class="error-warning" style=" align-self: center" v-if="codeIncorrect">Permiso denegado</h4>
-        <v-row >
-          <v-flex xs12 sm6 class="pa-1">
-            <v-btn
-                @click="this.submit"
-                rounded large>Confirmar
-            </v-btn>
-          </v-flex>
-          <v-flex xs12 sm6 class="pa-1">
-            <v-btn
-                rounded large
-                @click="this.resend">Reenviar código</v-btn>
-          </v-flex>
-        </v-row>
-      </form>
-    </v-card>
+  <v-container fluid fill-height>
+    <v-row class="fill-height" justify="center" align="center">
+      <v-card style="width: 600px" align="center" color="primary">
+        <h2>Por favor confirme su cuenta</h2>
+        <form align = "center">
+          <v-row wrap>
+            <v-text-field
+                class="field-style"
+                v-model="email"
+                outlined
+                background-color="white"
+                label ="Email"
+                placeholder="usuario@ejemplo.com"
+            ></v-text-field>
+          </v-row>
+          <v-row>
+            <v-text-field
+                class="field-style"
+                v-model="code"
+                outlined
+                background-color="white"
+                label ="Código"
+            ></v-text-field>
+          </v-row>
+          <h4 class="error-warning" style=" align-self: center" v-if="codeIncorrect">Permiso denegado</h4>
+          <v-row >
+            <v-flex xs12 sm6 class="pa-1">
+              <v-btn
+                  @click="this.submit"
+                  rounded large color="secondary">Confirmar
+              </v-btn>
+            </v-flex>
+            <v-flex xs12 sm6 class="pa-1">
+              <v-btn
+                  rounded large color="secondary"
+                  @click="this.resend">Reenviar código</v-btn>
+            </v-flex>
+          </v-row>
+        </form>
+      </v-card>
+    </v-row>
   </v-container>
 </template>
 

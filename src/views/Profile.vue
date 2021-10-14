@@ -9,7 +9,7 @@
 
     <v-row no-gutters class="pa-3 mt-5" align="center">
           <v-col align="center" justify="center" md="3">
-            <v-avatar color="red" size="150">
+            <v-avatar color="blue" size="150">
               <span class="white--text text-h1">{{
                 username.charAt(0).toUpperCase()
               }}</span>

@@ -3,7 +3,7 @@
     <v-card class="pa-6 mx-lg-auto mt-16 rounded-xl" width="800px" color="primary">
       <v-row>
         <v-col>
-          <span class="d-flex justify-center">Mi Perfil</span>
+            <h2 class="d-flex justify-center">Mi Perfil</h2>
         </v-col>
       </v-row>
       <v-row no-gutters class="pa-3 mt-5">

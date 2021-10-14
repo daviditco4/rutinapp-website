@@ -2,7 +2,7 @@
   <v-container>
     <v-card class="mt-5 mb-5 mr-15 ml-15 pa-2" color="#76eaab" elevation="8">
       <v-row>
-          <v-col md="12"><h1><b>Buscar Rutinas</b></h1></v-col>
+          <v-col md="12"><h2><b>Buscar Rutinas</b></h2></v-col>
           
         </v-row>
 

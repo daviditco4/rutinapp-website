@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import {mapGetters, mapActions} from 'vuex'
+import { mapState, mapGetters, mapActions} from 'vuex'
 
 export default {
   name: "AppBar",
@@ -72,6 +72,9 @@ export default {
     }
   },
   computed: {
+    ...mapState("security", {
+      $user: (state) => state.user,
+    }),
     ...mapGetters('security', {
       $isLoggedIn: 'isLoggedIn'
     }),

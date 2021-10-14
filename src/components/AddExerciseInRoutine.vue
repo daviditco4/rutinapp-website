@@ -1,6 +1,6 @@
 <template>
 <!--  <v-dialog persistent max-width="600px" v-model="dialog">-->
-    <v-card>
+    <v-card flat style="padding-top:30px" width="500" class="pa-md-4 mx-lg-auto mt-16 rounded-xl">
       <v-row>
         <h3>Agregar ejercicio</h3>
         <v-btn color="secondary" dark @click="dialog = false">Salir</v-btn>

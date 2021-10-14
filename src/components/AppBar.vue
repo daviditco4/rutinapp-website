@@ -35,10 +35,8 @@
       <v-menu offset-y tile open-on-hover close-delay="3" >
         <template v-slot:activator="{ on, attrs }">
           <v-tab v-bind="attrs" v-on="on" class="white--text text-center"> 
-            <v-avatar color="blue" max-width="50" max-height="50" class="justify-center my-2">
-              <span class="white--text text-h1">{{
-                username.charAt(0).toUpperCase()
-              }}</span>
+            <v-avatar color="blue" max-width="100" max-height="100" class=" align-center my-4">
+                {{username.charAt(0).toUpperCase()}}
             </v-avatar>
             <!--<v-img src="@/assets/logo.png" max-width="50" max-height="50" class="justify-center my-3"></v-img>-->
             <v-icon color="white">mdi-chevron-down</v-icon>

@@ -1,5 +1,5 @@
 <template >
-    <v-card flat style="padding-top:30px" width="500" class="pa-md-4 mx-lg-auto mt-16 rounded-xl" color="primary">  
+    <v-dialog flat style="padding-top:30px" width="500" class="pa-md-4 mx-lg-auto mt-16 rounded-xl" color="primary">  
         <v-row>
           <v-btn rounded @click="closeCardViewRoutine" color="#333C8E" dark >
                     <v-icon left>
@@ -69,7 +69,7 @@
         </v-card-actions>
         
                     
-    </v-card>
+    </v-dialog>
 
 </template>
 

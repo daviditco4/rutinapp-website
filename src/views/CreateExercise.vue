@@ -107,7 +107,7 @@
 <script>
 import ModifyCounter from '@/components/modifyCounter.vue'
 import {Exercise} from '../../api/exercise'
-import {mapActions} from "vuex";
+import {mapActions, mapState} from "vuex";
 
 export default {
   name: "CreateExercise",
@@ -145,14 +145,12 @@ export default {
       $createExercise: 'create',
     }),
     async createExercise() {
-
       this.nameRepeated = false;
       this.emptyFields = false;
       if(this.checkIfEmpty()){
         this.emptyFields = true;
         return;
       }
-
       const exerciseMetadata = {
         series: this.series,
         duration: this.duration,

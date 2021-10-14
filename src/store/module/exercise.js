@@ -1,4 +1,5 @@
 import {ExerciseApi} from "../../../api/exercise";
+import {User, UserApi} from "../../../api/user";
 
 export default {
     namespaced: true,
@@ -37,6 +38,14 @@ export default {
                     this.repeatedName = true;
                 }
             }
+            //get current user
+            response = await UserApi.get();
+            // save exercise id in creator's user metadata
+            if(response.metadata['exercises'] == undefined){
+                response.metadata['exercises'] = []
+            }
+            response.metadata['exercises'].push(exercise.id)
+            await UserApi.modify(response)
         },
 
         async edit({getters, commit}, id) {

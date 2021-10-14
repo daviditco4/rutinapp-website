@@ -12,6 +12,7 @@ class ExerciseApi {
   }
 
   static async add(exercise, controller) {
+
     return await Api.post(ExerciseApi.getUrl(), true, exercise, controller);
   }
 

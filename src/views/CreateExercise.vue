@@ -145,14 +145,12 @@ export default {
       $createExercise: 'create',
     }),
     async createExercise() {
-
       this.nameRepeated = false;
       this.emptyFields = false;
       if(this.checkIfEmpty()){
         this.emptyFields = true;
         return;
       }
-
       const exerciseMetadata = {
         series: this.series,
         duration: this.duration,

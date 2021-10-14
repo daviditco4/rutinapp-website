@@ -63,7 +63,7 @@
 <script>
 
 import NewCycle from '@/components/NewCycle.vue'
-import {mapActions} from "vuex";
+import {mapActions} from 'vuex'
 import {Routine} from '../../api/routine'
 
 export default {

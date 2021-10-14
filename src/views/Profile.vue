@@ -74,7 +74,8 @@
               </v-col>
               <v-col md="7">
                 <v-text-field flat outlined light hide-details background-color="white"
-                              v-model="phoneInputValue"></v-text-field>
+                              v-model="phoneInputValue" :rules="validations.phoneRules">
+                </v-text-field>
               </v-col>
             </v-row>
           </template>
@@ -138,7 +139,12 @@ export default {
       lastNameInputValue: "",
       genderInputValue: "",
       phoneInputValue: "",
-    };
+      validations:{
+          phoneRules: [
+              v => v.length != 10 || "El télefono debe debe contener 10 numeros"
+          ],
+      },
+    }
   },
   computed: {
     ...mapState("security", {

@@ -54,7 +54,12 @@
     </v-container>
 
     <v-row class="justify-center">
-      <v-btn color="secondary" elevation="2" rounded @click="createRoutine()">Crear Rutina</v-btn>
+        <v-col md="6">
+            <v-btn  color="secondary" elevation="2" rounded @click="createRoutine()">Crear Rutina</v-btn>         
+        </v-col>
+        <v-col md="6">
+          <v-btn  color="secondary" elevation="2" rounded @click="cancelRoutine()">Cancelar</v-btn>
+        </v-col>
     </v-row>
 
   </div>

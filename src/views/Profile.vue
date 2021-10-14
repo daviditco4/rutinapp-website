@@ -64,7 +64,7 @@
                   outlined
                   background-color="white"
                   :items="['male', 'female', 'other']"
-                  label="Select"
+                  label="Seleccionar"
                 ></v-select>
               </v-col>
             </v-row>

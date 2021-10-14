@@ -24,8 +24,8 @@
           </v-tab>
         </template>
         <v-tabs vertical>
-          <v-tab to="/create-routine" style="background-color:#76EAAB">Rutina</v-tab>
-          <v-tab to="/create-exercise" style="background-color:#76EAAB">Ejercicio</v-tab>
+          <v-tab to="/create-routine" style="background-color:#76EAAB" class="white--text">Rutina</v-tab>
+          <v-tab to="/create-exercise" style="background-color:#76EAAB" class="white--text">Ejercicio</v-tab>
 
         </v-tabs>
       </v-menu>
@@ -40,9 +40,9 @@
           </v-tab>
         </template>
         <v-tabs vertical style="background-color:#76EAAB">
-          <v-tab to="/profile" style="background-color:#76EAAB">Mi Perfil</v-tab>
-          <v-tab to="/library" style="background-color:#76EAAB">Mi biblioteca</v-tab>
-          <v-tab @click="logout()" style="background-color:#76EAAB">Cerrar Sesion</v-tab>
+          <v-tab to="/profile" style="background-color:#76EAAB" class="white--text">Mi Perfil</v-tab>
+          <v-tab to="/library" style="background-color:#76EAAB" class="white--text">Mi biblioteca</v-tab>
+          <v-tab @click="logout()" style="background-color:#76EAAB" class="white--text">Cerrar Sesion</v-tab>
         </v-tabs>
       </v-menu>
 

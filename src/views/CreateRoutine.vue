@@ -126,8 +126,7 @@ export default {
       const routineMetadata = {
         cycles: this.cycles
       }
-      const index = Math.floor(Math.random() * (999 - 1) + 1)
-      const routine = new Routine(index, this.name, this.detail, 'exercise', routineMetadata)
+      const routine = new Routine(this.name, this.detail, 'exercise', routineMetadata)
       try {
         this.routine = await this.$createRoutine(routine);
         this.setResult(this.routine)

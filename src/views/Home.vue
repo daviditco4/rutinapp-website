@@ -4,7 +4,7 @@
     <!-- <v-img src="@/assets/fondo1.jpeg" > -->
       <v-row>
         <v-col offset-sm="1" cols="10" justify-self="center" class="text-center">
-          <h1 style="color: white; font-weight:900;">Hola otra vez, Marcela!</h1>
+          <h1 style="color: white; font-weight:900;">Hola otra vez, {{ username }}!</h1>
         </v-col>
         <!-- <v-col cols="1">
           <v-tab to="/miPerfil" >
@@ -55,6 +55,7 @@
 // @ is an alias to /src
 
 import Creaciones from '@/components/Creaciones.vue'
+import { mapState, mapActions } from "vuex";
 
 export default {
     name: 'Home',
@@ -64,12 +65,18 @@ export default {
     data: () => ({
       mostrarCreaciones: false,
     }),
-
+    computed: {
+    ...mapState("security", {
+      $user: (state) => state.user,
+      }),
+    },
     methods: {
       elegir(){
         this.mostrarCreaciones = true
       },
-      
+      username() {
+      return this.$user ? this.$user.username : "loading...";
+    },
     },
     
 }

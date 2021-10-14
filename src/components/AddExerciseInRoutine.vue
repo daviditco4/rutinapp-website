@@ -24,7 +24,7 @@
       </v-row>
       <v-row><v-col md="12">
 
-          <v-btn color="secondary" dark @click="dialog = false">Salir</v-btn>
+          <v-btn color="secondary" dark @click="closeDialog">Salir</v-btn>
       </v-col></v-row>
 <!--
       <v-expansion-panels v-for="exercise in this.exercises" :key="exercise.id">
@@ -56,9 +56,9 @@ export default {
     dialog: false,
 
     exercises: [
-      {name: 'ejercicio1', code: 'e1'},
-        {name: 'ejercicio2', code: 'e2'},
-        {name: 'ejercicio3', code: 'e3'}
+//      {name: 'ejercicio1', code: 'e1'},
+//        {name: 'ejercicio2', code: 'e2'},
+//        {name: 'ejercicio3', code: 'e3'}
     ],
   }),
 
@@ -73,7 +73,10 @@ export default {
 
     addExercise() {
 
-    }
+    },
+    closeDialog() {
+        this.$emit('closeAddExercise');
+    },
   }
 }
 </script>

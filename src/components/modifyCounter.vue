@@ -7,7 +7,7 @@
          {{ counter }}
         </v-card-text> -->
         <v-text-field style="max-width: 100px;font-size: 20px" dense rounded background-color="white" :value="counter"
-                      @input="$emit('input', $event.target.value)"> {{ counter }} </v-text-field>
+                      @input="$emit('input', $event.target.value)" > {{ counter }} </v-text-field>
       <v-btn class="black--text" style="font-size:25px" icon @click="addTimes()">+</v-btn>
     </v-row>
 
@@ -27,6 +27,7 @@ export default {
   data() {
     return {
       counter: this.startTime,
+
     }
   },
   computed:{

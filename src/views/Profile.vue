@@ -88,7 +88,7 @@
               elevation="2"
               rounded
               @click="saveProfile()"
-              >Save</v-btn
+              >Guardar cambios </v-btn
             >
           </v-col>
         </v-row>

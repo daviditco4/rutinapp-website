@@ -70,7 +70,7 @@ export default {
       $user: (state) => state.user,
       }),
       username() {
-      return this.$user ? this.$user.username : "loading...";
+      return this.$user.username
       },
     },
     methods: {

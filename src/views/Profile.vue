@@ -158,10 +158,10 @@ export default {
       $user: (state) => state.user,
     }),
     username() {
-      return this.$user ? this.$user.username : "loading...";
+      return this.$user.username
     },
     email() {
-      return this.$user ? this.$user.email : "loading...";
+      return this.$user.email
     },
   },
   async created() {

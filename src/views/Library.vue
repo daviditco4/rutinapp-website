@@ -6,7 +6,7 @@
       <v-col cols="12">
         <v-row>
           <!-- <v-col md="1">Aca va el boton para volver hacia atras</v-col> -->
-          <v-col md="12"><h1><b>Mi Biblioteca</b></h1></v-col>
+          <v-col md="12"><h1>Mi Biblioteca</h1></v-col>
           <!-- <v-col md="1">
             <v-btn
               v-if="!edit"

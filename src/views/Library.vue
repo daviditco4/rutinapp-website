@@ -90,9 +90,10 @@
                                 <v-icon>mdi-pencil</v-icon>
                               </v-btn>
                               <v-btn
-                                @click="deleteItem(item.id)"
+                                @click="deleteConfirm()"
                                 style="margin: 0 0 0 10px"
                               >
+                              <!--@click="deleteItem(item.id)"-->
                                 <v-icon>mdi-delete</v-icon>
                               </v-btn>
                             </span>
@@ -132,17 +133,22 @@
               </v-btn>
             </v-col>
           </v-row>
+    
+    <DeleteConfirmation v-if="deleteconfirm"/>
 
     </v-container>
 </template>
 
 <script>
 import { mapState, mapActions } from "vuex";
-
+import DeleteConfirmation from '@/components/deleteConfirmation.vue'
 // import { GET_EXERCISES, GET_ROUTINES } from '../store/actions'
 
 export default {
   inheritAttrs: false,
+  components:{
+    DeleteConfirmation,
+  },
   data: () => ({
     search: "",
     showRoutines: true,
@@ -150,6 +156,7 @@ export default {
     itemsPerPage: 8,
     // filterBy: "routine",
     // edit: false
+    deleteconfirm: false,
   }),
   computed: {
     ...mapState('routine', {
@@ -237,6 +244,9 @@ export default {
       else
         await this.$router.replace("/create-exercise");
     },
+    deleteConfirm(){
+      this.deleteconfirm = true;
+    }
   },
 };
 </script>

@@ -123,12 +123,12 @@ export default {
 //    isEmpty(){
 //      
 //    },
-    ...mapState('routines', {
+    ...mapState('routine', {
       $routinesPage: state => state.items.page + 1,
       $currentRoutines: state => state.items.content,
       $isLastRoutinesPage: state => state.items.isLastPage,
     }),
-    ...mapState('exercises', {
+    ...mapState('exercise', {
       $exercisesPage: state => state.items.page + 1,
       $currentExercises: state => state.items.content,
       $isLastExercisesPage: state => state.items.isLastPage,
@@ -156,10 +156,10 @@ export default {
       openViewRoutine(){
         this.viewroutine = true;
       },
-    ...mapActions('routines', {
+    ...mapActions('routine', {
       $getAllRoutines: 'getAll',
     }),
-    ...mapActions('exercises', {
+    ...mapActions('exercise', {
       $getAllExercises: 'getAll',
     }),
 

@@ -24,8 +24,8 @@
 
                 
           <v-col md="5">
-              <p>{{ email }}</p>
               <p>{{ username }}</p>
+              <p>{{ email }}</p>
           </v-col >
       </v-row> 
 
@@ -37,7 +37,7 @@
               </v-col>
               <v-col md="7">
                 <v-text-field flat outlined light hide-details background-color="white"
-                              v-model="firstNameInputValue"></v-text-field>
+                              v-model="firstNameInputValue" label="Nombre" solo></v-text-field>
               </v-col>
             </v-row>
             <v-row>
@@ -46,7 +46,7 @@
               </v-col>
               <v-col md="7">
                 <v-text-field flat outlined light hide-details background-color="white"
-                              v-model="lastNameInputValue"></v-text-field>
+                              v-model="lastNameInputValue"  label="Apellido" solo></v-text-field>
               </v-col>
             </v-row>
             <v-row>
@@ -66,7 +66,7 @@
                   :items="genders"
                   item-text="name"
                   item-value="code"
-                  label="Select"
+                  label="Seleccionar"
                 ></v-select>
               </v-col>
             </v-row>
@@ -75,7 +75,7 @@
                 <span>Celular</span>
               </v-col>
               <v-col md="7">
-                <v-text-field flat outlined light hide-details background-color="white"
+                <v-text-field flat outlined light hide-details background-color="white"  label="Celular" solo
                               v-model="phoneInputValue" :rules="validations.phoneRules">
                 </v-text-field>
               </v-col>
@@ -139,7 +139,7 @@ export default {
       changePassword: false,
       firstNameInputValue: "",
       lastNameInputValue: "",
-      genderInputValue: "",
+      genderInputValue: null,
       phoneInputValue: "",
       validations:{
           phoneRules: [

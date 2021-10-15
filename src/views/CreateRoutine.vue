@@ -155,7 +155,7 @@ export default {
       this.cycles = this.$oldRoutine.metadata.cycles;
       this.difficulty = this.$oldRoutine.difficulty;
     }
-    await router.replace("/library");
+    
   },
   methods: {
     ...mapActions('routine', {
@@ -180,6 +180,7 @@ export default {
       } catch (e) {
         this.setResult(e)
       }
+      await router.replace("/library");
     },
     async modifyRoutine(){
       this.emptyFields = false;

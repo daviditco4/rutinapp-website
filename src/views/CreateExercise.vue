@@ -180,7 +180,7 @@ export default {
         this.duration = this.$oldExercise.metadata.duration;
         this.image = this.$oldExercise.metadata.image;
       }
-      await router.replace("/library");
+      
   },
   methods: {
     ...mapActions('exercise', {
@@ -213,6 +213,7 @@ export default {
           this.nameRepeated = true;
         }
       }
+      await router.replace("/library");
     },
     async modifyExercise() {
       this.nameRepeated = false;

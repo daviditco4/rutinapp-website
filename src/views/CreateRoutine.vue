@@ -46,26 +46,27 @@
         <v-select v-model="difficulty" :items="levels" item-text="name" item-value="code" label="Seleccione..." solo
                   rounded flat outlined light hide-details background-color="white"
         ></v-select>
-      </v-card>
+
+         </v-card>
+
+    </v-container>
+      
       <li v-for="cycle in cycles" :key="cycle.id">
         <NewCycle v-bind:cycle="cycle" :cycles="cycles" v-bind:exercises="cycle.exercises" @addCycle="addCycle($event)" v-on:addExercise="addExercise" v-on:addRest="addExercise"></NewCycle>
       </li>
 
-    </v-container>
 
     <v-row class="justify-center">
         <v-col md="6">
             <v-btn v-if="!$editValue" color="secondary" elevation="2" rounded @click="createRoutine()">Crear Rutina</v-btn>         
-        </v-col>
-      <v-col md="6">
-        <v-btn v-if="$editValue" color="secondary" elevation="2" rounded @click="modifyRoutine()">Modificar Rutina</v-btn>
+            <v-btn v-if="$editValue" color="secondary" elevation="2" rounded @click="modifyRoutine()">Modificar Rutina</v-btn>
       </v-col>
         <v-col md="6">
           <v-btn  color="secondary" elevation="2" rounded @click="cancelRoutine()">Cancelar</v-btn>
         </v-col>
     </v-row>
 
-
+ 
   </div>
 </template>
 

@@ -48,9 +48,9 @@
         ></v-select>
       </v-card>
 
-      <li v-for="cycle in cycles" :key="cycle.id">
+      <div v-for="cycle in cycles" :key="cycle.id">
         <NewCycle v-bind:cycle="cycle" :cycles="cycles" v-bind:exercises="cycle.exercises" @addCycle="addCycle($event)" v-on:addExercise="addExercise" v-on:addRest="addExercise"></NewCycle>
-      </li>
+      </div>
 
 
     <v-row class="justify-center">

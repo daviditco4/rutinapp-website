@@ -215,7 +215,7 @@ export default {
         series: this.series,
         duration: this.duration,
         difficulty: this.difficulty,
-        image: this.image,
+        image: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
         category: this.category
       }
       // await this.$findId(this.name);

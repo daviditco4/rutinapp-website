@@ -61,12 +61,7 @@
               <v-list-item-content style="justify-content: center">{{
                   item.name
                 }}</v-list-item-content>
-              <v-overlay :absolute="absolute" :value="overlay">
-
-                <ViewRoutine v-if="viewroutine" v-bind:routine="item"  @closeViewRoutine="viewroutine=false">
-<!--                  <v-btn   color="success" @click="overlay = false" ></v-btn>-->
-                </ViewRoutine>
-              </v-overlay>
+              
             </v-col>
           </v-row>
         </template>
@@ -91,6 +86,13 @@
             </v-btn>
           </v-col>
         </v-row>
+
+        <v-overlay :absolute="absolute" :value="overlay">
+
+                <ViewRoutine v-if="viewroutine" v-bind:routine="item"  @closeViewRoutine="viewroutine=false">
+<!--                  <v-btn   color="success" @click="overlay = false" ></v-btn>-->
+                </ViewRoutine>
+        </v-overlay>
 
 
   </v-container>

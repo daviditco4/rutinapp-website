@@ -4,7 +4,8 @@
       <v-card class="pa-md-4 mx-lg-auto mt-16 rounded-xl" width="800px" color="primary">
         <v-row no-gutters>
           <v-col>
-            <h2 class="d-flex justify-center">Nueva Rutina</h2>
+            <h2 v-if="!$editValue" class="d-flex justify-center">Nueva Rutina</h2>
+            <h2 v-if="$editValue" class="d-flex justify-center">Editar Rutina</h2>
           </v-col>
         </v-row>
 
@@ -54,8 +55,11 @@
 
     <v-row class="justify-center">
         <v-col md="6">
-            <v-btn  color="secondary" elevation="2" rounded @click="createRoutine()">Crear Rutina</v-btn>         
+            <v-btn v-if="!$editValue" color="secondary" elevation="2" rounded @click="createRoutine()">Crear Rutina</v-btn>         
         </v-col>
+      <v-col md="6">
+        <v-btn v-if="$editValue" color="secondary" elevation="2" rounded @click="modifyRoutine()">Modificar Rutina</v-btn>
+      </v-col>
         <v-col md="6">
           <v-btn  color="secondary" elevation="2" rounded @click="cancelRoutine()">Cancelar</v-btn>
         </v-col>
@@ -65,8 +69,8 @@
 </template>
 
 <script>
-import NewCycle from '@/components/NewCycle'
-import {mapActions} from 'vuex'
+import NewCycle from '@/components/NewCycle.vue'
+import {mapActions, mapState} from 'vuex'
 import {Routine} from '../../api/routine'
 export default {
   name: "CreateRoutine",
@@ -116,9 +120,15 @@ export default {
       ],
     }
   },
+  computed: {
+    ...mapState('routine', {
+      $editValue: state => state.edit,
+    })
+  },
   methods: {
     ...mapActions('routine', {
       $createRoutine: 'create',
+      $modifyRoutine: 'edit'
     }),
     async createRoutine() {
       this.cycles.exercises = this.exercises
@@ -128,6 +138,18 @@ export default {
       const routine = new Routine(this.name, this.detail, this.isPublic, this.difficulty, routineMetadata)
       try {
         this.routine = await this.$createRoutine(routine);
+        this.setResult(this.routine)
+      } catch (e) {
+        this.setResult(e)
+      }
+    },
+    async modifyRoutine(){
+      const routineMetadata = {
+        cycles: this.cycles
+      }
+      const routine = new Routine(this.name, this.detail, 'exercise', routineMetadata)
+      try {
+        this.routine = await this.$modifyRoutine(routine);
         this.setResult(this.routine)
       } catch (e) {
         this.setResult(e)

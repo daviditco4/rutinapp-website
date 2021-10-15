@@ -5,7 +5,8 @@ export default {
     namespaced: true,
     state: {
         items: [],
-        cycles: []
+        cycles: [],
+        edit: false
     },
     getters: {
         findIndex(id) {
@@ -24,7 +25,10 @@ export default {
         },
         replaceAll(state, exercises) {
             state.items = exercises
-        }
+        },
+        changeEdit(state, value) {
+            state.edit = value
+        },
     },
     actions: {
         async create({ commit }, routine) {
@@ -85,6 +89,9 @@ export default {
             const response = await UserApi.getAllRoutinesCreatedByCurrentUser(page, size)
             commit('replaceAll', response)
             return response
+        },
+        changeEditValue( {commit}, value) {
+            commit('changeEdit', value)
         },
     },
 }

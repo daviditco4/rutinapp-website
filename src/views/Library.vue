@@ -191,6 +191,7 @@ export default {
     ...mapActions('routine', {
       $getAllRoutinesCreatedByCurrentUser: 'getAllCreatedByCurrentUser',
       $deleteRoutine: 'delete',
+      $modifyEditValue: 'changeEditValue',
     }),
     ...mapActions('exercise', {
       $getAllExercisesCreatedByCurrentUser: 'getAllCreatedByCurrentUser',
@@ -234,7 +235,8 @@ export default {
     },
     editItem(toEdit) {
       if(this.showRoutines) {
-        return;
+        this.$modifyEditValue(true)
+        this.$router.push('/create-routine')
       } else {
         this.$addExerciseToEdit(toEdit)
         this.$modifyEditValue(true)

@@ -63,6 +63,9 @@ export default {
     ...mapActions('exercise', {
       $modifyEdit: 'changeEditValue'
     }),
+    ...mapActions('routine', {
+      $modifyEditRoutine: 'changeEditValue'
+    }),
     closeCardCreaciones() {
         this.$emit('closeCreaciones');
     },
@@ -78,11 +81,14 @@ export default {
         this.overlay = false;
     },
     async crear(){
-      if(this.rutina == true)
-        await this.$router.replace("/create-routine");
-      if(this.ejercicio == true)
+      if(this.rutina == true) {
+        await this.$modifyEditRoutine(false)
+        await router.replace("/create-routine");
+      }
+      if(this.ejercicio == true) {
         await this.$modifyEdit(false)
         await router.replace("/create-exercise");
+      }
     },
   },
   

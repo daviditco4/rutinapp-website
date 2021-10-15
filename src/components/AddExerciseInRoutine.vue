@@ -6,7 +6,7 @@
       </v-row>
       <v-row>
       <v-col md="12">
-                <v-select  v-model="exerciseValue"
+                <v-select  v-model="selectedExercise"
                   class="mx-2"
                   solo
                   flat
@@ -16,7 +16,7 @@
                   background-color="white"
                   :items="exercises"
                   item-text="name"
-                  item-value="code"
+                  item-value="id"
                   label="Seleccionar ejercicio"
                   
                 > </v-select>
@@ -51,19 +51,13 @@
 <script>
 
 import {mapActions} from "vuex";
-// import {Exercise} from "../../api/exercise";
 
 export default {
   name: "AddExerciseInRoutine",
 
   data: () =>({
     dialog: false,
-
-    exercises: [
-//      {name: 'ejercicio1', code: 'e1'},
-//        {name: 'ejercicio2', code: 'e2'},
-//        {name: 'ejercicio3', code: 'e3'}
-    ],
+    selectedExercise: {}
   }),
 
   methods: {
@@ -72,11 +66,10 @@ export default {
     }),
 
     async created() {
-      this.exercises = (await this.$getAllExercises());
+      this.exercises = await this.$getAllExercises();
     },
-
     addExercise() {
-
+      this.$emit('addExercise', this.selectedExercise)
     },
     closeDialog() {
         this.$emit('closeAddExercise');

@@ -61,8 +61,7 @@
         </div>
       </v-col>
     </v-row>
-
-<!--    <AddExerciseInRoutine v-if="newExercise"></AddExerciseInRoutine>-->
+    <AddExerciseInRoutine v-if="newExercise" @addExercise="addExercise($event)"></AddExerciseInRoutine>
 
   </v-container>
 </template>
@@ -71,11 +70,11 @@
 import ModifyCounter from '@/components/modifyCounter'
 import Exercise from "@/components/Exercise";
 import {Cycle} from "../../api/routine";
-//import AddExerciseInRoutine from "@/components/AddExerciseInRoutine";
+import AddExerciseInRoutine from "@/components/AddExerciseInRoutine";
 export default {
   name: "NewCycle",
   components: {
-    //AddExerciseInRoutine,
+    AddExerciseInRoutine,
     Exercise,
     ModifyCounter,
   },
@@ -104,11 +103,12 @@ export default {
         return "Estiramiento";
     },
     addExercise(exercise){
-      this.exercises.push(exercise)
-      this.$emit('addExcercise', exercise)
+      this.cycle.exercises.push(exercise)
+      this.$emit('addExercise', this.cycle.id, exercise)
     },
     addRest(){
       this.exercises.push(this.restExercise)
+      this.$emit('addExercise', this.cycle.id, this.restExercise)
     },
     setRepetitions(newValue){
       this.cycle.repetitions = newValue;

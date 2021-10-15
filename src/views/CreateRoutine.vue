@@ -47,7 +47,7 @@
         ></v-select>
       </v-card>
       <li v-for="cycle in cycles" :key="cycle.id">
-        <NewCycle v-bind:cycle="cycle" :cycles="cycles" v-bind:exercises="cycle.metadata.exercises" @addCycle="addCycle($event)" @addExercise="addExcercise($event)"></NewCycle>
+        <NewCycle v-bind:cycle="cycle" :cycles="cycles" v-bind:exercises="cycle.exercises" @addCycle="addCycle($event)" @addExercise="addExercise($event)"></NewCycle>
       </li>
 
     </v-container>
@@ -61,6 +61,7 @@
         </v-col>
     </v-row>
 
+
   </div>
 </template>
 
@@ -68,6 +69,7 @@
 import NewCycle from '@/components/NewCycle'
 import {mapActions} from 'vuex'
 import {Routine} from '../../api/routine'
+
 export default {
   name: "CreateRoutine",
   components: {
@@ -87,19 +89,19 @@ export default {
         "id": 1,
         "type": "warmup",
         "repetitions": 1,
-        "metadata": {exercises: []}
+        "exercises": []
         },
         {
           "id": 2,
           "type": "exercise",
           "repetitions": 1,
-          "metadata": {exercises: []}
+          "exercises": []
         },
         {
           "id": 3,
           "type": "cooldown",
           "repetitions": 1,
-          "metadata": {exercises: []}
+          "exercises": []
         }
       ],
       repetitions: null,
@@ -121,6 +123,7 @@ export default {
       $createRoutine: 'create',
     }),
     async createRoutine() {
+      console.log(this.cycles)
       this.cycles.exercises = this.exercises
       const routineMetadata = {
         cycles: this.cycles
@@ -145,9 +148,12 @@ export default {
     setCounter(newValue, field){
       this.exercise[field] = newValue;
     },
-    addExcercise(exercise) {
-      this.exercises.push(exercise);
-    }
+    cancelRoutine(){
+      this.$router.go(-1)
+    },
+    addExercise(cycleId, exercise) {
+      this.cycles[cycleId-1].exercises.push(exercise);
+    },
   }
 };
 </script>

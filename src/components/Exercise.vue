@@ -12,6 +12,7 @@
       <p justify="center">segundos</p>
     </v-col>
   </v-row>
+
 </template>
 
 <script scoped>
@@ -27,7 +28,7 @@ export default {
     },
     setSeries(newValue){
       this.exercise.series = newValue;
-    }
+    },
   }
 }
 </script>

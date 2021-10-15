@@ -105,7 +105,7 @@
         </v-row>
         <v-row justify="center">
           <v-alert v-model="alert" close-text="Close Alert" color="secondary" dark dismissible v-if="emptyFields">
-          <p class="error-message">Llenar todos los campos</p>
+          <p >Llenar todos los campos</p>
         </v-alert>
         </v-row>
 
@@ -122,6 +122,7 @@
 import ModifyCounter from '@/components/modifyCounter.vue'
 import {Exercise} from '../../api/exercise'
 import {mapActions, mapState, mapGetters} from "vuex";
+import router from "@/router";
 
 export default {
   name: "CreateExercise",
@@ -179,6 +180,7 @@ export default {
         this.duration = this.$oldExercise.metadata.duration;
         this.image = this.$oldExercise.metadata.image;
       }
+      await router.replace("/library");
   },
   methods: {
     ...mapActions('exercise', {

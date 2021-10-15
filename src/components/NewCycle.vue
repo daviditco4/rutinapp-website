@@ -31,15 +31,15 @@
 
                     <v-dialog  v-model="dialog"  width="500" >
                       <template v-slot:activator="{ on, attrs }"> 
-                          <v-btn rounded  v-bind="attrs"  v-on="on">
+                          <v-btn rounded v-bind="attrs"  v-on="on">
                             Ejercicio
                           </v-btn>
                       </template>
-                      <AddExerciseInRoutine  @addExercise="addExercise($event)"
+                      <AddExerciseInRoutine @addExercise="addExercise($event)"
                                             @closeAddExercise="dialog = false"
                       ></AddExerciseInRoutine>
                     </v-dialog>
-
+                    
                     <v-btn @click="addRest()">
                       Descanso
                     </v-btn>

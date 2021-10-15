@@ -33,16 +33,28 @@
           </v-card-actions>
         </v-col>
         </v-row>
+      <v-alert align="center" type="success" v-if="this.$isEmailVerified">¡Email verificado!</v-alert>
     </div>
     
 </template>
 
 <script>
+import {mapActions, mapState} from "vuex";
 
 export default {
     name: 'PreHome',
     components: {
      },
+  computed: {
+      ...mapState('security', {
+        $isEmailVerified: 'emailVerified'
+      })
+  },
+  methods: {
+      ...mapActions('security', {
+        $verifiedEmail: 'emailVerified'
+      })
+  },
 }
 </script>
 

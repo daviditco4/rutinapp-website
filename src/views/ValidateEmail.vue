@@ -69,6 +69,7 @@ export default {
   methods: {
     ...mapActions('security', {
       $login: 'login',
+      $verifyEmail: 'emailVerified'
     }),
     async submit() {
       this.cannotVerify = false;
@@ -81,6 +82,7 @@ export default {
         this.cannotVerify = true;
         return;
       }
+      await this.$verifyEmail(true)
       await this.$router.push('/');
     },
 

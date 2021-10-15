@@ -8,7 +8,8 @@ export default {
     state: {
         token: null,
         user: null,
-        tempUser: null
+        tempUser: null,
+        emailVerified: false,
     },
     getters: {
         isLoggedIn(state) {
@@ -24,6 +25,9 @@ export default {
         },
         setTempUser(state, user){
             state.tempUser = user
+        },
+        changeEmailStatus(state, value) {
+            state.emailVerified = value
         }
     },
     actions: {
@@ -46,17 +50,20 @@ export default {
             Api.token = null
         },
         async create({commit}, user) {
+            commit('changeEmailStatus', false)
             const result = await UserApi.add(user)
             commit('setUser', result)
             commit('setTempUser', user)
         },
         async login({commit, dispatch}, {credentials, rememberMe}) {
+            commit('changeEmailStatus', false)
             const result1 = await UserApi.login(credentials)
             await dispatch('updateToken', { token: result1.token, rememberMe })
             const result2 = await UserApi.get()
             commit('setUser', result2)
         },
         async logout({commit, dispatch}) {
+            commit('changeEmailStatus', false)
             await UserApi.logout()
             dispatch('removeToken')
             commit('setUser', null)
@@ -73,5 +80,8 @@ export default {
             const result = await UserApi.modify({...userChanges, metadata: userMetadata})
             commit('setUser', result)
         },
+        async emailVerified({commit}, value) {
+            commit('changeEmailStatus', value)
+        }
     },
 }

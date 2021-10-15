@@ -68,6 +68,7 @@
                 de tareas en el borde de arriba, o en el inicio donde se vera 
                 "Buscar Rutinas". Ademas se brinda un detalle de la rutina 
                 seleccionada.
+              </h5>
             </v-list-item>
       </v-list-group>
       

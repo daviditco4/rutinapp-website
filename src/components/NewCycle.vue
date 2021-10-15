@@ -78,7 +78,7 @@ export default {
     Exercise,
     ModifyCounter,
   },
-  props: ['cycles', 'cycle'],
+  props: ['cycles', 'cycle', 'exercise'],
   data() {
     return {
       exercises: [],

@@ -48,7 +48,7 @@
         ></v-select>
       </v-card>
       <li v-for="cycle in cycles" :key="cycle.id">
-        <NewCycle v-bind:cycle="cycle" :cycles="cycles" v-bind:exercises="cycle.exercises" @addCycle="addCycle($event)" @addExercise="addExercise($event)"></NewCycle>
+        <NewCycle v-bind:cycle="cycle" :cycles="cycles" v-bind:exercises="cycle.exercises" @addCycle="addCycle($event)" v-on:addExercise="addExercise" v-on:addRest="addExercise"></NewCycle>
       </li>
 
     </v-container>

@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-card class="pa-md-4 mx-lg-auto mt-16 rounded-xl" width="800px" color="primary">
+    <v-card class="pa-md-4 mx-lg-auto mt-16 " width="800px" color="primary">
       <v-row align="center">
         <v-col justify="left" cols="12" md="5">
           <h3 class="text-left">Ciclo {{cycle.id}}: {{ translate(cycle.type) }}</h3>

@@ -146,7 +146,7 @@
         </v-row>
         <v-row>
             <v-col md="6">
-            <v-btn color="secondary" dark @click="deleting = true">Cancelar</v-btn>
+            <v-btn color="secondary" dark @click="deleting = false">Cancelar</v-btn>
           </v-col>
           <v-col md="6">
             <v-btn color="error" dark @click="deleteItem()">Eliminar</v-btn>
@@ -281,7 +281,7 @@ export default {
     deleteConfirm(id) {
       this.deleting = true
       this.itemIdForDeletion = id
-    }
+    },
   },
 };
 </script>

@@ -37,28 +37,7 @@
         </v-list-group>
       </v-list-group>
 
-      <v-list-group :value="true" prepend-icon="mdi-account-circle" >
-        <template v-slot:activator>
-          <v-list-item-title>Perfil</v-list-item-title>
-        </template>
-
-        <v-list-group :value="true" no-action sub-group >
-          <template v-slot:activator>
-            <v-list-item-content>
-              <v-list-item-title>Mi Biblioteca</v-list-item-title>              
-            </v-list-item-content>
-          </template>
-
-         <v-list-item >
-             <h5 class="text-center"> 
-               Podran visualizar las rutinas creadas por el usuario activo y filtrar 
-               su busqueda para un mejor acceso.
-                </h5>
-          </v-list-item>
-        </v-list-group>
-      </v-list-group>
-
-      <v-list-group :value="true" prepend-icon="mdi-weight-lifter">
+      <v-list-group :value="true" prepend-icon="mdi-magnify">
           <template v-slot:activator>
           <v-list-item-title>Buscar Rutina</v-list-item-title> </template>
           <v-list-item >
@@ -69,6 +48,25 @@
                 "Buscar Rutinas". Ademas se brinda un detalle de la rutina 
                 seleccionada.
               </h5>
+            </v-list-item>
+      </v-list-group>
+
+      <v-list-group :value="true" prepend-icon="mdi-weight-lifter">
+          <template v-slot:activator>
+          <v-list-item-title>Crear Rutina</v-list-item-title> </template>
+          <v-list-item >
+
+              <h5 class="text-center"> 
+                Se puede acceder a la creacion de una rutina mediante la barra 
+                de tareas en el borde de arriba, o en el inicio donde se vera 
+                "Crear rutina o ejercicio", se piden los datos:
+                <br/>
+                -Nombre
+                <br/>
+                -Descripcion
+                <br/>
+                -Ciclos
+                </h5>
             </v-list-item>
       </v-list-group>
       

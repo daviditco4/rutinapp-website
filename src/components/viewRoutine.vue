@@ -33,7 +33,7 @@
 
                   <v-list color="secondary" dark>
                     <v-list-group
-                        v-for="item in routine.cycle"
+                        v-for="item in routine.metadata.cycles"
                         :key="item.id"
                         v-model="item.active"
                         :prepend-icon="item.action"

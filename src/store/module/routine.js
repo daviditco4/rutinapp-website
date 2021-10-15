@@ -7,7 +7,8 @@ export default {
         items: [],
         cycles: [],
         edit: false,
-        routine: null
+        routine: null,
+        countRoutine: 0
     },
     getters: {
         findIndex(id) {
@@ -32,6 +33,9 @@ export default {
         },
         addRoutineToEdit(state, editRoutine) {
             state.routine = editRoutine
+        },
+        updateRoutineCount(state, count) {
+            state.countRoutine = count
         }
     },
     actions: {
@@ -78,6 +82,7 @@ export default {
         async getAll({commit}, {page, size}) {
             const response = await RoutineApi.getAll(page, size);
             commit('replaceAll', response)
+            commit('updateRoutineCount', response.totalCount)
             return response
         },
 

@@ -52,10 +52,10 @@
 
         <template v-slot:default="props">
           <v-row>
-            <v-col v-for="item in props.items" :key="item.name" cols="12" sm="3">
+            <v-col v-for="(item) in props.items" :key="item.name" cols="12" sm="3">
               <v-card color="transparent" outlined  >
 
-                <v-dialog  v-model="dialog"  width="500" >
+                <v-dialog  v-model="dialogs[item.id]"  width="500" >
                   <template v-slot:activator="{ on, attrs }">
 
                     <v-tab @click="overlay = !overlay"  v-bind="attrs" v-on="on">
@@ -63,7 +63,7 @@
                     </v-tab>
                   </template>
 
-                  <ViewRoutine v-bind:routine="item" @closeViewRoutine="dialog = false">
+                  <ViewRoutine v-bind:routine="item" @closeViewRoutine="dialogs[item.id] = false">
                   </ViewRoutine>
 
                 </v-dialog>
@@ -138,13 +138,15 @@ export default {
     itemsPerPage: 8,
     // filterBy: "routine",
     routine: {},
+    dialogs: [],
+    count: 0
   }),
   computed: {
     ...mapState('routine', {
       $routinesPage: state => state.items.page + 1,
       $currentRoutines: state => state.items.content,
       $isLastRoutinesPage: state => state.items.isLastPage,
-      $routinesCount: state => state.items.length,
+      $routinesCount: state => state.countRoutine,
     }),
     // ...mapState('exercise', {
     //   $exercisesPage: state => state.items.page + 1,
@@ -172,6 +174,11 @@ export default {
   },
   created() {
     this.retrieve()
+    let i = 0
+    while( i < this.$routinesCount){
+      this.dialogs[i] = false
+      i++
+    }
   },
   methods:{    
       openViewRoutine(){

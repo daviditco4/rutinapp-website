@@ -53,7 +53,7 @@
         <template v-slot:default="props">
           <v-row>
             <v-col v-for="item in props.items" :key="item.name" cols="12" sm="3">
-              <v-card color="transparent" outlined   >
+              <v-card color="transparent" outlined  >
                 <v-tab @click="overlay = !overlay">
                   <v-img :src="item.metadata.image" @click="openViewRoutine()"></v-img>
                 </v-tab>
@@ -66,6 +66,13 @@
           </v-row>
         </template>
       </v-data-iterator>
+      
+         <v-overlay :absolute="absolute" :value="overlay">
+
+                <ViewRoutine v-if="viewroutine" v-bind:routine="item"  @closeViewRoutine="viewroutine=false">
+                  <v-btn   color="success" @click="overlay = false" ></v-btn>
+                </ViewRoutine>
+        </v-overlay>
     </v-card>
 
         <v-row style="margin: 15px">
@@ -87,12 +94,7 @@
           </v-col>
         </v-row>
 
-        <v-overlay :absolute="absolute" :value="overlay">
-
-                <ViewRoutine v-if="viewroutine" v-bind:routine="item"  @closeViewRoutine="viewroutine=false">
-                  <v-btn   color="success" @click="overlay = false" ></v-btn>
-                </ViewRoutine>
-        </v-overlay>
+       
 
 
   </v-container>

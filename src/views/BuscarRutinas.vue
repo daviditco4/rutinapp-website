@@ -90,7 +90,7 @@
         <v-overlay :absolute="absolute" :value="overlay">
 
                 <ViewRoutine v-if="viewroutine" v-bind:routine="item"  @closeViewRoutine="viewroutine=false">
-<!--                  <v-btn   color="success" @click="overlay = false" ></v-btn>-->
+                  <v-btn   color="success" @click="overlay = false" ></v-btn>
                 </ViewRoutine>
         </v-overlay>
 

@@ -59,7 +59,13 @@
             <v-btn v-if="$editValue" color="secondary" elevation="2" rounded @click="modifyRoutine()">Modificar Rutina</v-btn>
       </v-col>
         <v-col md="6">
-          <v-btn  color="secondary" elevation="2" rounded @click="cancelRoutine()">Cancelar</v-btn>
+         
+          <v-dialog  v-model="dialog"  width="500" >
+                      <template v-slot:activator="{ on, attrs }"> 
+                             <v-btn v-bind="attrs"  v-on="on" color="secondary" elevation="2" rounded>Cancelar</v-btn>
+                      </template>
+                      <LeaveConfirm @closeDialog="dialog = false"></LeaveConfirm>
+          </v-dialog>
         </v-col>
     </v-row>
     <v-row justify="center">
@@ -74,6 +80,7 @@
 
 <script>
 import NewCycle from '@/components/NewCycle.vue'
+import LeaveConfirm from '@/components/leaveConfirm.vue'
 import {mapActions, mapState} from 'vuex'
 import {Routine} from '../../api/routine'
 
@@ -81,9 +88,11 @@ export default {
   name: "CreateRoutine",
   components: {
     NewCycle,
+    LeaveConfirm,
   },
   data() {
     return {
+      dialog:false,
       // routine fields
       id: null,
       routine: null,

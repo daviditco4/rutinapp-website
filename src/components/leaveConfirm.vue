@@ -10,7 +10,7 @@
       </v-row>
       <v-row>
           <v-col md="6">
-          <v-btn color="secondary" dark @click="closeDialog">Cancelar</v-btn>
+          <v-btn color="secondary" dark @click="closeLeaveConfirm">Cancelar</v-btn>
          </v-col>
          <v-col md="6">
           <v-btn color="error" dark @click="deleteRoutine()">Eliminar</v-btn>
@@ -18,3 +18,16 @@
       </v-row>
     </v-card>
 </template>
+
+<script scoped>
+export default {
+  data(){
+    return{}
+  },
+  methods:{
+    closeLeaveConfirm() {
+      this.$emit('closeDialog');
+    },
+  },
+}
+</script>

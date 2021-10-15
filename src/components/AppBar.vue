@@ -6,7 +6,7 @@
       class="lg"
       >
 
-    <v-col cols="10">
+    <v-col cols="9">
       <v-col cols="1">
       <v-tab to="/home" >
         <v-img src="@/assets/logo.png" max-width="50" max-height="50" class="justify-center my-3"></v-img>
@@ -17,6 +17,14 @@
     
     <v-tabs >
       <v-tabs-slider color="secondary"></v-tabs-slider>
+
+      <v-menu offset-y tile open-on-hover close-delay="3">
+        <template v-slot:activator="{ on, attrs }">
+          <v-tab to="/search-routine" v-bind="attrs" v-on="on" class="white--text text-center"> Buscar Rutinas
+          </v-tab>
+        </template>
+      </v-menu>
+
       <v-menu offset-y tile open-on-hover close-delay="3">
         <template v-slot:activator="{ on, attrs }">
           <v-tab v-bind="attrs" v-on="on" class="white--text text-center"> Crear
@@ -29,9 +37,7 @@
 
         </v-tabs>
       </v-menu>
-      
-      
-
+            
       <v-menu offset-y tile open-on-hover close-delay="3" >
         <template v-slot:activator="{ on, attrs }">
           <v-tab v-bind="attrs" v-on="on" class="white--text text-center"> 

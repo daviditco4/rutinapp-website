@@ -62,7 +62,9 @@
           <v-btn  color="secondary" elevation="2" rounded @click="cancelRoutine()">Cancelar</v-btn>
         </v-col>
     </v-row>
-
+    <v-row justify="center">
+          <p class="error-message" v-if="emptyFields">Llenar todos los campos</p>
+    </v-row>
 
     </v-container>
   </div>
@@ -87,6 +89,10 @@ export default {
       difficulty: '',
       detail: '',
       isPublic: false,
+
+      //validations
+      emptyFields: false,
+
       //cycle data
       cycle: null,
       cycles: [{
@@ -145,6 +151,11 @@ export default {
     }),
     async createRoutine() {
       this.cycles.exercises = this.exercises
+      this.emptyFields = false;
+      if(this.checkIfEmpty()){
+        this.emptyFields = true;
+        return;
+      }
       const routineMetadata = {
         cycles: this.cycles,
         image: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg"
@@ -158,6 +169,11 @@ export default {
       }
     },
     async modifyRoutine(){
+      this.emptyFields = false;
+      if(this.checkIfEmpty()) {
+        this.emptyFields = true;
+        return;
+      }
       const routineMetadata = {
         cycles: this.cycles
       }
@@ -186,6 +202,12 @@ export default {
     },
     async addExercise(cycleId, exercise) {
       this.cycles[cycleId - 1].exercises.push(exercise);
+    },
+    checkIfEmpty() {
+      if(this.name != "" && this.detail != "" && this.difficulty != ""){
+        return false;
+      }
+      return true;
     },
   }
 };

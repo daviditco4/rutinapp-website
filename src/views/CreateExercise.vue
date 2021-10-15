@@ -95,7 +95,12 @@
           <v-btn v-if="!this.$editValue" color="secondary" elevation="2" rounded @click="createExercise()">Crear</v-btn>     
          </v-col>
          <v-col md="6">
-          <v-btn  color="secondary" elevation="2" rounded @click="cancelExercise()">Cancelar</v-btn>
+            <v-dialog  v-model="dialog"  width="500" >
+                      <template v-slot:activator="{ on, attrs }"> 
+                        <v-btn v-bind="attrs"  v-on="on" color="secondary" elevation="2" rounded>Cancelar</v-btn>
+                      </template>
+                      <LeaveConfirm @closeDialog="dialog = false"></LeaveConfirm>
+          </v-dialog>
          </v-col>
         </v-row>
         <v-row justify="center">
@@ -125,6 +130,7 @@ export default {
   },
   data() {
     return {
+      dialog: false,
       // exercise fields
       id: null,
       name: '',

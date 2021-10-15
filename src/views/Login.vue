@@ -16,6 +16,7 @@
           class="px-8 pt-4 pa-2 card-format text-center ">
           <v-form>
             <v-text-field
+              rounded
               flat
               outlined
               light
@@ -26,6 +27,7 @@
               v-model="username">
             </v-text-field>
             <v-text-field
+              rounded
               flat
               outlined
               light

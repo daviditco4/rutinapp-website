@@ -36,7 +36,7 @@
                 <span>Nombre</span>
               </v-col>
               <v-col md="7">
-                <v-text-field rounded flat outlined light hide-details background-color="white"
+                <v-text-field  flat outlined light hide-details background-color="white"
                               v-model="firstNameInputValue" label="Nombre" solo></v-text-field>
               </v-col>
             </v-row>
@@ -45,7 +45,7 @@
                 <span>Apellido</span>
               </v-col>
               <v-col md="7">
-                <v-text-field rounded flat outlined light hide-details background-color="white"
+                <v-text-field  flat outlined light hide-details background-color="white"
                               v-model="lastNameInputValue"  label="Apellido" solo></v-text-field>
               </v-col>
             </v-row>
@@ -57,7 +57,6 @@
                 <v-select
                   v-model="genderInputValue"
                   class="mx-2"
-                  rounded
                   solo
                   flat
                   hide-details
@@ -76,7 +75,7 @@
                 <span>Celular</span>
               </v-col>
               <v-col md="7">
-                <v-text-field rounded flat outlined light hide-details background-color="white"  label="Celular" solo
+                <v-text-field flat outlined light hide-details background-color="white"  label="Celular" solo
                               v-model="phoneInputValue" :rules="validations.phoneRules">
                 </v-text-field>
               </v-col>

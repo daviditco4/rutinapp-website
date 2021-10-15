@@ -177,7 +177,8 @@ export default {
         return;
       }
       const routineMetadata = {
-        cycles: this.cycles
+        cycles: this.cycles,
+        image: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg"
       }
       const routine = new Routine(this.name, this.detail, this.isPublic, this.difficulty, routineMetadata)
       try {

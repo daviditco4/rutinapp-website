@@ -87,8 +87,7 @@
          </v-col>
         </v-row>
         <v-row justify="center">
-          <v-alert close-text="Close Alert"
-              type="error" v-if="emptyFields"
+          <v-alert v-model="alert" close-text="Close Alert" type="error" v-if="emptyFields" dismissible
           >Es necesario completar todos los campos</v-alert>
 <!--          <v-alert v-model="alert" color="secondary" dark dismissible v-if="emptyFields">
           <p >Llenar todos los campos</p>

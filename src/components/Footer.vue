@@ -8,7 +8,7 @@
 
     <v-col offset-sm="4"/>
     <v-col class="text-center" > 
-     <v-btn text to="/help"> <strong style="color:white">Ayuda</strong> </v-btn>
+     <v-btn text to="/help" rounded> <strong style="color:white">Ayuda</strong> </v-btn>
     </v-col>
     <!-- <v-btn
           v-for="icon in icons"

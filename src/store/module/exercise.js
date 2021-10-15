@@ -102,7 +102,6 @@ export default {
         async getAll({commit}, {page, size}) {
           const response = await ExerciseApi.getAll(page, size);
           commit('replaceAll', response)
-          console.log(response)
           return response
         },
     

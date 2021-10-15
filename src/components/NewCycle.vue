@@ -1,69 +1,72 @@
 <template>
-  <v-container>
-    <v-card class="pa-md-4 mx-lg-auto mt-16 rounded-xl" width="800px" color="primary">
-      <v-row align="center">
-        <v-col justify="left" cols="12" md="5">
-          <h3 class="text-left">Ciclo {{cycle.id}}: {{ translate(cycle.type) }}</h3>
-        </v-col>
-        <ModifyCounter :start-time="0" :addValue="1" :field="'repetitions'" @setCounter="setRepetitions"></ModifyCounter>
-        <v-col>
-          <p justify="center">Repeticiones del ciclo</p>
-        </v-col>
-      </v-row>
+    <v-container>
+      <template>
 
-      <li v-for="exercise in exercises" :key="exercise.id">
-        <Exercise v-bind:exercise="exercise"></Exercise>
-      </li>
-
-      <v-row>
-        <v-col cols="12" sm="6">
-          <v-row style="margin-left: 10px; margin-bottom: 20px">
-            <v-menu transition="scroll-x-transition" style="height: 20px;">
-              <template v-slot:activator="{on, attrs}">
-                <v-btn rounded v-on="on" v-bind="attrs" style="min-width: 10px;height: 50px;">
-                  <v-icon>
-                    mdi-plus
-                  </v-icon>
-                </v-btn>
-              </template>
-              <v-btn-toggle rounded style="margin-left: 60px; background-color: transparent">
-                <v-btn rounded @click="newExercise=!newExercise">
-                  Ejercicio
-                </v-btn>
-                <v-btn @click="addRest()">
-                  Descanso
-                </v-btn>
-              </v-btn-toggle>
-            </v-menu>
+        <v-card class="pa-md-4 mx-lg-auto mt-16 rounded-xl" width="800px" color="primary">
+          <v-row align="center">
+            <v-col justify="left" cols="12" md="5">
+              <h3 class="text-left">Ciclo {{cycle.id}}: {{ translate(cycle.type) }}</h3>
+            </v-col>
+            <ModifyCounter :start-time="0" :addValue="1" :field="'repetitions'" @setCounter="setRepetitions"></ModifyCounter>
+            <v-col>
+              <p justify="center">Repeticiones del ciclo</p>
+            </v-col>
           </v-row>
-        </v-col>
-      </v-row>
-    </v-card>
 
-    <v-row v-if="cycle.id == cycles.length-1" style="position: relative" justify="center">
-      <v-col cols="12" md="3">
-        <v-expand-transition>
-          <v-card class="rounded-xl">
-            <v-row v-if="hover">
-              <v-col class="justify-start">
-                <span style="margin-left: 20px">NUEVO</span>
-              </v-col>
-              <v-col class="justify-end">
-                <span style="margin-left: 50px">CICLO</span>
-              </v-col>
-            </v-row>
-          </v-card>
-        </v-expand-transition>
-        <div class="text-center" @mouseenter="hover=!hover" @mouseleave="hover=!hover">
-          <v-btn elevation="1" fab style="z-index: 2; margin-top: -50px;" @click="addCycle()">
-            <v-icon>mdi-plus</v-icon>
-          </v-btn>
-        </div>
-      </v-col>
-    </v-row>
-    <AddExerciseInRoutine v-if="newExercise" @addExercise="addExercise($event)"></AddExerciseInRoutine>
+          <li v-for="exercise in exercises" :key="exercise.id">
+            <Exercise v-bind:exercise="exercise"></Exercise>
+          </li>
 
-  </v-container>
+          <v-row>
+            <v-col cols="12" sm="6">
+              <v-row style="margin-left: 10px; margin-bottom: 20px">
+                <v-menu transition="scroll-x-transition" style="height: 20px;">
+                  <template v-slot:activator="{on, attrs}">
+                    <v-btn rounded v-on="on" v-bind="attrs" style="min-width: 10px;height: 50px;">
+                      <v-icon>
+                        mdi-plus
+                      </v-icon>
+                    </v-btn>
+                  </template>
+                  <v-btn-toggle rounded style="margin-left: 60px; background-color: transparent">
+                    <v-btn rounded @click="newExercise=!newExercise">
+                      Ejercicio
+                    </v-btn>
+                    <v-btn @click="addRest()">
+                      Descanso
+                    </v-btn>
+                  </v-btn-toggle>
+                </v-menu>
+              </v-row>
+            </v-col>
+          </v-row>
+        </v-card>
+
+        <v-row v-if="cycle.id == cycles.length-1" style="position: relative" justify="center">
+          <v-col cols="12" md="3">
+            <v-expand-transition>
+              <v-card class="rounded-xl">
+                <v-row v-if="hover">
+                  <v-col class="justify-start">
+                    <span style="margin-left: 20px">NUEVO</span>
+                  </v-col>
+                  <v-col class="justify-end">
+                    <span style="margin-left: 50px">CICLO</span>
+                  </v-col>
+                </v-row>
+              </v-card>
+            </v-expand-transition>
+            <div class="text-center" @mouseenter="hover=!hover" @mouseleave="hover=!hover">
+              <v-btn elevation="1" fab style="z-index: 2; margin-top: -50px;" @click="addCycle()">
+                <v-icon>mdi-plus</v-icon>
+              </v-btn>
+            </div>
+          </v-col>
+        </v-row>
+      </template>
+      <AddExerciseInRoutine :newExercise="newExercise" v-if="newExercise" @addExercise="addExercise($event)"></AddExerciseInRoutine>
+    </v-container>
+
 </template>
 
 <script scoped>

@@ -11,6 +11,7 @@
             class="px-12 pt-12 pa-12 card-format text-center">
           <v-form>
             <v-text-field v-model="username"
+              rounded
               class="my-2 font-italic"
               label="Usuario"
               flat
@@ -20,6 +21,7 @@
               background-color="white">
             </v-text-field>
             <v-text-field v-model="email"
+              rounded
               class="my-2 font-italic"
               label="Email"
               flat
@@ -30,6 +32,7 @@
               :rules="emailRules">
             </v-text-field>
             <v-text-field v-model="emailRepeat"
+                rounded
                 class="my-2 font-italic"
                 label="Repetir Email"
                 flat
@@ -41,6 +44,7 @@
             </v-text-field>
             <p class="error-message" v-if="!emailCorrect">Los emails no coinciden</p>
             <v-text-field v-model="password"
+                rounded
                 class="my-2 font-italic"
                 label="Contraseña"
                 flat
@@ -53,6 +57,7 @@
                 @click:append="show1 = !show1">
             </v-text-field>
             <v-text-field v-model="passwordRepeat"
+                rounded
                 class="my-2 font-italic"
                 label="Repetir Contraseña"
                 flat

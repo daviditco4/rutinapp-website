@@ -24,17 +24,24 @@ export default {
       counter: this.startTime,
     }
   },
+  watch: {
+    counter: function() {
+      this.onCounterChange();
+    }
+  },
   methods: {
     addTimes() {
       this.counter += this.addValue;
       this.$emit('setCounter', this.counter, this.field)
     },
-
     subTimes() {
       console.log("ENTRA")
       if (this.counter >= this.addValue) {
         this.counter -= this.addValue;
       }
+      this.$emit('setCounter', this.counter, this.field)
+    },
+    onCounterChange(){
       this.$emit('setCounter', this.counter, this.field)
     }
   }

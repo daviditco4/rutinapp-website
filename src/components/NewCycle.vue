@@ -117,7 +117,6 @@ export default {
       this.$emit('addExercise', this.cycle.id, response)
     },
     addRest(){
-      this.exercises.push(this.restExercise)
       this.$emit('addExercise', this.cycle.id, this.restExercise)
     },
     setRepetitions(newValue){

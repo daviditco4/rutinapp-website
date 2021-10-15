@@ -81,6 +81,7 @@ export default {
   data() {
     return {
       // routine fields
+      id: null,
       routine: null,
       name: '',
       difficulty: '',
@@ -129,6 +130,7 @@ export default {
   },
   created() {
     if(this.$editValue){
+      this.id = this.$oldRoutine.id
       this.name = this.$oldRoutine.name;
       this.detail = this.$oldRoutine.detail;
       this.isPublic = this.$oldRoutine.isPublic;
@@ -160,9 +162,9 @@ export default {
       const routineMetadata = {
         cycles: this.cycles
       }
-      const routine = new Routine(this.name, this.detail, 'exercise', routineMetadata)
+      const routine = new Routine(this.name, this.detail, this.isPublic, this.difficulty, routineMetadata)
       try {
-        this.routine = await this.$modifyRoutine(routine);
+        this.routine = await this.$modifyRoutine({id:this.id, routine: routine});
         this.setResult(this.routine)
       } catch (e) {
         this.setResult(e)

@@ -53,8 +53,8 @@ export default {
             commit('push', response)
         },
 
-        async edit({ getters, commit }, id) {
-            const response = await RoutineApi.edit(id);
+        async edit({ getters, commit },{id, routine}) {
+            const response = await RoutineApi.modify(id, routine);
             const index = getters.findIndex(id);
             if (index >= 0)
                 commit('replace', index, response)

@@ -124,6 +124,7 @@ export default {
   data() {
     return {
       // exercise fields
+      id: null,
       name: '',
       detail: '',
       type: '',
@@ -150,14 +151,17 @@ export default {
   computed: {
     ...mapState('exercise', {
       $editValue: state => state.edit,
-      $oldExercise: state => state.exercise
+      $oldExercise: state => state.exercise,
+      $ExIdToEdit: state => state.exerciseIdToEdit
     }),
     ...mapGetters('exercise', {
-      $getExerciseIndex: 'findIndex'
+      $getExerciseIndex: 'findIndex',
+      $getExerciseId: 'getExerciseId'
     })
   },
   created() {
       if(this.$editValue){
+        this.id = this.$oldExercise.id;
         this.name = this.$oldExercise.name;
         this.detail = this.$oldExercise.detail;
         this.type = this.$oldExercise.type;
@@ -171,7 +175,8 @@ export default {
   methods: {
     ...mapActions('exercise', {
       $createExercise: 'create',
-      $modifyExercise: 'edit'
+      $modifyExercise: 'edit',
+      $findId: 'findExerciseId'
     }),
     async createExercise() {
       this.nameRepeated = false;
@@ -213,10 +218,25 @@ export default {
         image: this.image,
         category: this.category
       }
-      const index = this.$getExerciseIndex;
-      const exercise = new Exercise(index, this.name, this.detail, 'exercise', exerciseMetadata)
+      // await this.$findId(this.name);
+      // const index = this.id
+      console.log(this.id)
+      // if(index == -1) {
+      //   return;
+      // }
+      // console.log(index)
+      const exercise = new Exercise(this.name, this.detail, 'exercise', exerciseMetadata)
+      // const exercise = {
+      //   name: this.name,
+      //   detail: this. detail,
+      //   type: 'exercise',
+      //   metadata: exerciseMetadata
+      // }
+      const idEx = this.id
+      console.log(idEx)
+      console.log(exercise)
       try {
-        this.exercise = await this.$modifyExercise(index, exercise);
+        this.exercise = await this.$modifyExercise({id: idEx, exercise: exercise});
         this.setResult(this.exercise)
       } catch (e) {
         if(e == 2) {

@@ -257,6 +257,7 @@ export default {
         this.$modifyEditValueRoutine(true)
         this.$router.push('/create-routine')
       } else {
+        console.log(toEdit)
         this.$addExerciseToEdit(toEdit)
         this.$modifyEditValue(true)
         this.$router.push('/create-exercise')

@@ -7,12 +7,16 @@ export default {
         repeatedName: false,
         items: [],
         edit: false,
-        exercise: null
+        exercise: null,
+        exerciseCount: 0
     },
     getters: {
         findIndex(id) {
             return this.state.items.findIndex(item => item.id === id)
         },
+        getExerciseId() {
+            return this.state.exerciseIdToEdit
+        }
     },
     mutations: {
         push(state, exercise) {
@@ -32,6 +36,9 @@ export default {
         },
         addExerciseToEdit(state, editExercise) {
             state.exercise = editExercise
+        },
+        updateExerciseCount(state, count) {
+            state.exerciseCount = count
         }
     },
     actions: {
@@ -63,8 +70,12 @@ export default {
             await UserApi.modify(data)
         },
 
-        async edit({getters, commit}, id) {
-            const response = await ExerciseApi.edit(id);
+        async edit({getters, commit}, {id, exercise}) {
+            console.log(exercise)
+            console.log(id)
+
+            const response = await ExerciseApi.modify(id, exercise);
+            console.log(response)
             const index = getters.findIndex(id);
             if(index>=0)
                 commit('replace', index, response)
@@ -99,9 +110,10 @@ export default {
           }
         },
     
-        async getAll({commit}, {page, size}) {
+        async getAll({commit, state}, {page, size}) {
           const response = await ExerciseApi.getAll(page, size);
           commit('replaceAll', response)
+            console.log(state.items)
           return response
         },
     

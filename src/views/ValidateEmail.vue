@@ -26,18 +26,17 @@
             ></v-text-field>
           </v-row>
           <v-row >
-            <v-flex xs12 sm6 class="pa-4">
+            <v-col md="12" class="pa-4">
               <v-btn
                   @click="this.submit"
                   rounded large color="secondary">Confirmar
               </v-btn>
-            </v-flex>
-            <v-flex xs12 sm6 class="pa-4">
-              <v-btn
-                  rounded large color="secondary"
-                  @click="this.resend">Reenviar código</v-btn>
-            </v-flex>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col md="12" class="pa-4">
             <v-alert type="error" v-if="cannotVerify" align="center">¡Ups! Hubo un error al validar el email. Revise el email y el código.</v-alert>
+            </v-col>
           </v-row>
         </form>
       </v-card>

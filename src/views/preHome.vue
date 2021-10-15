@@ -14,7 +14,7 @@
          <v-card-actions>
                 <v-col>
                     <div class="text-center">
-                    <v-btn style="background-color: #333C8E; color: white;" large block 
+                    <v-btn style="background-color: #333C8E; color: white;" large block rounded
                       to="/login">
                       Iniciar Sesion
                     </v-btn>
@@ -24,7 +24,7 @@
                 <v-card-actions>
                 <v-col>
                     <div class="text-center">
-                    <v-btn style="background-color: #333C8E; color: white;" large block                    
+                    <v-btn style="background-color: #333C8E; color: white;" large block rounded                
                       to="/signUp">
                       Registrarse
                     </v-btn>

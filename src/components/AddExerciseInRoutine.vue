@@ -1,7 +1,5 @@
 <template>
-
-  <v-dialog persistent max-width="600px" v-model="show">
-        <v-card flat width="500" class="pa-md-4 mx-lg-auto mt-16 rounded-xl" color="primary">
+   <v-card flat width="500" class="pa-md-4 mx-lg-auto mt-16 rounded-xl" color="primary">
     <v-row>
       <v-col md="12"><h3>Agregar Ejercicio</h3></v-col>
     </v-row>
@@ -32,7 +30,7 @@
       </v-col>
     </v-row>
           </v-card>
-  </v-dialog>
+
 
 </template>
 

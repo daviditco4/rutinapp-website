@@ -6,6 +6,7 @@
         <form align = "center">
           <v-row wrap>
             <v-text-field
+                rounded
                 class="field-style"
                 v-model="email"
                 outlined
@@ -16,6 +17,7 @@
           </v-row>
           <v-row>
             <v-text-field
+                rounded
                 class="field-style"
                 v-model="code"
                 outlined
@@ -24,13 +26,13 @@
             ></v-text-field>
           </v-row>
           <v-row >
-            <v-flex xs12 sm6 class="pa-1">
+            <v-flex xs12 sm6 class="pa-4">
               <v-btn
                   @click="this.submit"
                   rounded large color="secondary">Confirmar
               </v-btn>
             </v-flex>
-            <v-flex xs12 sm6 class="pa-1">
+            <v-flex xs12 sm6 class="pa-4">
               <v-btn
                   rounded large color="secondary"
                   @click="this.resend">Reenviar código</v-btn>

@@ -20,14 +20,12 @@ const routes = [
         
     ]
   },
+
   {
     path: '/home',
     component: () => import('../layouts/BGLayout'),
     children: [
         {
-          // path: '/',
-          // name: 'Home',
-          // component: Home
           path: '/home',
           name: 'Home',
           component: () => import('../views/Home.vue')
@@ -93,7 +91,7 @@ const routes = [
   },
   {
     path: '/create-exercise',
-    component: () => import('../layouts/BGLayout'),
+    component: () => import('../layouts/BGCreate'),
     children: [    
         {
           path: '/create-exercise',
@@ -104,7 +102,7 @@ const routes = [
   },
   {
     path: '/create-routine',
-    component: () => import('../layouts/BGLayout'),
+    component: () => import('../layouts/BGCreate'),
     children: [    
         {
           path: '/create-routine',

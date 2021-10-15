@@ -32,7 +32,7 @@
             <h4 class="d-flex justify-start pt-4">Series</h4>
 
           </v-col>
-          <ModifyCounter v-model="series" style="padding-top:30px" :start-time="15" :addValue="1"></ModifyCounter>
+          <ModifyCounter v-model="series" style="padding-top:30px" :start-time="15" :addValue="1" :field="'series'" @setCounter="setSeries"></ModifyCounter>
           <!-- <v-btn class="black--text" style="font-size:27px" icon @click="subTimes(series)">-</v-btn>
           <v-col cols="2">            
               <v-text-field rounded background-color="white" value="10"> {{ series }}</v-text-field>
@@ -48,7 +48,7 @@
           <v-col cols="12" md="7">
             <h4 class="d-flex justify-start">Duración</h4>
           </v-col>
-          <ModifyCounter v-model="duration" :start-time="15" :addValue="5"></ModifyCounter>
+          <ModifyCounter v-model="duration" :start-time="15" :addValue="5" :field="'duration'" @setCounter="setDuration"></ModifyCounter>
           <v-col>
             <p >segundos</p>
           </v-col>      
@@ -262,7 +262,13 @@ export default {
         return false;
       }
       return true;
-    }
+    },
+    setSeries(newValue){
+      this.series = newValue;
+    },
+    setDuration(newValue){
+      this.duration = newValue;
+    },
   }
 };
 </script>

@@ -56,12 +56,10 @@ export default {
             const exerciseId = response.id
             //get current user
             response = await UserApi.get();
-            console.log(response)
             // save exercise id in creator's user metadata
             if(response.metadata == null){
                 response.metadata = {};
                 response.metadata['exercises'] = []
-                console.log(response)
             }
             response.metadata['exercises'].push(exerciseId)
             const data = {
@@ -71,11 +69,7 @@ export default {
         },
 
         async edit({getters, commit}, {id, exercise}) {
-            console.log(exercise)
-            console.log(id)
-
             const response = await ExerciseApi.modify(id, exercise);
-            console.log(response)
             const index = getters.findIndex(id);
             if(index>=0)
                 commit('replace', index, response)
@@ -96,13 +90,9 @@ export default {
           if (actions === state) {
             id * 4
           }
-
-          console.log(id)
-    
           const userMetadata = (await UserApi.get()).metadata
           const exerciseUserIndex = userMetadata.exercises.indexOf(id)
-          console.log(exerciseUserIndex)
-    
+
           if (exerciseUserIndex !== -1) {
             userMetadata.exercises.splice(exerciseUserIndex, 1)
             await UserApi.modify({metadata: userMetadata})
@@ -110,10 +100,9 @@ export default {
           }
         },
     
-        async getAll({commit, state}, {page, size}) {
+        async getAll({commit}, {page, size}) {
           const response = await ExerciseApi.getAll(page, size);
           commit('replaceAll', response)
-            console.log(state.items)
           return response
         },
     

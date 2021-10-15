@@ -6,7 +6,7 @@
         <v-col justify="left" cols="12" md="5">
           <h3 class="text-left">Ciclo {{cycle.id}}: {{ translate(cycle.type) }}</h3>
         </v-col>
-        <ModifyCounter :start-time="0" :addValue="1" :field="'repetitions'" @setCounter="setRepetitions"></ModifyCounter>
+        <ModifyCounter :start-time="setStart(cycle)" :addValue="1" :field="'repetitions'" @setCounter="setRepetitions"></ModifyCounter>
         <v-col>
           <p justify="center">Repeticiones del ciclo</p>
         </v-col>
@@ -88,12 +88,10 @@ export default {
     Exercise,
     ModifyCounter,
   },
-  props: ['cycles', 'cycle', 'exercise'],
+  props: ['cycles', 'cycle', 'exercises'],
   data() {
     return {
       dialog: false,
-
-      exercises: [],
       hover: false,
       newExercise: false,
       repetitions: 0,
@@ -116,7 +114,6 @@ export default {
     },
     async addExercise(exerciseId) {
       const response = await ExerciseApi.get(exerciseId);
-      this.exercises.push(response)
       this.$emit('addExercise', this.cycle.id, response)
     },
     addRest(){
@@ -126,6 +123,9 @@ export default {
     setRepetitions(newValue){
       this.cycle.repetitions = newValue;
     },
+    setStart(cycle){
+      return cycle.repetitions || 0
+    }
   }
 };
 </script>

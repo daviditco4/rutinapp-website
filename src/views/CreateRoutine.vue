@@ -144,7 +144,6 @@ export default {
       $modifyRoutine: 'edit'
     }),
     async createRoutine() {
-      console.log(this.cycles)
       this.cycles.exercises = this.exercises
       const routineMetadata = {
         cycles: this.cycles,
@@ -187,7 +186,6 @@ export default {
     },
     async addExercise(cycleId, exercise) {
       this.cycles[cycleId - 1].exercises.push(exercise);
-      console.log(this.cycles);
     },
   }
 };

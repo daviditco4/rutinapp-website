@@ -90,7 +90,7 @@
                                 <v-icon>mdi-pencil</v-icon>
                               </v-btn>
                               <v-btn
-                                @click="deleteConfirm()"
+                                @click="deleteConfirm(item.id)"
                                 style="margin: 0 0 0 10px"
                               >
                               <!--@click="deleteItem(item.id)"-->
@@ -134,21 +134,36 @@
             </v-col>
           </v-row>
     
-    <DeleteConfirmation v-if="deleteconfirm"/>
+    <v-dialog v-model="itemIdForDeletion" persistent>
+      <v-card flat width="300" class="pa-md-4 mx-lg-auto mt-16 rounded-xl" color="primary">
+        <v-row>
+          <v-col md="12">
+              <h3>¿Deseas eliminar la rutina?</h3>
+              <p> No podrás volver a recuperarla.</p>
+              </v-col>  
+        </v-row>
+        <v-row>
+        </v-row>
+        <v-row>
+            <v-col md="6">
+            <v-btn color="secondary" dark @click="itemIdForDeletion = null">Cancelar</v-btn>
+          </v-col>
+          <v-col md="6">
+            <v-btn color="error" dark @click="deleteItem(itemIdForDeletion)">Eliminar</v-btn>
+          </v-col>
+        </v-row>
+      </v-card>
+    </v-dialog>
 
-    </v-container>
+  </v-container>
 </template>
 
 <script>
 import { mapState, mapActions } from "vuex";
-import DeleteConfirmation from '@/components/deleteConfirmation.vue'
 // import { GET_EXERCISES, GET_ROUTINES } from '../store/actions'
 
 export default {
   inheritAttrs: false,
-  components:{
-    DeleteConfirmation,
-  },
   data: () => ({
     search: "",
     showRoutines: true,
@@ -156,7 +171,7 @@ export default {
     itemsPerPage: 8,
     // filterBy: "routine",
     // edit: false
-    deleteconfirm: false,
+    itemIdForDeletion: null,
   }),
   computed: {
     ...mapState('routine', {
@@ -248,6 +263,7 @@ export default {
         await this.$deleteExercise(id)
       }
       this.retrieve()
+      this.itemIdForDeletion = null
     },
     async create(){
       if(this.showRoutines)
@@ -255,8 +271,8 @@ export default {
       else
         await this.$router.replace("/create-exercise");
     },
-    deleteConfirm(){
-      this.deleteconfirm = true;
+    deleteConfirm(id) {
+      this.itemIdForDeletion = id;
     }
   },
 };

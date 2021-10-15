@@ -22,6 +22,7 @@
 <script scoped>
 
 export default {
+  name: "LeaveConfirm",
   data(){
     return{}
   },

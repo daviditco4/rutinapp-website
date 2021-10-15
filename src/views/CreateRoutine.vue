@@ -83,6 +83,7 @@ import NewCycle from '@/components/NewCycle.vue'
 import LeaveConfirm from '@/components/leaveConfirm.vue'
 import {mapActions, mapState} from 'vuex'
 import {Routine} from '../../api/routine'
+import router from "@/router";
 
 export default {
   name: "CreateRoutine",
@@ -154,6 +155,7 @@ export default {
       this.cycles = this.$oldRoutine.metadata.cycles;
       this.difficulty = this.$oldRoutine.difficulty;
     }
+    
   },
   methods: {
     ...mapActions('routine', {
@@ -178,6 +180,7 @@ export default {
       } catch (e) {
         this.setResult(e)
       }
+      await router.replace("/library");
     },
     async modifyRoutine(){
       this.emptyFields = false;
@@ -196,6 +199,7 @@ export default {
       } catch (e) {
         this.setResult(e)
       }
+      await router.replace("/library");
     },
     setResult(result){
       this.result = JSON.stringify(result, null, 2)

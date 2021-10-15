@@ -134,7 +134,7 @@
             </v-col>
           </v-row>
     
-    <v-dialog v-model="itemIdForDeletion" persistent>
+    <v-dialog v-model="deleting" persistent>
       <v-card flat width="300" class="pa-md-4 mx-lg-auto mt-16 rounded-xl" color="primary">
         <v-row>
           <v-col md="12">
@@ -146,10 +146,10 @@
         </v-row>
         <v-row>
             <v-col md="6">
-            <v-btn color="secondary" dark @click="itemIdForDeletion = null">Cancelar</v-btn>
+            <v-btn color="secondary" dark @click="deleting = true">Cancelar</v-btn>
           </v-col>
           <v-col md="6">
-            <v-btn color="error" dark @click="deleteItem(itemIdForDeletion)">Eliminar</v-btn>
+            <v-btn color="error" dark @click="deleteItem()">Eliminar</v-btn>
           </v-col>
         </v-row>
       </v-card>
@@ -172,6 +172,7 @@ export default {
     // filterBy: "routine",
     // edit: false
     itemIdForDeletion: null,
+    deleting: false,
   }),
   computed: {
     ...mapState('routine', {
@@ -256,14 +257,14 @@ export default {
         this.$router.push('/create-exercise')
       }
     },
-    async deleteItem(id) {
+    async deleteItem() {
       if (this.showRoutines) {
-        await this.$deleteRoutine(id)
+        await this.$deleteRoutine(this.itemIdForDeletion)
       } else {
-        await this.$deleteExercise(id)
+        await this.$deleteExercise(this.itemIdForDeletion)
       }
       this.retrieve()
-      this.itemIdForDeletion = null
+      this.deleting = false
     },
     async create(){
       if(this.showRoutines)
@@ -272,7 +273,8 @@ export default {
         await this.$router.replace("/create-exercise");
     },
     deleteConfirm(id) {
-      this.itemIdForDeletion = id;
+      this.deleting = true
+      this.itemIdForDeletion = id
     }
   },
 };

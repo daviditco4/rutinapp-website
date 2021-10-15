@@ -37,7 +37,7 @@
         <v-card-actions>
           <v-col> 
             <div @click="overlay = false" class="text-center">
-              <v-btn dark color="#333C8E" x-large block @click="crear()">Crear</v-btn>
+              <v-btn rounded dark color="#333C8E" x-large block @click="crear()">Crear</v-btn>
             </div>
           </v-col>  
         </v-card-actions>  

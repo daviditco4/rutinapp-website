@@ -1,8 +1,8 @@
 <template>
   <div class="lg">
-    <v-row justify="center">
+    <v-row justify="end">
     <v-btn class="black--text" style="font-size:27px" icon @click="subTimes()">-</v-btn>
-        <v-text-field style="max-width: 100px;font-size: 20px" dense rounded background-color="white" v-model.number="counter"></v-text-field>
+        <v-text-field style="max-width: 100px;font-size: 20px" dense background-color="white" v-model.number="counter"></v-text-field>
       <v-btn class="black--text" style="font-size:25px" icon @click="addTimes()">+</v-btn>
     </v-row>
   </div>

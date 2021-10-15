@@ -1,7 +1,7 @@
 <template>
   <v-container>
   <template>
-    <v-card class="pa-md-4 mx-lg-auto mt-16 rounded-xl" width="800px" color="primary">
+    <v-card class="pa-md-4 mx-lg-auto mt-16" width="800px" color="primary">
       <v-row align="center">
         <v-col justify="left" cols="12" md="5">
           <h3 class="text-left">Ciclo {{cycle.id}}: {{ translate(cycle.type) }}</h3>
@@ -12,9 +12,9 @@
         </v-col>
       </v-row>
 
-          <li v-for="exercise in exercises" :key="exercise.id">
+          <span v-for="exercise in exercises" :key="exercise.id">
             <Exercise v-bind:exercise="exercise"></Exercise>
-          </li>
+          </span>
 
           <v-row>
             <v-col cols="12" sm="6">
@@ -51,7 +51,7 @@
         <v-row v-if="cycle.id == cycles.length-1" style="position: relative" justify="center">
           <v-col cols="12" md="3">
             <v-expand-transition>
-              <v-card class="rounded-xl">
+              <v-card class="">
                 <v-row v-if="hover">
                   <v-col class="justify-start">
                     <span style="margin-left: 20px">NUEVO</span>

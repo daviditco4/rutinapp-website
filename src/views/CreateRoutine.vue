@@ -1,7 +1,7 @@
 <template>
   <div class="create-routine">
     <v-container>
-      <v-card class="pa-md-4 mx-lg-auto mt-16 rounded-xl" width="800px" color="primary">
+      <v-card class="pa-md-4 mx-lg-auto mt-16 " width="800px" color="primary">
         <v-row no-gutters>
           <v-col>
             <h2 v-if="!$editValue" class="d-flex justify-center">Nueva Rutina</h2>
@@ -15,7 +15,7 @@
           </v-col>
         </v-row>
         <v-text-field
-            label="Ingrese un nombre para la rutina..." solo rounded flat outlined  light  hide-details background-color="white"
+            label="Ingrese un nombre para la rutina..." solo flat outlined  light  hide-details background-color="white"
             v-model="name"
         ></v-text-field>
 
@@ -25,7 +25,7 @@
           </v-col>
         </v-row>
         <v-text-field
-            label="Ingrese una breve descripción sobre la rutina..." solo rounded flat outlined  light  hide-details background-color="white"
+            label="Ingrese una breve descripción sobre la rutina..." solo flat outlined  light  hide-details background-color="white"
             v-model="detail"
         ></v-text-field>
 
@@ -44,7 +44,7 @@
           </v-col>
         </v-row>
         <v-select v-model="difficulty" :items="levels" item-text="name" item-value="code" label="Seleccione..." solo
-                  rounded flat outlined light hide-details background-color="white"
+                  flat outlined light hide-details background-color="white"
         ></v-select>
       </v-card>
 

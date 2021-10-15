@@ -55,7 +55,7 @@
             <v-col v-for="item in props.items" :key="item.name" cols="12" sm="3">
               <v-card color="transparent" outlined  >
 
-                <v-dialog  v-model="dialog"  width="500" >
+                <v-dialog  v-model="dialog" >
                   <template v-slot:activator="{ on, attrs }">
 
                     <v-tab @click="overlay = !overlay"  v-bind="attrs" v-on="on">

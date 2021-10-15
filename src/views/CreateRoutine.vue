@@ -46,9 +46,8 @@
                   rounded flat outlined light hide-details background-color="white"
         ></v-select>
       </v-card>
-
       <li v-for="cycle in cycles" :key="cycle.id">
-        <NewCycle v-bind:cycle="cycle" :cycles="cycles"></NewCycle>
+        <NewCycle v-bind:cycle="cycle" :cycles="cycles" v-bind:exercises="cycle.metadata.exercises" @addCycle="addCycle($event)" @addExercise="addExcercise($event)"></NewCycle>
       </li>
 
     </v-container>
@@ -61,7 +60,7 @@
 </template>
 
 <script>
-import NewCycle from '@/components/NewCycle.vue'
+import NewCycle from '@/components/NewCycle'
 import {mapActions} from 'vuex'
 import {Routine} from '../../api/routine'
 export default {
@@ -83,24 +82,23 @@ export default {
         "id": 1,
         "type": "warmup",
         "repetitions": 1,
-        "metadata": null
+        "metadata": {exercises: []}
         },
         {
           "id": 2,
           "type": "exercise",
           "repetitions": 1,
-          "metadata": null
+          "metadata": {exercises: []}
         },
         {
           "id": 3,
           "type": "cooldown",
           "repetitions": 1,
-          "metadata": null
+          "metadata": {exercises: []}
         }
       ],
       repetitions: null,
       //exercise data
-      exercise: {},
       exercises: [],
       newExercise: false,
       // preloaded data
@@ -118,11 +116,11 @@ export default {
       $createRoutine: 'create',
     }),
     async createRoutine() {
+      this.cycles.exercises = this.exercises
       const routineMetadata = {
         cycles: this.cycles
       }
-      const index = Math.floor(Math.random() * (999 - 1) + 1)
-      const routine = new Routine(index, this.name, this.detail, 'exercise', routineMetadata)
+      const routine = new Routine(this.name, this.detail, this.isPublic, this.difficulty, routineMetadata)
       try {
         this.routine = await this.$createRoutine(routine);
         this.setResult(this.routine)
@@ -134,11 +132,17 @@ export default {
       this.result = JSON.stringify(result, null, 2)
     },
     addCycle(cycle){
+      let cooldownCopy = this.cycles.pop()
+      cooldownCopy.id+=1
       this.cycles.push(cycle)
+      this.cycles.push(cooldownCopy)
     },
     setCounter(newValue, field){
       this.exercise[field] = newValue;
     },
+    addExcercise(exercise) {
+      this.exercises.push(exercise);
+    }
   }
 };
 </script>

@@ -5,7 +5,7 @@
         <v-col justify="left" cols="12" md="5">
           <h3 class="text-left">Ciclo {{cycle.id}}: {{ translate(cycle.type) }}</h3>
         </v-col>
-        <ModifyCounter :start-time="0" :addValue="1" ></ModifyCounter>
+        <ModifyCounter :start-time="0" :addValue="1" :field="'repetitions'" @setCounter="setRepetitions"></ModifyCounter>
         <v-col>
           <p justify="center">Repeticiones del ciclo</p>
         </v-col>
@@ -68,7 +68,7 @@
 </template>
 
 <script scoped>
-import ModifyCounter from '@/components/modifyCounter.vue'
+import ModifyCounter from '@/components/modifyCounter'
 import Exercise from "@/components/Exercise";
 import {Cycle} from "../../api/routine";
 //import AddExerciseInRoutine from "@/components/AddExerciseInRoutine";
@@ -79,16 +79,19 @@ export default {
     Exercise,
     ModifyCounter,
   },
-  props: ['cycles', 'cycle', 'exercises'],
+  props: ['cycles', 'cycle'],
   data() {
     return {
+      exercises: [],
+      hover: false,
       newExercise: false,
       repetitions: 0,
+      restExercise: {name: 'Descanso', type: 'rest', duration: 0}
     }
   },
   methods: {
     addCycle(){
-      const index = Math.floor(Math.random() * (999 - 1) + 1)
+      const index = this.cycles.length
       const newCycle = new Cycle(index, 'exercise', this.repetitions, this.exercises);
       this.$emit('addCycle', newCycle)
     },
@@ -102,10 +105,14 @@ export default {
     },
     addExercise(exercise){
       this.exercises.push(exercise)
+      this.$emit('addExcercise', exercise)
     },
     addRest(){
-      this.exercises.push({name: 'Descanso', type: 'rest', duration: 0})
-    }
+      this.exercises.push(this.restExercise)
+    },
+    setRepetitions(newValue){
+      this.cycle.repetitions = newValue;
+    },
   }
 };
 </script>

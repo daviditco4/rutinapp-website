@@ -37,14 +37,11 @@ class RoutineApi {
 }
 
 class Routine {
-  constructor(id, name, detail, difficulty, isPublic, metadata) {
-    if (id) {
-      this.id = id;
-    }
+  constructor(name, detail, isPublic, difficulty, metadata) {
     this.name = name;
     this.detail = detail;
-    this.difficulty = difficulty;
     this.isPublic = isPublic;
+    this.difficulty = difficulty;
     this.metadata = metadata;
   }
 }

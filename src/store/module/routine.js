@@ -31,6 +31,7 @@ export default {
             let response
             try {
                 response = await RoutineApi.add(routine);
+                console.log(response);
             } catch (err) {
                 // Data constraint: name already exists
                 if (err.code === 2) {

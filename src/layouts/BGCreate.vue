@@ -12,7 +12,7 @@
 
 <script>
 import Footer from '../components/Footer'
-import AppBar from '../components/AppBarLogin'
+import AppBar from '../components/AppBar'
 
 export default {
   name: 'BGLoginLayout',

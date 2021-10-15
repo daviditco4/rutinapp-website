@@ -59,7 +59,13 @@
             <v-btn v-if="$editValue" color="secondary" elevation="2" rounded @click="modifyRoutine()">Modificar Rutina</v-btn>
       </v-col>
         <v-col md="6">
-          <v-btn  color="secondary" elevation="2" rounded @click="cancelRoutine()">Cancelar</v-btn>
+         
+          <v-dialog  v-model="dialog"  width="500" >
+                      <template v-slot:activator="{ on, attrs }"> 
+                             <v-btn v-bind="attrs"  v-on="on" color="secondary" elevation="2" rounded>Cancelar</v-btn>
+                      </template>
+                      <LeaveConfirm @closeDialog="dialog = false"></LeaveConfirm>
+          </v-dialog>
         </v-col>
     </v-row>
     <v-row justify="center">
@@ -74,16 +80,20 @@
 
 <script>
 import NewCycle from '@/components/NewCycle.vue'
+import LeaveConfirm from '@/components/leaveConfirm.vue'
 import {mapActions, mapState} from 'vuex'
 import {Routine} from '../../api/routine'
+import router from "@/router";
 
 export default {
   name: "CreateRoutine",
   components: {
     NewCycle,
+    LeaveConfirm,
   },
   data() {
     return {
+      dialog:false,
       // routine fields
       id: null,
       routine: null,
@@ -145,6 +155,7 @@ export default {
       this.cycles = this.$oldRoutine.metadata.cycles;
       this.difficulty = this.$oldRoutine.difficulty;
     }
+    
   },
   methods: {
     ...mapActions('routine', {
@@ -169,6 +180,7 @@ export default {
       } catch (e) {
         this.setResult(e)
       }
+      await router.replace("/library");
     },
     async modifyRoutine(){
       this.emptyFields = false;
@@ -187,6 +199,7 @@ export default {
       } catch (e) {
         this.setResult(e)
       }
+      await router.replace("/library");
     },
     setResult(result){
       this.result = JSON.stringify(result, null, 2)
@@ -199,9 +212,6 @@ export default {
     },
     setCounter(newValue, field){
       this.exercise[field] = newValue;
-    },
-    cancelRoutine(){
-      this.$router.go(-1)
     },
     async addExercise(cycleId, exercise) {
       this.cycles[cycleId - 1].exercises.push(exercise);

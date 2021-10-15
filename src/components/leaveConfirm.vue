@@ -10,11 +10,29 @@
       </v-row>
       <v-row>
           <v-col md="6">
-          <v-btn color="secondary" dark @click="closeDialog">Cancelar</v-btn>
+          <v-btn color="secondary" dark @click="closeLeaveConfirm">No</v-btn>
          </v-col>
          <v-col md="6">
-          <v-btn color="error" dark @click="deleteRoutine()">Eliminar</v-btn>
+          <v-btn color="error" dark @click="cancel">Si</v-btn>
          </v-col>
       </v-row>
     </v-card>
 </template>
+
+<script scoped>
+
+export default {
+  name: "LeaveConfirm",
+  data(){
+    return{}
+  },
+  methods:{
+    closeLeaveConfirm() {
+      this.$emit('closeDialog');
+    },
+    cancel(){
+      this.$router.go(-1)
+    },
+  },
+}
+</script>

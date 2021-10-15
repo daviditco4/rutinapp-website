@@ -6,7 +6,7 @@
       class="lg"
       >
 
-    <v-col cols="8">
+    <v-col cols="9">
       <v-col cols="1">
       <v-tab to="/home" >
         <v-img src="@/assets/logo.png" max-width="50" max-height="50" class="justify-center my-3"></v-img>

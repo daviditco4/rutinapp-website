@@ -35,7 +35,6 @@ export default {
       this.$emit('setCounter', this.counter, this.field)
     },
     subTimes() {
-      console.log("ENTRA")
       if (this.counter >= this.addValue) {
         this.counter -= this.addValue;
       }

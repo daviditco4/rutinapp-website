@@ -23,7 +23,7 @@
     </v-row>
     <v-row>
       <v-col md="6">
-        <v-btn color="secondary" dark @click="addExercise()">Agregar</v-btn>
+        <v-btn color="secondary" dark @click="addExercise">Agregar</v-btn>
       </v-col>
       <v-col md="6">
         <v-btn  color="secondary" dark @click="closeDialog">Cancelar</v-btn>
@@ -46,7 +46,6 @@ export default {
     selectedExercise: {},
     page: 0,
     size: 50,
-    exercises: []
   }),
   async beforeMount() {
     await this.$getAllExercises({page: 0, size: 10}).content;
@@ -57,14 +56,15 @@ export default {
     }),
     items() {
       return this.$currentExercises
-    }
+    },
   },
   methods: {
     ...mapActions('exercise', {
       $getAllExercises: 'getAll',
     }),
     addExercise() {
-      this.$emit('addExercise', this.selectedExercise)
+      this.$emit('addExercise', this.selectedExercise);
+      this.$emit('closeAddExercise');
     },
     closeDialog() {
         this.$emit('closeAddExercise');

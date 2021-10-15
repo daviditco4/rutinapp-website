@@ -126,7 +126,7 @@ export default {
     ...mapState('routine', {
       $editValue: state => state.edit,
       $oldRoutine: state => state.routine
-    })
+    }),
   },
   created() {
     if(this.$editValue){
@@ -185,8 +185,9 @@ export default {
     cancelRoutine(){
       this.$router.go(-1)
     },
-    addExercise(cycleId, exercise) {
-      this.cycles[cycleId-1].exercises.push(exercise);
+    async addExercise(cycleId, exercise) {
+      this.cycles[cycleId - 1].exercises.push(exercise);
+      console.log(this.cycles);
     },
   }
 };

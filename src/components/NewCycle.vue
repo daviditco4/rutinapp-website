@@ -28,7 +28,6 @@
                     </v-btn>
                   </template>
                   <v-btn-toggle rounded style="margin-left: 60px; background-color: transparent">
-
                     <v-dialog  v-model="dialog"  width="500" >
                       <template v-slot:activator="{ on, attrs }"> 
                           <v-btn rounded v-bind="attrs"  v-on="on">
@@ -39,7 +38,6 @@
                                             @closeAddExercise="dialog = false"
                       ></AddExerciseInRoutine>
                     </v-dialog>
-                    
                     <v-btn @click="addRest()">
                       Descanso
                     </v-btn>
@@ -82,6 +80,7 @@ import ModifyCounter from '@/components/modifyCounter'
 import Exercise from "@/components/Exercise";
 import {Cycle} from "../../api/routine";
 import AddExerciseInRoutine from "@/components/AddExerciseInRoutine";
+import {ExerciseApi} from "../../api/exercise";
 export default {
   name: "NewCycle",
   components: {
@@ -115,9 +114,10 @@ export default {
       if (type === "cooldown")
         return "Estiramiento";
     },
-    addExercise(exercise){
-      this.cycle.exercises.push(exercise)
-      this.$emit('addExercise', this.cycle.id, exercise)
+    async addExercise(exerciseId) {
+      const response = await ExerciseApi.get(exerciseId);
+      this.exercises.push(response)
+      this.$emit('addExercise', this.cycle.id, response)
     },
     addRest(){
       this.exercises.push(this.restExercise)

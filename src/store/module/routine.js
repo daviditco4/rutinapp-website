@@ -5,7 +5,9 @@ export default {
     namespaced: true,
     state: {
         items: [],
-        cycles: []
+        cycles: [],
+        edit: false,
+        routine: null
     },
     getters: {
         findIndex(id) {
@@ -24,6 +26,12 @@ export default {
         },
         replaceAll(state, exercises) {
             state.items = exercises
+        },
+        changeEdit(state, value) {
+            state.edit = value
+        },
+        addRoutineToEdit(state, editRoutine) {
+            state.routine = editRoutine
         }
     },
     actions: {
@@ -86,5 +94,11 @@ export default {
             commit('replaceAll', response)
             return response
         },
+        changeEditValue( {commit}, value) {
+            commit('changeEdit', value)
+        },
+        routineToEdit({commit}, editRoutine) {
+            commit('addRoutineToEdit', editRoutine)
+        }
     },
 }

@@ -85,6 +85,8 @@ export default {
           if (actions === state) {
             id * 4
           }
+
+          console.log(id)
     
           const userMetadata = (await UserApi.get()).metadata
           const exerciseUserIndex = userMetadata.exercises.indexOf(id)
@@ -92,13 +94,9 @@ export default {
     
           if (exerciseUserIndex !== -1) {
             userMetadata.exercises.splice(exerciseUserIndex, 1)
-          } else {
-            return
+            await UserApi.modify({metadata: userMetadata})
+            await ExerciseApi.delete(id);
           }
-    
-          await UserApi.modify({metadata: userMetadata})
-    
-          return await ExerciseApi.delete(id);
         },
     
         async getAll({commit}, {page, size}) {

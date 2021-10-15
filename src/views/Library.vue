@@ -90,7 +90,7 @@
                                 <v-icon>mdi-pencil</v-icon>
                               </v-btn>
                               <v-btn
-                                @click="deleteConfirm()"
+                                @click="deleteConfirm(item.id)"
                                 style="margin: 0 0 0 10px"
                               >
                               <!--@click="deleteItem(item.id)"-->
@@ -134,21 +134,36 @@
             </v-col>
           </v-row>
     
-    <DeleteConfirmation v-if="deleteconfirm"/>
+    <v-dialog v-model="deleting" persistent>
+      <v-card flat width="300" class="pa-md-4 mx-lg-auto mt-16 rounded-xl" color="primary">
+        <v-row>
+          <v-col md="12">
+              <h3>¿Deseas eliminar la rutina?</h3>
+              <p> No podrás volver a recuperarla.</p>
+              </v-col>  
+        </v-row>
+        <v-row>
+        </v-row>
+        <v-row>
+            <v-col md="6">
+            <v-btn color="secondary" dark @click="deleting = true">Cancelar</v-btn>
+          </v-col>
+          <v-col md="6">
+            <v-btn color="error" dark @click="deleteItem()">Eliminar</v-btn>
+          </v-col>
+        </v-row>
+      </v-card>
+    </v-dialog>
 
-    </v-container>
+  </v-container>
 </template>
 
 <script>
 import { mapState, mapActions } from "vuex";
-import DeleteConfirmation from '@/components/deleteConfirmation.vue'
 // import { GET_EXERCISES, GET_ROUTINES } from '../store/actions'
 
 export default {
   inheritAttrs: false,
-  components:{
-    DeleteConfirmation,
-  },
   data: () => ({
     search: "",
     showRoutines: true,
@@ -156,13 +171,15 @@ export default {
     itemsPerPage: 8,
     // filterBy: "routine",
     // edit: false
-    deleteconfirm: false,
+    itemIdForDeletion: null,
+    deleting: false,
   }),
   computed: {
     ...mapState('routine', {
       $routinesPage: state => state.items.page + 1,
       $currentRoutines: state => state.items.content,
       $isLastRoutinesPage: state => state.items.isLastPage,
+      $editValue: state => state.edit
     }),
     ...mapState('exercise', {
       $exercisesPage: state => state.items.page + 1,
@@ -191,6 +208,8 @@ export default {
     ...mapActions('routine', {
       $getAllRoutinesCreatedByCurrentUser: 'getAllCreatedByCurrentUser',
       $deleteRoutine: 'delete',
+      $modifyEditValueRoutine: 'changeEditValue',
+      $addRoutineToEdit: 'routineToEdit'
     }),
     ...mapActions('exercise', {
       $getAllExercisesCreatedByCurrentUser: 'getAllCreatedByCurrentUser',
@@ -234,20 +253,23 @@ export default {
     },
     editItem(toEdit) {
       if(this.showRoutines) {
-        return;
+        this.$addRoutineToEdit(toEdit)
+        this.$modifyEditValueRoutine(true)
+        this.$router.push('/create-routine')
       } else {
         this.$addExerciseToEdit(toEdit)
         this.$modifyEditValue(true)
         this.$router.push('/create-exercise')
       }
     },
-    async deleteItem(id) {
+    async deleteItem() {
       if (this.showRoutines) {
-        await this.$deleteRoutine(id)
+        await this.$deleteRoutine(this.itemIdForDeletion)
       } else {
-        await this.$deleteExercise(id)
+        await this.$deleteExercise(this.itemIdForDeletion)
       }
       this.retrieve()
+      this.deleting = false
     },
     async create(){
       if(this.showRoutines)
@@ -255,8 +277,9 @@ export default {
       else
         await this.$router.replace("/create-exercise");
     },
-    deleteConfirm(){
-      this.deleteconfirm = true;
+    deleteConfirm(id) {
+      this.deleting = true
+      this.itemIdForDeletion = id
     }
   },
 };

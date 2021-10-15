@@ -13,7 +13,7 @@
           color="primary"
           rounded
           elevation="10"
-          class="px-8 pt-4 pa-2 card-format text-center">
+          class="px-8 pt-4 pa-2 card-format text-center ">
           <v-form>
             <v-text-field
               flat

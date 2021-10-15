@@ -71,7 +71,8 @@
                 >
             </v-text-field>
             <p class="error-message" v-if="!passwordCorrect">Las contraseñas no coinciden</p>
-            <p class="error-message" v-if="isAnyEmpty">Llenar todos los campos de texto.</p>
+            <v-alert v-model="alert" close-text="Close Alert" type="error" v-if="isAnyEmpty" dismissible
+            >Es necesario completar todos los campos</v-alert>
             <v-btn @click="register()"
                 class="text-center my-2"
                 color="secondary"

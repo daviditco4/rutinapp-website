@@ -59,7 +59,7 @@
                   <template v-slot:activator="{ on, attrs }">
 
                     <v-tab @click="overlay = !overlay"  v-bind="attrs" v-on="on">
-                      <v-img :src="item.metadata.image" height="200" width="200"></v-img>
+                      <v-img :src="item.metadata.image"></v-img>
                     </v-tab>
                   </template>
 

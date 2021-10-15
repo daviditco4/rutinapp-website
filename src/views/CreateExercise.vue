@@ -15,7 +15,7 @@
           </v-col>
         </v-row>
         <v-text-field v-model="name"
-            label="Escriba un nombre..." solo rounded flat outlined  light  hide-details background-color="white"
+            label="Escriba un nombre..." solo flat outlined  light  hide-details background-color="white"
         ></v-text-field>
         <p class="error-message" v-if="nameRepeated">Nombre de ejercicio ya existente.</p>
         <v-row>
@@ -24,7 +24,7 @@
           </v-col>
         </v-row>
         <v-text-field v-model="detail"
-            label="Detalle si es necesario el uso de equipos u otros comentarios..." solo rounded flat outlined  light  hide-details background-color="white"
+            label="Detalle si es necesario el uso de equipos u otros comentarios..." solo flat outlined  light  hide-details background-color="white"
         ></v-text-field>
 
         <v-row align="center">
@@ -60,7 +60,7 @@
           </v-col>
         </v-row>
         <v-select v-model="difficulty" :items="levels" label="Seleccione..." solo
-                      rounded flat outlined light hide-details background-color="white"
+                       flat outlined light hide-details background-color="white"
         ></v-select>
 
         <v-row>
@@ -69,7 +69,7 @@
           </v-col>
         </v-row>
             <v-select v-model="category" :items="categories" label="Elija una categoría..." solo
-                      rounded flat  outlined light hide-details background-color="white"
+                       flat  outlined light hide-details background-color="white"
             ></v-select>
 
         <v-row style="padding-top:20px" align="center" justify="center" class="mb-4" >          

@@ -99,7 +99,9 @@
          </v-col>
         </v-row>
         <v-row justify="center">
-          <p class="error-message" v-if="emptyFields">Llenar todos los campos</p>
+          <v-alert v-model="alert" close-text="Close Alert" color="secondary" dark dismissible v-if="emptyFields">
+          <p class="error-message">Llenar todos los campos</p>
+        </v-alert>
         </v-row>
 
       </v-card>

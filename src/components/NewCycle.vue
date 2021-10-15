@@ -28,9 +28,15 @@
                     </v-btn>
                   </template>
                   <v-btn-toggle rounded style="margin-left: 60px; background-color: transparent">
-                    <v-btn rounded @click="newExercise=!newExercise">
-                      Ejercicio
-                    </v-btn>
+
+                    <v-dialog  v-model="dialog"  width="500" >
+                      <template v-slot:activator="{ on, attrs }"> 
+                          <v-btn rounded @click="newExercise=!newExercise" v-bind="attrs"  v-on="on">
+                            Ejercicio
+                          </v-btn>
+                      </template>
+                      <AddExerciseInRoutine :newExercise="newExercise" v-if="newExercise" @addExercise="addExercise($event)"></AddExerciseInRoutine>
+                    </v-dialog>
                     <v-btn @click="addRest()">
                       Descanso
                     </v-btn>
@@ -63,7 +69,7 @@
           </v-col>
         </v-row>
       </template>
-      <AddExerciseInRoutine :newExercise="newExercise" v-if="newExercise" @addExercise="addExercise($event)"></AddExerciseInRoutine>
+      
     </v-container>
 
 </template>

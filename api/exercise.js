@@ -42,10 +42,7 @@ class ExerciseApi {
 }
 
 class Exercise {
-  constructor(id, name, detail, type, metadata) {
-    if (id) {
-      this.id = id;
-    }
+  constructor(name, detail, type, metadata) {
     this.name = name;
     this.detail = detail;
     this.type = type;

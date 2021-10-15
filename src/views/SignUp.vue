@@ -26,7 +26,8 @@
               outlined
               light
               hide-details
-              background-color="white">
+              background-color="white"
+              :rules="emailRules">
             </v-text-field>
             <v-text-field v-model="emailRepeat"
                 class="my-2 font-italic"
@@ -35,7 +36,8 @@
                 outlined
                 light
                 hide-details
-                background-color="white">
+                background-color="white"
+                :rules="emailRules">
             </v-text-field>
             <p class="error-message" v-if="!emailCorrect">Los emails no coinciden</p>
             <v-text-field v-model="password"
@@ -108,6 +110,9 @@ export default {
       registerSuccess: true,
       show1: false,
       show2: false,
+      emailRules: [ 
+        v => !v || /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'Email invalido'
+      ]
     }
   },
   computed: {

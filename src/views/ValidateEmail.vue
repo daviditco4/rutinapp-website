@@ -44,6 +44,8 @@
 </template>
 
 <script>
+import {mapState, mapActions} from 'vuex'
+
 import SignUp from "@/views/SignUp";
 import {EmailVerifier, UserApi} from "../../api/user";
 
@@ -57,14 +59,22 @@ export default {
       cannotVerify: false,
     }
   },
-
+  computed: {
+    ...mapState('security', {
+      $credentials: state => state.tempUser.credentials,
+    })
+  },
   methods: {
+    ...mapActions('security', {
+      $login: 'login',
+    }),
     async submit() {
       this.cannotVerify = false;
 
       try{
         const emailVerif = new EmailVerifier(this.email, this.code);
         await UserApi.verifyEmail(emailVerif);
+        await this.$login({credentials: this.$credentials, rememberMe: true})
       } catch (e) {
         this.cannotVerify = true;
       }

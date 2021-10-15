@@ -47,15 +47,19 @@ export default {
         },
         async create({commit}, user) {
             const result = await UserApi.add(user)
-            commit('setTempUser', result)
+            commit('setUser', result)
+            commit('setTempUser', user)
         },
-        async login({dispatch}, {credentials, rememberMe}) {
-            const result = await UserApi.login(credentials)
-            dispatch('updateToken', { token: result.token, rememberMe })
+        async login({commit, dispatch}, {credentials, rememberMe}) {
+            const result1 = await UserApi.login(credentials)
+            await dispatch('updateToken', { token: result1.token, rememberMe })
+            const result2 = await UserApi.get()
+            commit('setUser', result2)
         },
-        async logout({dispatch}) {
+        async logout({commit, dispatch}) {
             await UserApi.logout()
             dispatch('removeToken')
+            commit('setUser', null)
         },
         async getCurrentUser({state, commit}) {
             // Si ya está cacheado, no lo busca en la base

@@ -1,75 +1,69 @@
 <template >
-    <v-card flat style="padding-top:30px" width="500" class="pa-md-4 mx-lg-auto mt-16 rounded-xl" color="primary">  
-        <v-row>
-          <v-btn rounded @click="closeCardViewRoutine" color="#333C8E" dark >
-                    <v-icon left>
-                      mdi-close
-                    </v-icon>
-          </v-btn>
+        <v-card flat style="padding-top:30px" width="500" class="pa-md-4 mx-lg-auto mt-16 rounded-xl" color="primary">
+          <v-row>
+            <v-btn rounded @click="closeCardViewRoutine" color="#333C8E" dark >
+              <v-icon left>
+                mdi-close
+              </v-icon>
+            </v-btn>
 
-          <v-card-title primary-title class="d-flex justify-center" style="color:#333C8E; font-size:24px;">
-           {{extern_name}}
-          </v-card-title>
-        </v-row>
-        
+            <v-card-title primary-title class="d-flex justify-center" style="color:#333C8E; font-size:24px;">
+              {{routine.name}}
+            </v-card-title>
+          </v-row>
+
           <v-card-actions>
-           <v-col >
-            
+            <v-col >
+
               <v-row >
                 <v-col>
-                <v-row>
-                    <h4>Creado por:  </h4>
-                </v-row>
-                <v-row>
-                    <h4> {{extern_creator}} </h4>
-                </v-row>
-                <v-row>
-                <div offset-sm="3">
-                      <v-img :src="extern_routine_id.metadata.image_url" height="170" width="170"></v-img>                     
-                </div> 
-                </v-row>
+                  <v-row>
+                    <div offset-sm="3">
+                      <v-img :src="routine.metadata.image" height="170" width="170"></v-img>
+                    </div>
+                  </v-row>
 
-                <v-row>
-                    <h4> Categoria: {{extern_difficulty}}</h4>
-                </v-row>
+                  <v-row>
+                    <h4> Dificultad: {{getDifficulty()}}</h4>
+                  </v-row>
 
                 </v-col>
-                
+
                 <v-card class="mx-auto" max-width="700" rounded color="secondary">
 
-                <v-list color="secondary" dark>
-                <v-list-group
-                    v-for="item in items"
-                    :key="item.title"
-                    v-model="item.active"
-                    :prepend-icon="item.action"
-                    no-action
-                >
-                    <template v-slot:activator>
-                    <v-list-item-content>
-                        <v-list-item-title v-text="item.title"></v-list-item-title>
-                    </v-list-item-content>
-                    </template>
-
-                    <v-list-item
-                    v-for="child in item.items"
-                    :key="child.title"
+                  <v-list color="secondary" dark>
+                    <v-list-group
+                        v-for="item in routine.cycle"
+                        :key="item.id"
+                        v-model="item.active"
+                        :prepend-icon="item.action"
+                        no-action
                     >
-                    <v-list-item-content>
-                        <v-list-item-title v-text="child.title"></v-list-item-title>
-                    </v-list-item-content>
-                    </v-list-item>
-                </v-list-group>
-                </v-list>
-            </v-card>
+                      <template v-slot:activator>
+                        <v-list-item-content v-for="exer in item.exercises" :key="exer.id">
+                          <v-list-item-title v-text="exer.name"></v-list-item-title>
+                        </v-list-item-content>
+                      </template>
 
-            </v-row>
+                      <v-list-item
+                          v-for="child in item.items"
+                          :key="child.title"
+                      >
+                        <v-list-item-content>
+                          <v-list-item-title v-text="child.title"></v-list-item-title>
+                        </v-list-item-content>
+                      </v-list-item>
+                    </v-list-group>
+                  </v-list>
+                </v-card>
+
+              </v-row>
             </v-col>
-            
-        </v-card-actions>
-        
-                    
-    </v-card>
+
+          </v-card-actions>
+
+
+        </v-card>
 
 </template>
 
@@ -77,24 +71,7 @@
 <script>
   export default {
   name: "ViewRoutine",
-  props: {
-    extern_name: {
-      type: String,
-      default: ''
-    },
-    extern_difficulty: {
-      type: String,
-    },
-    extern_routine_id: {
-      type: Number,
-    },
-    extern_cycle_id: {
-      type: Number,
-    },
-    extern_creator: {
-      type: String
-    },
-  },
+  props: ['routine'],
 
     data: () => ({
       items: [
@@ -126,15 +103,15 @@
         this.$emit('closeViewRoutine');
     },
     getDifficulty() {
-      if (this.extern_difficulty === "rookie")
+      if (this.routine.difficulty === "rookie")
         return "Novato";
-      if (this.extern_difficulty === "beginner")
+      if (this.routine.difficulty === "beginner")
         return "Principiante";
-      if (this.extern_difficulty === "intermediate")
+      if (this.routine.difficulty === "intermediate")
         return "Intermedio";
-      if (this.extern_difficulty === "advanced")
+      if (this.routine.difficulty === "advanced")
         return "Avanzado";
-      if (this.extern_difficulty === "expert")
+      if (this.routine.difficulty === "expert")
         return "Experto";
     }
     },

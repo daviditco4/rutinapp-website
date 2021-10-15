@@ -88,8 +88,14 @@
                       rounded flat  outlined light hide-details background-color="white"
             ></v-select>
 
-        <v-row style="padding-top:20px" align="center" justify="center" class="mb-4" >
-          <v-btn  color="secondary" elevation="2" rounded @click="createExercise()">Crear</v-btn>
+        <v-row style="padding-top:20px" align="center" justify="center" class="mb-4" >          
+         <v-col md="6">
+            <v-btn v-if="this.$editValue" color="secondary" elevation="2" rounded @click="modifyExercise()">Modificar</v-btn>
+          <v-btn v-if="!this.$editValue" color="secondary" elevation="2" rounded @click="createExercise()">Crear</v-btn>     
+         </v-col>
+         <v-col md="6">
+          <v-btn  color="secondary" elevation="2" rounded @click="cancelExercise()">Cancelar</v-btn>
+         </v-col>
         </v-row>
         <v-row justify="center">
           <p class="error-message" v-if="emptyFields">Llenar todos los campos</p>
@@ -107,7 +113,7 @@
 <script>
 import ModifyCounter from '@/components/modifyCounter.vue'
 import {Exercise} from '../../api/exercise'
-import {mapActions} from "vuex";
+import {mapActions, mapState, mapGetters} from "vuex";
 
 export default {
   name: "CreateExercise",
@@ -140,9 +146,31 @@ export default {
       nameRepeated: false,
     }
   },
+  computed: {
+    ...mapState('exercise', {
+      $editValue: state => state.edit,
+      $oldExercise: state => state.exercise
+    }),
+    ...mapGetters('exercise', {
+      $getExerciseIndex: 'findIndex'
+    })
+  },
+  created() {
+      if(this.$editValue){
+        this.name = this.$oldExercise.name;
+        this.detail = this.$oldExercise.detail;
+        this.type = this.$oldExercise.type;
+        this.series = this.$oldExercise.metadata.series;
+        this.difficulty = this.$oldExercise.metadata.difficulty;
+        this.category = this.$oldExercise.metadata.category;
+        this.duration = this.$oldExercise.metadata.duration;
+        this.image = this.$oldExercise.metadata.image;
+      }
+  },
   methods: {
     ...mapActions('exercise', {
       $createExercise: 'create',
+      $modifyExercise: 'edit'
     }),
     async createExercise() {
       this.nameRepeated = false;
@@ -155,17 +183,42 @@ export default {
         series: this.series,
         duration: this.duration,
         difficulty: this.difficulty,
-        image: this.image,
+        image: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
         category: this.category
       }
-      const index = Math.floor(Math.random() * (999 - 1) + 1)
-      const exercise = new Exercise(index, this.name, this.detail, 'exercise', exerciseMetadata)
+
+      const exercise = new Exercise( this.name, this.detail, 'exercise', exerciseMetadata)
       try {
         this.exercise = await this.$createExercise(exercise);
         this.setResult(this.exercise)
       } catch (e) {
         this.setResult(e)
         if(e.code == 2) {
+          this.nameRepeated = true;
+        }
+      }
+    },
+    async modifyExercise() {
+      this.nameRepeated = false;
+      this.emptyFields = false;
+      if(this.checkIfEmpty()) {
+        this.emptyFields = true;
+        return;
+      }
+      const exerciseMetadata = {
+        series: this.series,
+        duration: this.duration,
+        difficulty: this.difficulty,
+        image: this.image,
+        category: this.category
+      }
+      const index = this.$getExerciseIndex;
+      const exercise = new Exercise(index, this.name, this.detail, 'exercise', exerciseMetadata)
+      try {
+        this.exercise = await this.$modifyExercise(index, exercise);
+        this.setResult(this.exercise)
+      } catch (e) {
+        if(e == 2) {
           this.nameRepeated = true;
         }
       }

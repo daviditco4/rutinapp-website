@@ -5,7 +5,9 @@ export default {
     namespaced: true,
     state: {
         repeatedName: false,
-        items: []
+        items: [],
+        edit: false,
+        exercise: null
     },
     getters: {
         findIndex(id) {
@@ -24,6 +26,12 @@ export default {
         },
         replaceAll(state, exercises) {
             state.items = exercises
+        },
+        changeEdit(state, value) {
+            state.edit = value
+        },
+        addExerciseToEdit(state, editExercise) {
+            state.exercise = editExercise
         }
     },
     actions: {
@@ -38,14 +46,21 @@ export default {
                     this.repeatedName = true;
                 }
             }
+            const exerciseId = response.id
             //get current user
             response = await UserApi.get();
+            console.log(response)
             // save exercise id in creator's user metadata
-            if(response.metadata['exercises'] == undefined){
+            if(response.metadata == null){
+                response.metadata = {};
                 response.metadata['exercises'] = []
+                console.log(response)
             }
-            response.metadata['exercises'].push(exercise.id)
-            await UserApi.modify(response)
+            response.metadata['exercises'].push(exerciseId)
+            const data = {
+                metadata: response.metadata
+            }
+            await UserApi.modify(data)
         },
 
         async edit({getters, commit}, id) {
@@ -112,5 +127,13 @@ export default {
           commit('replaceAll', res)
           return res
         },
+
+        changeEditValue( {commit}, value) {
+            commit('changeEdit', value)
+        },
+
+        exerciseToEdit({commit}, editExercise) {
+            commit('addExerciseToEdit', editExercise)
+        }
       },
 }

@@ -1,14 +1,16 @@
 <template >
     <v-card width="500" height="370" class="mx-auto text-center" color="primary">  
         <v-row>
-          <v-btn rounded @click="closeCardCreaciones" color="#333C8E" dark >
-                    <v-icon left>
-                      mdi-arrow-left
-                    </v-icon>
-          </v-btn>
-          <v-card-title primary-title class="text-center" style="color:#333C8E; font-size:24px;">
+          <v-col sm="1">
+            <v-btn @click="closeCardCreaciones" fab color="secondary" dark class="align-center">
+              <v-icon left >mdi-arrow-left</v-icon>
+            </v-btn>
+          </v-col>
+          <v-col md="10" offset-sm="1">
+          <v-card-title primary-title class="text-center" style="color:#333C8E; font-size:27px;">
             ¿Qué vamos a crear hoy?
           </v-card-title>
+          </v-col>
         </v-row>
         
           <v-card-actions>

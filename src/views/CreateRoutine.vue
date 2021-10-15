@@ -52,14 +52,11 @@
         <NewCycle v-bind:cycle="cycle" :cycles="cycles" v-bind:exercises="cycle.exercises" @addCycle="addCycle($event)" v-on:addExercise="addExercise" v-on:addRest="addExercise"></NewCycle>
       </li>
 
-    </v-container>
 
     <v-row class="justify-center">
         <v-col md="6">
             <v-btn v-if="!$editValue" color="secondary" elevation="2" rounded @click="createRoutine()">Crear Rutina</v-btn>         
-        </v-col>
-      <v-col md="6">
-        <v-btn v-if="$editValue" color="secondary" elevation="2" rounded @click="modifyRoutine()">Modificar Rutina</v-btn>
+            <v-btn v-if="$editValue" color="secondary" elevation="2" rounded @click="modifyRoutine()">Modificar Rutina</v-btn>
       </v-col>
         <v-col md="6">
           <v-btn  color="secondary" elevation="2" rounded @click="cancelRoutine()">Cancelar</v-btn>
@@ -67,6 +64,7 @@
     </v-row>
 
 
+    </v-container>
   </div>
 </template>
 

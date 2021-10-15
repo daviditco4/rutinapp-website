@@ -1,7 +1,7 @@
 <template >
         <v-card flat style="padding-top:30px" width="500" class="pa-md-4 mx-lg-auto mt-16 rounded-xl" color="primary">
           <v-row>
-            <v-btn rounded @click="closeCardViewRoutine" color="#333C8E" dark >
+            <v-btn fab @click="closeCardViewRoutine" color="#333C8E" dark >
               <v-icon left>
                 mdi-close
               </v-icon>

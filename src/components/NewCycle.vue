@@ -1,17 +1,16 @@
 <template>
-    <v-container>
-      <template>
-
-        <v-card class="pa-md-4 mx-lg-auto mt-16 rounded-xl" width="800px" color="primary">
-          <v-row align="center">
-            <v-col justify="left" cols="12" md="5">
-              <h3 class="text-left">Ciclo {{cycle.id}}: {{ translate(cycle.type) }}</h3>
-            </v-col>
-            <ModifyCounter :start-time="0" :addValue="1" :field="'repetitions'" @setCounter="setRepetitions"></ModifyCounter>
-            <v-col>
-              <p justify="center">Repeticiones del ciclo</p>
-            </v-col>
-          </v-row>
+  <v-container>
+  <template>
+    <v-card class="pa-md-4 mx-lg-auto mt-16 rounded-xl" width="800px" color="primary">
+      <v-row align="center">
+        <v-col justify="left" cols="12" md="5">
+          <h3 class="text-left">Ciclo {{cycle.id}}: {{ translate(cycle.type) }}</h3>
+        </v-col>
+        <ModifyCounter :start-time="0" :addValue="1" :field="'repetitions'" @setCounter="setRepetitions"></ModifyCounter>
+        <v-col>
+          <p justify="center">Repeticiones del ciclo</p>
+        </v-col>
+      </v-row>
 
           <li v-for="exercise in exercises" :key="exercise.id">
             <Exercise v-bind:exercise="exercise"></Exercise>

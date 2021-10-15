@@ -5,7 +5,7 @@
         <v-row no-gutters>
           <v-col>
             <h2 v-if="!$editValue" class="d-flex justify-center">Nueva Rutina</h2>
-            <h2 v-if="$editValue" class="d-flex justify-center">Editar Rutina</h2>
+            <h2 v-if="$editValue" class="d-flex justify-center">Editar  Rutina</h2>
           </v-col>
         </v-row>
 
@@ -123,7 +123,17 @@ export default {
   computed: {
     ...mapState('routine', {
       $editValue: state => state.edit,
+      $oldRoutine: state => state.routine
     })
+  },
+  created() {
+    if(this.$editValue){
+      this.name = this.$oldRoutine.name;
+      this.detail = this.$oldRoutine.detail;
+      this.isPublic = this.$oldRoutine.isPublic;
+      this.cycles = this.$oldRoutine.metadata.cycles;
+      this.difficulty = this.$oldRoutine.difficulty;
+    }
   },
   methods: {
     ...mapActions('routine', {
@@ -133,7 +143,8 @@ export default {
     async createRoutine() {
       this.cycles.exercises = this.exercises
       const routineMetadata = {
-        cycles: this.cycles
+        cycles: this.cycles,
+        image: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg"
       }
       const routine = new Routine(this.name, this.detail, this.isPublic, this.difficulty, routineMetadata)
       try {

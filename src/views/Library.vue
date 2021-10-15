@@ -163,6 +163,7 @@ export default {
       $routinesPage: state => state.items.page + 1,
       $currentRoutines: state => state.items.content,
       $isLastRoutinesPage: state => state.items.isLastPage,
+      $editValue: state => state.edit
     }),
     ...mapState('exercise', {
       $exercisesPage: state => state.items.page + 1,
@@ -191,7 +192,8 @@ export default {
     ...mapActions('routine', {
       $getAllRoutinesCreatedByCurrentUser: 'getAllCreatedByCurrentUser',
       $deleteRoutine: 'delete',
-      $modifyEditValue: 'changeEditValue',
+      $modifyEditValueRoutine: 'changeEditValue',
+      $addRoutineToEdit: 'routineToEdit'
     }),
     ...mapActions('exercise', {
       $getAllExercisesCreatedByCurrentUser: 'getAllCreatedByCurrentUser',
@@ -235,7 +237,8 @@ export default {
     },
     editItem(toEdit) {
       if(this.showRoutines) {
-        this.$modifyEditValue(true)
+        this.$addRoutineToEdit(toEdit)
+        this.$modifyEditValueRoutine(true)
         this.$router.push('/create-routine')
       } else {
         this.$addExerciseToEdit(toEdit)

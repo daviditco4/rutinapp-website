@@ -6,7 +6,8 @@ export default {
     state: {
         items: [],
         cycles: [],
-        edit: false
+        edit: false,
+        routine: null
     },
     getters: {
         findIndex(id) {
@@ -29,6 +30,9 @@ export default {
         changeEdit(state, value) {
             state.edit = value
         },
+        addRoutineToEdit(state, editRoutine) {
+            state.routine = editRoutine
+        }
     },
     actions: {
         async create({ commit }, routine) {
@@ -93,5 +97,8 @@ export default {
         changeEditValue( {commit}, value) {
             commit('changeEdit', value)
         },
+        routineToEdit({commit}, editRoutine) {
+            commit('addRoutineToEdit', editRoutine)
+        }
     },
 }

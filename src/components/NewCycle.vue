@@ -35,8 +35,11 @@
                             Ejercicio
                           </v-btn>
                       </template>
-                      <AddExerciseInRoutine :newExercise="newExercise" v-if="newExercise" @addExercise="addExercise($event)"></AddExerciseInRoutine>
+                      <AddExerciseInRoutine :newExercise="newExercise" v-if="newExercise" @addExercise="addExercise($event)"
+                                            @closeAddExercise="dialog = false"
+                      ></AddExerciseInRoutine>
                     </v-dialog>
+                    
                     <v-btn @click="addRest()">
                       Descanso
                     </v-btn>
@@ -89,6 +92,8 @@ export default {
   props: ['cycles', 'cycle', 'exercise'],
   data() {
     return {
+      dialog: false,
+
       exercises: [],
       hover: false,
       newExercise: false,

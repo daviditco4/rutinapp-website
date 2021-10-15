@@ -209,9 +209,6 @@ export default {
     setCounter(newValue, field){
       this.exercise[field] = newValue;
     },
-    cancelRoutine(){
-      this.$router.go(-1)
-    },
     async addExercise(cycleId, exercise) {
       this.cycles[cycleId - 1].exercises.push(exercise);
     },

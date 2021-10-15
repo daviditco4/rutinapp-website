@@ -1,7 +1,7 @@
 <template>
   <div class="create-exercise">
     <v-container>
-      <v-card class="pa-md-4 mx-lg-auto mt-16 rounded-xl" width="800px" color="primary">
+      <v-card class="pa-md-4 mx-lg-auto mt-16 " width="800px" color="primary">
         <v-row>
           <v-col>
             <h2 v-if="!$editValue" class="d-flex justify-center">Nuevo ejercicio</h2>

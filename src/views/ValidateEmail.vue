@@ -23,7 +23,6 @@
                 label ="Código"
             ></v-text-field>
           </v-row>
-          <h4 class="error-warning" style=" align-self: center" v-if="codeIncorrect">Permiso denegado</h4>
           <v-row >
             <v-flex xs12 sm6 class="pa-1">
               <v-btn
@@ -36,6 +35,7 @@
                   rounded large color="secondary"
                   @click="this.resend">Reenviar código</v-btn>
             </v-flex>
+            <v-alert type="error" v-if="cannotVerify" align="center">¡Ups! Hubo un error al validar el email. Revise el email y el código.</v-alert>
           </v-row>
         </form>
       </v-card>
@@ -55,6 +55,8 @@ export default {
   data () {
     return {
       email: SignUp.data().email,
+      username: SignUp.data().username,
+      password: SignUp.data().password,
       code: '',
       cannotVerify: false,
     }
@@ -74,11 +76,12 @@ export default {
       try{
         const emailVerif = new EmailVerifier(this.email, this.code);
         await UserApi.verifyEmail(emailVerif);
-        await this.$login({credentials: this.$credentials, rememberMe: true})
+        // await this.$login({credentials: this.$credentials, rememberMe: true})
       } catch (e) {
         this.cannotVerify = true;
+        return;
       }
-      await this.$router.push('/home');
+      await this.$router.push('/');
     },
 
     async resend() {

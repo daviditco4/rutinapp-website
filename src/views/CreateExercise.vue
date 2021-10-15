@@ -65,23 +65,6 @@
 
         <v-row>
           <v-col>
-            <h4 class="d-flex justify-start align-center pt-4">Archivos
-              <v-btn class="ml-4 rounded-xl secondary">
-                <v-file-input @mouseenter="hover=!hover" @mouseleave="hover=!hover" class="align-center" style="height: 100%; padding-top: 0; margin-top: 0" prepend-icon="mdi-plus" hide-input multiple></v-file-input>
-                <span>Agregar</span>
-              </v-btn>
-            </h4>
-          </v-col>
-        </v-row>
-
-        <v-row>
-          <v-card class="rounded-lg" style="height: 100px; width: 100px; margin-left: 10px; margin-right: 10px">
-            <v-img src="@/assets/logo.svg"></v-img>
-          </v-card>
-        </v-row>
-
-        <v-row>
-          <v-col>
             <h4 class="d-flex justify-start pt-4">Categoría</h4>
           </v-col>
         </v-row>
@@ -99,16 +82,12 @@
          </v-col>
         </v-row>
         <v-row justify="center">
-          <v-alert v-model="alert" close-text="Close Alert" color="secondary" dark dismissible v-if="emptyFields">
-          <p class="error-message">Llenar todos los campos</p>
-        </v-alert>
+          <v-alert close-label="Close Alert"
+              type="error" v-if="emptyFields"
+          >Es necesario completar todos los campos</v-alert>
         </v-row>
 
       </v-card>
-
-      <v-dialog>
-
-      </v-dialog>
     </v-container>
   </div>
 </template>
@@ -133,7 +112,6 @@ export default {
       series: null,
       duration: null,
       difficulty: '',
-      image: '',
       category: '',
 
       // preloaded data

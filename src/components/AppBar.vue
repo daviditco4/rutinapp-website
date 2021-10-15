@@ -77,6 +77,11 @@ export default {
       result: null,
     }
   },
+  async create() {
+    if (this.$user == null) {
+      await this.$router.replace('/');
+    }
+  },
   computed: {
     ...mapState("security", {
       $user: (state) => state.user,
@@ -85,7 +90,7 @@ export default {
       $isLoggedIn: 'isLoggedIn'
     }),
     usernameFirstLetter() {
-      return this.$user.username.charAt(0).toUpperCase()
+       return this.$user.username.charAt(0).toUpperCase()
     },
     isLoggedIn() {
       return this.$isLoggedIn

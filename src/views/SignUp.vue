@@ -75,6 +75,7 @@
                 rounded
             >Registrarse
             </v-btn>
+            <v-alert type="error" v-if="userRepeated">¡El usuario ya existe!</v-alert>
           </v-form>
         </v-sheet>
       </v-col>
@@ -110,6 +111,7 @@ export default {
       registerSuccess: true,
       show1: false,
       show2: false,
+      userRepeated: false,
       emailRules: [ 
         v => !v || /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'Email invalido'
       ]
@@ -139,7 +141,11 @@ export default {
         this.setResult(this.user)
       } catch (e) {
         this.setResult(e)
+        if(e.code == 2){
+          this.userRepeated = true;
+        }
         this.registerSuccess = false;
+        return;
       }
       // if(this.registerSuccess) {
         await this.$router.push('/validateEmail')

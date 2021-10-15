@@ -254,6 +254,7 @@ export default {
           this.nameRepeated = true;
         }
       }
+      await router.replace("/library");
     },
     setResult(result){
       this.result = JSON.stringify(result, null, 2)

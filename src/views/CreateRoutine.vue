@@ -199,6 +199,7 @@ export default {
       } catch (e) {
         this.setResult(e)
       }
+      await router.replace("/library");
     },
     setResult(result){
       this.result = JSON.stringify(result, null, 2)

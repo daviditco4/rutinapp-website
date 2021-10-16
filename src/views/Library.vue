@@ -5,17 +5,7 @@
         <v-row>
           <!-- <v-col md="1">Aca va el boton para volver hacia atras</v-col> -->
           <v-col md="12"><h1>
-            <v-dialog v-if="showRoutines" v-model="dialog"  width="500" >
-                  <template v-slot:activator="{ on, attrs }">
-                  <v-btn style="justify-content: center" v-bind="attrs" v-on="on" text>
-                    Mi Biblioteca
-                    </v-btn>
-                   </template>
-                  <ViewRoutine v-bind:routine="item" @closeCreaciones="dialog = false">
-                  </ViewRoutine>
-
-                </v-dialog>
-           
+                    Mi Biblioteca          
        </h1></v-col>
         </v-row>
           <!-- <v-col md="1">
@@ -116,19 +106,9 @@
                   </v-hover>
 
                 <v-list-item-content style="justify-content: center">
-                 <v-dialog v-if="showRoutines" v-model="dialogs[item.id]"  width="500" >
-                  <template v-slot:activator="{ on, attrs }">
-                  <v-btn style="justify-content: center" v-bind="attrs" v-on="on" text>
                    {{
                     item.name
                   }}
-                    </v-btn>
-                   </template>
-                  <ViewRoutine v-bind:routine="item" @closeCreaciones="dialog[item.id] = false">
-                  </ViewRoutine>
-
-                </v-dialog> 
-
                   </v-list-item-content>
                 </v-col>
               </v-row>
@@ -163,8 +143,8 @@
       <v-card flat width="300" class="pa-md-4 mx-lg-auto mt-16 rounded-xl" color="primary">
         <v-row>
           <v-col md="12">
-              <h3>¿Deseas eliminar la rutina?</h3>
-              <p> No podrás volver a recuperarla.</p>
+              <h3>¿Deseas eliminar?</h3>
+              <p> No se podrá volver a recuperar.</p>
               </v-col>  
         </v-row>
         <v-row>
@@ -186,12 +166,10 @@
 <script>
 import { mapState, mapActions } from "vuex";
 // import { GET_EXERCISES, GET_ROUTINES } from '../store/actions'
-import ViewRoutine from '@/components/viewRoutine.vue'
 
 export default {
   inheritAttrs: false,
   components:{
-    ViewRoutine,
   },
   data: () => ({
     dialog: false,

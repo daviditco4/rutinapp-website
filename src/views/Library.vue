@@ -5,7 +5,7 @@
         <v-row>
           <!-- <v-col md="1">Aca va el boton para volver hacia atras</v-col> -->
           <v-col md="12"><h1>
-            
+
              <v-dialog  v-model="dialog"  width="500" >
                 <template v-slot:activator="{ on, attrs }">
             <v-btn style="justify-content: center" v-bind="attrs" v-on="on" text>
@@ -180,14 +180,12 @@
 <script>
 import { mapState, mapActions } from "vuex";
 // import { GET_EXERCISES, GET_ROUTINES } from '../store/actions'
-import ViewRoutine from '@/components/viewRoutine.vue'
 import Creaciones from '@/components/Creaciones.vue'
 
 export default {
   inheritAttrs: false,
   components:{
     Creaciones,
-    ViewRoutine,
   },
   data: () => ({
     dialog: false,

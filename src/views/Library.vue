@@ -5,7 +5,17 @@
         <v-row>
           <!-- <v-col md="1">Aca va el boton para volver hacia atras</v-col> -->
           <v-col md="12"><h1>
-            Mi Biblioteca
+            <v-dialog v-if="showRoutines" v-model="dialog"  width="500" >
+                  <template v-slot:activator="{ on, attrs }">
+                  <v-btn style="justify-content: center" v-bind="attrs" v-on="on" text>
+                    Mi Biblioteca
+                    </v-btn>
+                   </template>
+                  <ViewRoutine v-bind:routine="item" @closeCreaciones="dialog = false">
+                  </ViewRoutine>
+
+                </v-dialog>
+           
        </h1></v-col>
         </v-row>
           <!-- <v-col md="1">
@@ -105,8 +115,8 @@
                     </template>
                   </v-hover>
 
-                  <v-list-item-content style="justify-content: center">
-                 <v-dialog  v-model="dialog"  width="500" >
+                <v-list-item-content style="justify-content: center">
+                 <v-dialog v-if="showRoutines" v-model="dialogs[item.id]"  width="500" >
                   <template v-slot:activator="{ on, attrs }">
                   <v-btn style="justify-content: center" v-bind="attrs" v-on="on" text>
                    {{
@@ -114,7 +124,7 @@
                   }}
                     </v-btn>
                    </template>
-                  <ViewRoutine v-if="showRoutines" @closeCreaciones="dialog = false">
+                  <ViewRoutine v-bind:routine="item" @closeCreaciones="dialog[item.id] = false">
                   </ViewRoutine>
 
                 </v-dialog> 
@@ -225,6 +235,11 @@ export default {
   },
   created() {
     this.retrieve()
+    let i = 0
+    while( i < this.$routinesCount){
+      this.dialogs[i] = false
+      i++
+    }
   },
   methods: {
     ...mapActions('routine', {

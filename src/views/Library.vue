@@ -5,18 +5,8 @@
         <v-row>
           <!-- <v-col md="1">Aca va el boton para volver hacia atras</v-col> -->
           <v-col md="12"><h1>
-
-             <v-dialog  v-model="dialog"  width="500" >
-                <template v-slot:activator="{ on, attrs }">
-            <v-btn style="justify-content: center" v-bind="attrs" v-on="on" text>
             Mi Biblioteca
-            </v-btn>
-                  <Creaciones  @closeCreaciones="dialog = false">
-                  </Creaciones>
-
-                </v-dialog> 
-
-            </h1></v-col>
+       </h1></v-col>
         </v-row>
           <!-- <v-col md="1">
             <v-btn
@@ -116,12 +106,18 @@
                   </v-hover>
 
                   <v-list-item-content style="justify-content: center">
-
-
+                 <v-dialog  v-model="dialog"  width="500" >
+                  <template v-slot:activator="{ on, attrs }">
+                  <v-btn style="justify-content: center" v-bind="attrs" v-on="on" text>
                    {{
                     item.name
                   }}
+                    </v-btn>
+                   </template>
+                  <ViewRoutine v-if="showRoutines" @closeCreaciones="dialog = false">
+                  </ViewRoutine>
 
+                </v-dialog> 
 
                   </v-list-item-content>
                 </v-col>
@@ -180,12 +176,12 @@
 <script>
 import { mapState, mapActions } from "vuex";
 // import { GET_EXERCISES, GET_ROUTINES } from '../store/actions'
-import Creaciones from '@/components/Creaciones.vue'
+import ViewRoutine from '@/components/viewRoutine.vue'
 
 export default {
   inheritAttrs: false,
   components:{
-    Creaciones,
+    ViewRoutine,
   },
   data: () => ({
     dialog: false,

@@ -21,7 +21,7 @@
               <v-row style="margin-left: 10px; margin-bottom: 20px">
                 <v-menu transition="scroll-x-transition" style="height: 20px;">
                   <template v-slot:activator="{on, attrs}">
-                    <v-btn rounded v-on="on" v-bind="attrs" style="min-width: 10px;height: 50px;">
+                    <v-btn rounded v-on="on" v-bind="attrs" style="min-width: 10px;height: 50px; background-color:transparent" color="secondary" flat>
                       <v-icon>
                         mdi-plus
                       </v-icon>
@@ -30,7 +30,7 @@
                   <v-btn-toggle rounded style="margin-left: 60px; background-color: transparent">
                     <v-dialog  v-model="dialog"  width="500" >
                       <template v-slot:activator="{ on, attrs }"> 
-                          <v-btn rounded v-bind="attrs"  v-on="on">
+                          <v-btn rounded v-bind="attrs"  v-on="on" color="secondary" dark>
                             Ejercicio
                           </v-btn>
                       </template>
@@ -38,7 +38,7 @@
                                             @closeAddExercise="dialog = false"
                       ></AddExerciseInRoutine>
                     </v-dialog>
-                    <v-btn @click="addRest()">
+                    <v-btn @click="addRest()" color="secondary" dark>
                       Descanso
                     </v-btn>
                   </v-btn-toggle>
@@ -51,7 +51,7 @@
         <v-row v-if="cycle.id == cycles.length-1" style="position: relative" justify="center">
           <v-col cols="12" md="3">
             <v-expand-transition>
-              <v-card class="">
+              <v-card class="" color="secondary" dark rounded>
                 <v-row v-if="hover">
                   <v-col class="justify-start">
                     <span style="margin-left: 20px">NUEVO</span>
@@ -63,7 +63,7 @@
               </v-card>
             </v-expand-transition>
             <div class="text-center" @mouseenter="hover=!hover" @mouseleave="hover=!hover">
-              <v-btn elevation="1" fab style="z-index: 2; margin-top: -50px;" @click="addCycle()">
+              <v-btn color="secondary" elevation="1" fab style="z-index: 2; margin-top: -50px;" @click="addCycle()">
                 <v-icon>mdi-plus</v-icon>
               </v-btn>
             </div>

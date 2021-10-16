@@ -40,7 +40,7 @@
             >
             </v-text-field>
             <p class="error-message" v-if="!userAuthorized">Usuario y/o contraseña inválida</p>
-            <v-alert type="error" v-if="isEmpty">Llenar todos los campos.</v-alert>
+            <v-alert type="error" v-if="isEmpty">Error al iniciar sesión.</v-alert>
             <v-btn @click="login()"
               class="text-center my-2"
               color="secondary"
@@ -101,6 +101,7 @@ export default {
       this.isEmpty = false;
       this.correctInfo = true;
       this.userAuthorized = true;
+      this.IfEmpty()
       try {
         const credentials = new Credentials(this.username, this.password)
         await this.$login({credentials, rememberMe: true })
@@ -112,7 +113,7 @@ export default {
           this.userAuthorized = false;
         }
       }
-      this.IfEmpty()
+
       if(this.isLoggedIn && this.userAuthorized){
         await this.$router.push('/home')
       }

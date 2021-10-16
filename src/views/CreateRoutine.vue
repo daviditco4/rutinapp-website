@@ -54,11 +54,11 @@
 
 
     <v-row class="justify-center">
-        <v-col md="6">
+        <v-col offset-sm="1" md="5">
             <v-btn v-if="!$editValue" color="secondary" elevation="2" rounded @click="createRoutine()">Crear Rutina</v-btn>         
             <v-btn v-if="$editValue" color="secondary" elevation="2" rounded @click="modifyRoutine()">Modificar Rutina</v-btn>
       </v-col>
-        <v-col md="6">
+        <v-col  md="6">
          
           <v-dialog  v-model="dialog"  width="500" >
                       <template v-slot:activator="{ on, attrs }"> 

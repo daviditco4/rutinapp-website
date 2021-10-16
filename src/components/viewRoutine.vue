@@ -40,20 +40,20 @@
                         no-action
                     >
                       <template v-slot:activator>
-                        <v-list-item-content v-for="exer in item.exercises" :key="exer.id">
-                          <v-list-item-title v-text="exer.name"></v-list-item-title>
+                        <v-list-item-content >
+                          <v-list-item-title>Ciclo {{item.id}}</v-list-item-title>
                         </v-list-item-content>
                       </template>
 
-                      <v-list-item
-                          v-for="child in item.items"
-                          :key="child.title"
-                      >
-                        <v-list-item-content>
-                          <v-list-item-title v-text="child.title"></v-list-item-title>
-                        </v-list-item-content>
+                      <v-list-item v-for="exercise in item.exercises" :key="exercise.id"
+                                   v-model="item.active"
+                                   :prepend-icon="item.action"
+                                   no-action>
+
+                        <v-list-item-title v-text="exercise.name"></v-list-item-title>
                       </v-list-item>
                     </v-list-group>
+
                   </v-list>
                 </v-card>
 
@@ -98,6 +98,7 @@
         
       ],
     }),
+    exercise: null,
     methods:{
       closeCardViewRoutine() {
         this.$emit('closeViewRoutine');

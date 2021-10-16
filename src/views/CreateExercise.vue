@@ -179,7 +179,7 @@ export default {
         series: this.series,
         duration: this.duration,
         difficulty: this.difficulty,
-        image: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
+        image: "https://hips.hearstapps.com/harpersbazaaruk.cdnds.net/17/12/1490024347-1475508420-running3.jpg?resize=980:*",
         category: this.category
       }
 
@@ -206,7 +206,7 @@ export default {
         series: this.series,
         duration: this.duration,
         difficulty: this.difficulty,
-        image: "https://www.wework.com/ideas/wp-content/uploads/sites/4/2018/01/blogilates-group-800x542.jpg",
+        image: "https://hips.hearstapps.com/harpersbazaaruk.cdnds.net/17/12/1490024347-1475508420-running3.jpg?resize=980:*",
         category: this.category
       }
       // await this.$findId(this.name);

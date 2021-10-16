@@ -4,7 +4,7 @@
     <!-- <v-img src="@/assets/fondo1.jpeg" > -->
       <v-row>
         <v-col offset-sm="1" cols="10" justify-self="center" class="text-center">
-          <h1 style="color: white; font-weight:900;">Hola otra vez, {{ username }}!</h1>
+          <h1 style="color: white; font-weight:900;">¡Hola otra vez, {{ username }}!</h1>
         </v-col>
       </v-row>
 

@@ -143,7 +143,7 @@ export default {
       phoneInputValue: "",
       validations:{
           phoneRules: [
-              v => v.length != 10 || "El télefono debe debe contener 10 numeros"
+              v => v.length != 11 || "El télefono debe debe contener 10 numeros"
           ],
       },
       genders: [

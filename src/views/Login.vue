@@ -40,6 +40,7 @@
             >
             </v-text-field>
             <p class="error-message" v-if="!userAuthorized">Usuario y/o contraseña inválida</p>
+            <v-alert type="error" v-if="isEmpty">Llenar todos los campos.</v-alert>
             <v-btn @click="login()"
               class="text-center my-2"
               color="secondary"
@@ -78,6 +79,7 @@ export default {
       result: null,
       show: false,
       userAuthorized: true,
+      isEmpty: false,
     }
   },
   computed: {
@@ -96,6 +98,7 @@ export default {
       $login: 'login',
     }),
     async login() {
+      this.isEmpty = false;
       this.correctInfo = true;
       this.userAuthorized = true;
       try {
@@ -109,6 +112,7 @@ export default {
           this.userAuthorized = false;
         }
       }
+      this.IfEmpty()
       if(this.isLoggedIn && this.userAuthorized){
         await this.$router.push('/home')
       }
@@ -119,6 +123,12 @@ export default {
     clearResult() {
       this.result = null
     },
+    IfEmpty() {
+      if(this.username != "" && this.password != "")
+        this.isEmpty = false;
+      this.isEmpty = true;
+      return;
+    }
   },
 }
 </script>

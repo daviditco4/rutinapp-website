@@ -4,4 +4,17 @@ import Vuetify from 'vuetify/lib/framework';
 Vue.use(Vuetify);
 
 export default new Vuetify({
+    theme: {
+        themes: {
+            light: {
+                primary: '#76EAAB',
+                secondary: '#333C8E',
+                // accent: '#8c9eff',
+                error: '#b71c1c',
+            },
+        },
+        options: {
+            customProperties: true
+        }
+    },
 });
